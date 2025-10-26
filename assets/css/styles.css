@@ -1,256 +1,75 @@
-/* =======================================================
-   L.S.E.S. — THEME GLOBAL + DOCX UI v14
-   ======================================================= */
-
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
-
-:root {
-  --bg-1: #050b16;
-  --bg-2: #0b1e33;
-  --ink: #dff6ff;
-  --accent: #5ad1ff;
-  --line: #1e3a5f;
+/* === Mise en page du Règlement & infobulles DocX === */
+.reg-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 24px;
+  align-items: start;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-html, body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  font-family: 'Orbitron', system-ui, Segoe UI, Roboto, Arial, sans-serif;
-  color: var(--ink);
-  background: linear-gradient(180deg, var(--bg-1) 0%, #071528 60%, #06101f 100%);
-  overflow-x: hidden;
-}
-
-/* =======================================================
-   HEADER
-   ======================================================= */
-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 14px 24px;
-  background: rgba(7, 18, 34, 0.92);
-  border-bottom: 1px solid rgba(90, 209, 255, 0.25);
-  box-shadow: 0 0 20px rgba(90, 209, 255, 0.12);
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.logo img {
-  height: 40px;
-  width: auto;
-}
-
-h1 {
-  margin: 0;
+.reg-sec h2 {
+  margin-top: 28px;
+  border-left: 3px solid #5ad1ff;
+  padding-left: 10px;
+  color: #8fd6ff;
+  font-weight: 700;
   font-size: 1.25rem;
-  letter-spacing: 0.02em;
 }
 
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: 18px;
+.reg-sec p {
+  margin: 10px 0;
+  line-height: 1.6;
 }
 
-.navlink {
-  color: var(--ink);
-  text-decoration: none;
-  transition: all 0.3s ease;
+.reg-sec ul {
+  margin: 10px 0 10px 22px;
 }
 
-.navlink:hover {
-  color: var(--accent);
-  text-shadow: 0 0 8px var(--accent);
+.reg-aside {
+  position: sticky;
+  top: 96px;
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+  padding-right: 6px;
+  scrollbar-width: thin;
 }
 
-/* =======================================================
-   MAIN
-   ======================================================= */
-main {
-  display: flex;
-  justify-content: center;
-  padding: 32px 16px;
+.anno {
+  background: rgba(10, 30, 60, 0.55);
+  border: 1px solid rgba(90, 209, 255, 0.25);
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 0 14px rgba(90, 209, 255, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.intro {
-  width: min(960px, 92vw);
-  background: rgba(20, 50, 80, 0.18);
-  border: 1px solid rgba(90, 209, 255, 0.18);
-  border-radius: 14px;
-  padding: 26px 28px;
-  box-shadow: 0 0 24px rgba(90, 209, 255, 0.12) inset, 0 0 18px rgba(90, 209, 255, 0.08);
+.anno:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(90, 209, 255, 0.3);
 }
 
-.intro h2 {
-  margin: 0.2rem 0 1rem;
-}
-
-.quote {
-  opacity: 0.85;
-  font-style: italic;
-}
-
-/* =======================================================
-   FOOTER
-   ======================================================= */
-footer {
-  margin-top: 36px;
-  text-align: center;
-  padding: 14px 16px;
-  background: rgba(6, 16, 31, 0.9);
-  border-top: 1px solid rgba(90, 209, 255, 0.18);
-  font-size: 0.9rem;
-}
-
-/* =======================================================
-   DOCX — Conteneur & Boot
-   ======================================================= */
-#docx-chat {
-  position: fixed;
-  right: 22px;
-  bottom: 22px;
-  width: 340px;
-  z-index: 1200;
-  opacity: 0;
-  transform: scale(0.9);
-  animation: docxBoot 2.5s ease forwards;
-  animation-delay: 1.5s;
-}
-
-@keyframes docxBoot {
-  0% {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  50% {
-    opacity: 0.6;
-    transform: scale(1.05);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* =======================================================
-   DOCX — Barre d’activité lumineuse
-   ======================================================= */
-#docx-activity {
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(90,209,255,1) 0%, rgba(0,100,255,0.2) 70%);
-  box-shadow: 0 0 10px rgba(90, 209, 255, 0.6);
-  animation: pulseActivity 3s ease-in-out infinite;
-}
-
-@keyframes pulseActivity {
-  0%, 100% {
-    transform: translateX(-50%) scale(0.9);
-    box-shadow: 0 0 8px rgba(90, 209, 255, 0.4);
-  }
-  50% {
-    transform: translateX(-50%) scale(1.2);
-    box-shadow: 0 0 20px rgba(90, 209, 255, 0.9);
-  }
-}
-
-/* =======================================================
-   DOCX — Bulles
-   ======================================================= */
-#docx-bubbles {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-height: 50vh;
-  overflow: auto;
-}
-
-.docx-bubble {
-  background: rgba(10, 30, 60, 0.72);
-  border: 1px solid rgba(120, 200, 255, 0.35);
-  color: #cfeeff;
-  padding: 10px 14px;
-  border-radius: 12px 12px 0 12px;
-  animation: bubbleIn 0.4s ease, pulseGlow 6s ease-in-out infinite;
-  box-shadow: 0 0 10px rgba(120, 200, 255, 0.12);
-  backdrop-filter: blur(3px);
-  font-size: 0.92rem;
-  line-height: 1.35;
-}
-
-.docx-name {
+.anno-title {
   font-weight: 700;
   color: #8fe6ff;
-  margin-right: 4px;
+  margin-bottom: 6px;
 }
 
-@keyframes bubbleIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px) scale(0.98);
+.anno-item {
+  font-size: 0.9rem;
+  line-height: 1.35;
+  margin: 6px 0;
+  border-left: 2px solid rgba(90, 209, 255, 0.5);
+  padding-left: 8px;
+  color: #c9e6ff;
+}
+
+/* Responsive : colonnes fusionnées */
+@media (max-width: 960px) {
+  .reg-layout {
+    grid-template-columns: 1fr;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+  .reg-aside {
+    position: static;
+    max-height: none;
   }
-}
-
-@keyframes pulseGlow {
-  0% { box-shadow: 0 0 8px rgba(120, 200, 255, 0.08); }
-  50% { box-shadow: 0 0 20px rgba(120, 200, 255, 0.35); }
-  100% { box-shadow: 0 0 8px rgba(120, 200, 255, 0.08); }
-}
-
-/* =======================================================
-   DOCX — Couleurs par Personnage
-   ======================================================= */
-.bubble-neutral { border-color: rgba(120, 180, 220, 0.35); box-shadow: 0 0 16px rgba(120, 180, 220, 0.14); }
-.bubble-pioupiou { background: rgba(30, 144, 255, 0.18); border-color: rgba(30, 144, 255, 0.55); }
-.bubble-raven { background: rgba(176, 102, 255, 0.18); border-color: rgba(176, 102, 255, 0.55); }
-.bubble-69 { background: rgba(255, 99, 71, 0.18); border-color: rgba(255, 99, 71, 0.55); }
-.bubble-01 { background: rgba(0, 206, 209, 0.18); border-color: rgba(0, 206, 209, 0.55); }
-.bubble-volley { background: rgba(255, 165, 0, 0.18); border-color: rgba(255, 165, 0, 0.55); }
-.bubble-canasson { background: rgba(222, 184, 135, 0.18); border-color: rgba(222, 184, 135, 0.55); }
-.bubble-63 { background: rgba(255, 105, 180, 0.18); border-color: rgba(255, 105, 180, 0.55); }
-.bubble-loris { background: rgba(70, 130, 180, 0.18); border-color: rgba(70, 130, 180, 0.55); }
-
-/* =======================================================
-   DOCX — Humeurs Aléatoires
-   ======================================================= */
-.bubble-calm { border-color: #4ac6ff; background: rgba(74,198,255,0.15); box-shadow: 0 0 15px rgba(74,198,255,0.4); }
-.bubble-ironic { border-color: #8aff67; background: rgba(138,255,103,0.12); box-shadow: 0 0 15px rgba(138,255,103,0.35); }
-.bubble-angry { border-color: #ff4848; background: rgba(255,72,72,0.15); box-shadow: 0 0 20px rgba(255,72,72,0.35); }
-.bubble-sad { border-color: #4a70ff; background: rgba(74,112,255,0.15); box-shadow: 0 0 20px rgba(74,112,255,0.35); }
-.bubble-romantic { border-color: #ff64c2; background: rgba(255,100,194,0.12); box-shadow: 0 0 15px rgba(255,100,194,0.35); }
-.bubble-hyper { border-color: #faff5a; background: rgba(250,255,90,0.12); box-shadow: 0 0 20px rgba(250,255,90,0.35); }
-
-/* =======================================================
-   Responsive
-   ======================================================= */
-@media (max-width: 768px) {
-  #docx-chat { width: 92vw; right: 4vw; }
-  .intro { padding: 18px; }
 }
