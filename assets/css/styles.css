@@ -98,3 +98,129 @@ footer {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
+/* =======================================================
+   DOCX — Styles des bulles + émotions (glow doux)
+   À coller à la fin de votre styles.css
+   ======================================================= */
+
+#docx-chat {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  width: 340px;
+  max-height: 50vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 2000;
+}
+
+.docx-bubble {
+  background: rgba(20, 40, 70, 0.65);
+  border: 1px solid rgba(90, 209, 255, 0.35);
+  color: #cfeeff;
+  padding: 0.8rem 1rem;
+  border-radius: 12px 12px 0 12px;
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+  backdrop-filter: blur(4px);
+  animation: bubbleIn 0.5s ease, glowSoft 3s ease infinite alternate;
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+
+.docx-bubble.intro {
+  border-style: solid;
+  border-width: 1px;
+  filter: saturate(1.05);
+}
+
+.docx-prefix { color: #8fe6ff; }
+
+.docx-typing {
+  padding: 0.6rem 0.9rem;
+  font-style: italic;
+  border-radius: 12px 12px 0 12px;
+  background: rgba(20, 40, 70, 0.35);
+  border: 1px dashed rgba(120, 220, 255, 0.4);
+  color: #9fe8ff;
+  animation: glowSoft 2s ease infinite alternate;
+}
+
+.docx-typing .dots span {
+  animation: blink 1.2s infinite;
+}
+.docx-typing .dots span:nth-child(2) { animation-delay: .2s; }
+.docx-typing .dots span:nth-child(3) { animation-delay: .4s; }
+
+/* Émotions / personnes — couleurs & glow doux */
+.bubble-pioupiou {
+  background: rgba(30, 144, 255, 0.18);
+  border-color: rgba(30, 144, 255, 0.55);
+  box-shadow: 0 0 16px rgba(30, 144, 255, 0.18);
+}
+.bubble-raven {
+  background: rgba(176, 102, 255, 0.18);
+  border-color: rgba(176, 102, 255, 0.55);
+  box-shadow: 0 0 16px rgba(176, 102, 255, 0.18);
+}
+.bubble-69 {
+  background: rgba(255, 99, 71, 0.18);
+  border-color: rgba(255, 99, 71, 0.55);
+  box-shadow: 0 0 16px rgba(255, 99, 71, 0.18);
+}
+.bubble-01 {
+  background: rgba(0, 206, 209, 0.18);
+  border-color: rgba(0, 206, 209, 0.55);
+  box-shadow: 0 0 16px rgba(0, 206, 209, 0.18);
+}
+.bubble-volley {
+  background: rgba(255, 165, 0, 0.18);
+  border-color: rgba(255, 165, 0, 0.55);
+  box-shadow: 0 0 16px rgba(255, 165, 0, 0.18);
+}
+.bubble-canasson {
+  background: rgba(222, 184, 135, 0.18);
+  border-color: rgba(222, 184, 135, 0.55);
+  box-shadow: 0 0 16px rgba(222, 184, 135, 0.18);
+}
+.bubble-63 {
+  background: rgba(255, 105, 180, 0.18);
+  border-color: rgba(255, 105, 180, 0.55);
+  box-shadow: 0 0 16px rgba(255, 105, 180, 0.18);
+}
+.bubble-loris {
+  background: rgba(70, 130, 180, 0.18);
+  border-color: rgba(70, 130, 180, 0.55);
+  box-shadow: 0 0 16px rgba(70, 130, 180, 0.18);
+}
+.bubble-introspect {
+  background: rgba(90, 209, 255, 0.15);
+  border-color: rgba(90, 209, 255, 0.55);
+  box-shadow: 0 0 16px rgba(90, 209, 255, 0.18);
+}
+.bubble-neutral {
+  background: rgba(40, 60, 90, 0.22);
+  border-color: rgba(120, 180, 220, 0.35);
+  box-shadow: 0 0 16px rgba(120, 180, 220, 0.14);
+}
+
+/* Animations */
+@keyframes bubbleIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes glowSoft {
+  from { box-shadow: 0 0 10px rgba(120, 200, 255, 0.08); }
+  to   { box-shadow: 0 0 18px rgba(120, 200, 255, 0.22); }
+}
+@keyframes blink {
+  0%, 20%   { opacity: 0.2; }
+  50%       { opacity: 1; }
+  100%      { opacity: 0.2; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #docx-chat { width: 92%; right: 4%; }
+}
