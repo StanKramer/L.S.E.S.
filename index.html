@@ -4,24 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>L.S.E.S. — Guide Médical</title>
-  <link rel="icon" href="assets/img/favicon.png">
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
   <header>
     <div class="logo">
-      <img src="assets/img/logo-lses.png" alt="L.S.E.S.">
-      <h1>L.S.E.S. — Guide Médical</h1>
+      <img src="assets/img/logo-lses.png" alt="L.S.E.S." />
+      <h1>L.S.E.S. – Guide Médical</h1>
     </div>
     <nav>
       <ul>
         <li><a class="navlink" href="index.html">Accueil</a></li>
-        <li><a class="navlink" href="urgences/">Urgences</a></li>
-        <li><a class="navlink" href="chirurgie/">Chirurgie</a></li>
-        <li><a class="navlink" href="psy/">Psychologie</a></li>
-        <li><a class="navlink" href="gynecologie/">Gynécologie</a></li>
-        <li><a class="navlink" href="medecine-legale/">Médecine légale</a></li>
-        <li><a class="navlink" href="glossaire/">Glossaire</a></li>
+        <li><a class="navlink" href="departements/urgences/index.html">Urgences</a></li>
+        <li><a class="navlink" href="departements/chirurgie/index.html">Chirurgie</a></li>
+        <li><a class="navlink" href="departements/psy/index.html">Psychologie</a></li>
+        <li><a class="navlink" href="departements/gynecologie/index.html">Gynécologie</a></li>
+        <li><a class="navlink" href="departements/medecine-legale/index.html">Médecine légale</a></li>
+        <li><a class="navlink" href="glossaire.html">Glossaire</a></li>
       </ul>
     </nav>
   </header>
@@ -30,13 +29,16 @@
     <section class="intro">
       <h2>Bienvenue dans le réseau médical du L.S.E.S.</h2>
       <p class="quote">« Parce que sauver une vie ne devrait pas dépendre d’une bonne connexion Wi-Fi. »</p>
+
       <p>
-        Bienvenue sur le <strong>Guide Médical Intergalactique du L.S.E.S.</strong>, supervisé par l’intelligence artificielle 
-        <strong>DocX</strong> — ce portail centralise protocoles, formations et réflexions médicales.
+        Bienvenue sur le <strong>Guide Médical Intergalactique du L.S.E.S.</strong>,
+        supervisé par l’intelligence artificielle <strong>DocX</strong> — ce portail centralise protocoles,
+        formations et réflexions médicales.
       </p>
+
       <div class="docx-message">
         <span class="ai-tag">[DocX] :</span>
-        <span id="docx-init">Chargement des ressources cognitives… Veuillez patienter pendant que j’évalue votre niveau d’incompétence.</span>
+        <span id="docx-init">Chargement des ressources cognitives... Veuillez patienter pendant que j’évalue votre niveau d’incompétence.</span>
       </div>
     </section>
   </main>
@@ -46,8 +48,13 @@
     <p><em>« Parce qu’il fallait bien quelqu’un pour écrire ce bazar. »</em></p>
   </footer>
 
-  <div id="docx-chat"></div>
+  <!-- 💬 Interface DocX -->
+  <div id="docx-chat" class="docx-container">
+    <div id="docx-bubbles"></div>
+  </div>
 
+  <!-- JS -->
+  <script src="assets/js/docx_quotes.js"></script>
   <script src="assets/js/app.js"></script>
 </body>
 </html>
