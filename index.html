@@ -10,6 +10,59 @@
 
   <!-- Feuille de style principale -->
   <link rel="stylesheet" href="assets/css/styles.css">
+
+  <style>
+    /* ===============================
+       MENUS DÉROULANTS DYNAMIQUES
+       =============================== */
+    nav ul li {
+      position: relative;
+    }
+
+    nav ul li ul {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: rgba(10, 25, 45, 0.95);
+      border: 1px solid rgba(90, 209, 255, 0.2);
+      border-radius: 10px;
+      list-style: none;
+      padding: 8px 0;
+      margin: 0;
+      min-width: 180px;
+      box-shadow: 0 0 15px rgba(90, 209, 255, 0.1);
+      z-index: 1000;
+    }
+
+    nav ul li:hover ul {
+      display: block;
+      animation: fadeInMenu 0.3s ease;
+    }
+
+    nav ul li ul li {
+      padding: 8px 16px;
+    }
+
+    nav ul li ul li a {
+      color: #bfeaff;
+      text-decoration: none;
+      display: block;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    nav ul li ul li a:hover {
+      color: var(--accent);
+      text-shadow: 0 0 6px var(--accent);
+      transform: translateX(4px);
+    }
+
+    @keyframes fadeInMenu {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 
 <body>
@@ -23,12 +76,45 @@
     </div>
     <nav>
       <ul>
-        <li><a href="#" class="navlink">Accueil</a></li>
-        <li><a href="#" class="navlink">Médecine Générale</a></li>
-        <li><a href="#" class="navlink">Chirurgie</a></li>
-        <li><a href="#" class="navlink">Gynécologie</a></li>
-        <li><a href="#" class="navlink">Médecine Légale</a></li>
-        <li><a href="#" class="navlink">Formation</a></li>
+        <li>
+          <a href="#" class="navlink">Accueil ▾</a>
+          <ul>
+            <li><a href="#">Présentation</a></li>
+            <li><a href="#">Règlement Intérieur</a></li>
+            <li><a href="#">Historique</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" class="navlink">Médecine Générale ▾</a>
+          <ul>
+            <li><a href="#">Pathologies</a></li>
+            <li><a href="#">Protocoles</a></li>
+            <li><a href="#">Formation</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" class="navlink">Chirurgie ▾</a>
+          <ul>
+            <li><a href="#">Appendicite</a></li>
+            <li><a href="#">Abcès</a></li>
+            <li><a href="#">Traumatologie</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" class="navlink">Gynécologie ▾</a>
+          <ul>
+            <li><a href="#">Suivi de grossesse</a></li>
+            <li><a href="#">Pathologies</a></li>
+            <li><a href="#">Formation</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" class="navlink">Médecine Légale ▾</a>
+          <ul>
+            <li><a href="#">Autopsies</a></li>
+            <li><a href="#">Procédures légales</a></li>
+          </ul>
+        </li>
       </ul>
     </nav>
   </header>
