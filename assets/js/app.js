@@ -11,3 +11,6 @@
   });
 })();
 </script>
+console.log("%cDocX initialisé.", "color:#00bfff; font-weight:bold;");
+console.log("Analyse des connexions au L.S.E.S. en cours...");
+setTimeout(() => console.log("%cConnexion établie. Bonne chance, humain.", "color:#00ffff;"), 2000);
