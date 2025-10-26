@@ -1,160 +1,100 @@
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap');
-
-:root {
-  --color-bg-dark: #010b18;
-  --color-bg-light: #0a1f35;
-  --color-accent: #00bfff;
-  --color-accent-soft: #0080ff;
-  --color-text: #e0f6ff;
-  --font-main: 'Rajdhani', sans-serif;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: var(--font-main);
-}
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
 body {
-  background: linear-gradient(120deg, #010b18, #041a30, #010b18);
-  background-size: 200% 200%;
-  animation: backgroundMove 25s ease infinite;
-  color: var(--color-text);
-  line-height: 1.6;
-  min-height: 100vh;
-}
-@keyframes backgroundMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  margin: 0;
+  font-family: 'Orbitron', sans-serif;
+  color: #e0e8ff;
+  background: linear-gradient(180deg, #020817, #031a33 90%);
+  overflow-x: hidden;
 }
 
-/* NAVIGATION */
-.nav {
-  background: rgba(0, 10, 25, 0.9);
+/* Header */
+header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  background: rgba(0, 10, 30, 0.9);
+  border-bottom: 1px solid #0a74c0;
   padding: 0.8rem 2rem;
-  border-bottom: 1px solid var(--color-accent);
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 10;
 }
-.brand {
+.logo {
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: var(--color-accent);
-  font-weight: bold;
-  text-decoration: none;
 }
-.brand img {
-  height: 45px;
-  filter: drop-shadow(0 0 8px rgba(0,150,255,0.6));
+.logo img {
+  width: 45px;
+  margin-right: 10px;
 }
-.nav ul {
+nav ul {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 1.2rem;
 }
-.navlink {
-  color: #aee3ff;
+nav a {
+  color: #e0e8ff;
   text-decoration: none;
-  font-weight: bold;
   transition: 0.3s;
 }
-.navlink:hover {
-  color: var(--color-accent);
-  text-shadow: 0 0 8px var(--color-accent);
+nav a:hover {
+  color: #3cb9ff;
 }
 
-/* CONTENU */
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-h1, h2 {
-  color: #dff6ff;
-  text-shadow: 0 0 6px var(--color-accent);
-  margin-bottom: 1rem;
-}
-.banner {
-  background: rgba(0, 30, 60, 0.6);
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 0 20px rgba(0, 100, 255, 0.2);
+/* Main */
+main {
+  padding: 3rem;
   text-align: center;
-  margin-bottom: 2rem;
-  transition: 0.4s ease;
 }
-.banner:hover {
-  box-shadow: 0 0 25px rgba(0, 150, 255, 0.4);
-}
-
-/* FOOTER */
-.footer {
-  text-align: center;
+.intro {
+  background: rgba(10, 25, 50, 0.5);
+  border: 1px solid #0a74c0;
+  border-radius: 12px;
   padding: 2rem;
-  border-top: 1px solid #004466;
-  color: #87cefa;
-  background: rgba(0, 10, 20, 0.85);
-  margin-top: 3rem;
-  font-size: 0.9rem;
+  box-shadow: 0 0 15px #0040a0;
+  animation: fadeIn 1.5s ease-in-out;
 }
-.footer span {
-  color: var(--color-accent);
+.quote {
+  font-style: italic;
+  color: #7abaff;
 }
 
-/* DOCX CHAT */
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem 0;
+  background: rgba(0, 10, 30, 0.9);
+  border-top: 1px solid #0a74c0;
+  color: #8fb7e0;
+}
+
+/* DocX chat */
 #docx-chat {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 10px;
+  right: 10px;
   width: 320px;
-  max-height: 50vh;
+  max-height: 250px;
   overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  z-index: 2000;
 }
 .docx-bubble {
-  background: rgba(0, 60, 120, 0.25);
-  border: 1px solid rgba(0, 180, 255, 0.4);
-  color: #aee3ff;
-  padding: 0.8rem 1rem;
-  border-radius: 10px 10px 0 10px;
-  box-shadow: 0 0 10px rgba(0,150,255,0.3);
-  font-size: 0.9rem;
-  animation: fadeIn 0.8s ease;
-  backdrop-filter: blur(3px);
+  background: rgba(10, 25, 50, 0.9);
+  border: 1px solid #0a74c0;
+  border-radius: 10px;
+  padding: 0.7rem 1rem;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  box-shadow: 0 0 8px #0077ff80;
+  animation: fadeInUp 0.6s ease;
 }
-.docx-bubble.intro {
-  background: rgba(0, 200, 255, 0.15);
-  border-color: rgba(0, 255, 255, 0.5);
-}
-.docx-typing {
-  background: rgba(0, 200, 255, 0.08);
-  border: 1px dashed rgba(0, 255, 255, 0.4);
-  padding: 0.6rem 1rem;
-  color: #00c8ff;
-  font-style: italic;
-  animation: pulse 1s infinite alternate;
-  border-radius: 10px 10px 0 10px;
-}
-@keyframes pulse {
-  from { opacity: 0.4; }
-  to { opacity: 1; }
-}
+
+/* Animations */
 @keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes fadeInUp {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
-}
-@media (max-width: 768px) {
-  #docx-chat { width: 90%; right: 5%; }
-  .nav ul { flex-direction: column; }
-  .container { padding: 1rem; }
 }
