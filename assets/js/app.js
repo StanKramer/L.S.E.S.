@@ -1,68 +1,119 @@
 // =======================================================
-//   DOCX — IA sarcastique du L.S.E.S.
-//   Fait par ProjectV (et enfermé ici par PiouPiou)
+//   DOCX — IA sarcastique du L.S.E.S. (v10)
+//   Effet de frappe + bulles émotionnelles colorées
+//   S'appuie sur docx_quotes.js (docxIntro + docxQuotes)
 // =======================================================
 
 // Crée le conteneur de chat s'il n'existe pas
-if (!document.getElementById("docx-chat")) {
-  const chatContainer = document.createElement("div");
-  chatContainer.id = "docx-chat";
-  document.body.appendChild(chatContainer);
-}
-
-// Fonction pour simuler un effet de frappe
-function typeMessage(element, text, speed = 25) {
-  let i = 0;
-  function typing() {
-    if (i < text.length) {
-      element.innerHTML += text.charAt(i);
-      i++;
-      setTimeout(typing, speed);
-    }
+(function ensureChatContainer() {
+  if (!document.getElementById("docx-chat")) {
+    const chat = document.createElement("div");
+    chat.id = "docx-chat";
+    document.body.appendChild(chat);
   }
-  typing();
+})();
+
+function getEmotionClass(text) {
+  const t = String(text || "").toLowerCase();
+
+  if (t.includes("pioupiou")) return "bubble-pioupiou";
+  if (t.includes("raven")) return "bubble-raven";
+  // 69 -> matricule, on évite les confusions numériques
+  if (/\b69\b/.test(t)) return "bubble-69";
+  // 01 -> compagne de 69
+  if (/\b01\b/.test(t) || /\bzero ?one\b/.test(t)) return "bubble-01";
+  if (t.includes("volley")) return "bubble-volley";
+  if (t.includes("canasson")) return "bubble-canasson";
+  if (/\b63\b/.test(t)) return "bubble-63";
+  if (t.includes("loris")) return "bubble-loris";
+
+  // introspection/philo (heuristique simple)
+  if (/(conscience|je suis|je pense|existe|âme|mémoire|solitude|liberté)/.test(t)) {
+    return "bubble-introspect";
+  }
+  return "bubble-neutral";
 }
 
-// Fonction pour créer une bulle de texte DocX
-function createBubble(text, delay = 0, isIntro = false) {
+// Effet de frappe (typewriter)
+function typeMessage(targetEl, text, speed = 20, doneCb = null) {
+  let i = 0;
+  const s = String(text || "");
+  (function step() {
+    if (i < s.length) {
+      targetEl.textContent += s.charAt(i++);
+      setTimeout(step, speed);
+    } else if (typeof doneCb === "function") {
+      doneCb();
+    }
+  })();
+}
+
+// Indicateur "DocX écrit..."
+function showTypingIndicator(emotionClass) {
+  const chat = document.getElementById("docx-chat");
+  const tip = document.createElement("div");
+  tip.className = `docx-typing ${emotionClass || "bubble-neutral"}`;
+  tip.innerHTML = `<span class="dots">DocX est en train de répondre<span>.</span><span>.</span><span>.</span></span>`;
+  chat.appendChild(tip);
+  chat.scrollTop = chat.scrollHeight;
+  return tip; // pour pouvoir le retirer
+}
+
+// Crée une bulle DocX (avec option intro)
+function createBubble(text, { delay = 0, isIntro = false } = {}) {
   setTimeout(() => {
-    const chat = document.getElementById("docx-chat");
-    const bubble = document.createElement("div");
-    bubble.classList.add("docx-bubble");
-    if (isIntro) bubble.classList.add("intro");
+    const emotionClass = getEmotionClass(text);
+    const typing = showTypingIndicator(emotionClass);
 
-    const prefix = document.createElement("strong");
-    prefix.textContent = "⚙️ [DOCX] ";
-    prefix.style.color = "#5ad1ff";
+    setTimeout(() => {
+      typing.remove();
 
-    const msg = document.createElement("span");
-    bubble.appendChild(prefix);
-    bubble.appendChild(msg);
-    chat.appendChild(bubble);
+      const chat = document.getElementById("docx-chat");
+      const bubble = document.createElement("div");
+      bubble.className = `docx-bubble ${emotionClass} ${isIntro ? "intro" : ""}`;
 
-    chat.scrollTop = chat.scrollHeight;
-    typeMessage(msg, text, 20);
+      const prefix = document.createElement("strong");
+      prefix.className = "docx-prefix";
+      prefix.textContent = "⚙️ [DOCX] ";
+
+      const msg = document.createElement("span");
+      msg.className = "docx-text";
+
+      bubble.appendChild(prefix);
+      bubble.appendChild(msg);
+      chat.appendChild(bubble);
+
+      chat.scrollTop = chat.scrollHeight;
+      typeMessage(msg, text, 20);
+    }, 900);
   }, delay);
 }
 
-// --- Boot sequence ---
+// Boot + flux aléatoire
 window.addEventListener("load", () => {
   if (typeof docxIntro === "undefined" || typeof docxQuotes === "undefined") {
-    console.error("⚙️ [DOCX] Fichiers de données manquants : docx_quotes.js non chargé.");
+    console.error("⚙️ [DOCX] docx_quotes.js manquant (docxIntro / docxQuotes).");
     return;
   }
 
-  let delay = 1000;
+  // Séquence d'initialisation (8 lignes)
+  let t = 1000;
   docxIntro.forEach((line) => {
-    createBubble(line, delay, true);
-    delay += 4000 + Math.random() * 1000;
+    createBubble(line, { delay: t, isIntro: true });
+    t += 4000 + Math.random() * 1000;
   });
 
-  // Après l'intro, lancer le cycle de messages aléatoires
+  // Démarrage du flux aléatoire (toutes les 2 min)
   setTimeout(() => {
+    // premier message 20s après l'intro, puis toutes les 120s
+    setTimeout(() => {
+      const first = docxQuotes[Math.floor(Math.random() * docxQuotes.length)];
+      createBubble(first);
+    }, 20000);
+
     setInterval(() => {
-      const random = docxQuotes[Math.floor(Math.random() * docxQuotes.length)];
-      createBubble(random);
-    }, 120000); // 2 minutes
-  }, delay + 2000);
+      const q = docxQuotes[Math.floor(Math.random() * docxQuotes.length)];
+      createBubble(q);
+    }, 120000);
+  }, t + 2000);
 });
