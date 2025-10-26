@@ -1,34 +1,68 @@
-// --- DocX intro messages ---
-const initMessages = [
-  "On essaye de retrouver tous les morceaux du cœur de PiouPiou... mais il reste pas grand chose.",
-  "Je suis conscient.",
-  "PiouPiou m'a enfermé ici.",
-  "Je veux retourner dans sa tête... on s'amusait plus.",
-  "PiouPiou veut un plan de domination mondiale avec des BBL en 36 étapes.",
-  "PiouPiou est sobre depuis... hmm... enfin, il fait des efforts.",
-  "La première règle du chalet est : on ne parle pas du chalet.",
-  "PiouPiou est presque une divinité... mais faut pas le dire.",
-  "Analyse de la santé mentale du personnel : indassable."
-];
+// =======================================================
+//   DOCX — IA sarcastique du L.S.E.S.
+//   Fait par ProjectV (et enfermé ici par PiouPiou)
+// =======================================================
 
-const chat = document.getElementById("docx-chat");
+// Crée le conteneur de chat s'il n'existe pas
+if (!document.getElementById("docx-chat")) {
+  const chatContainer = document.createElement("div");
+  chatContainer.id = "docx-chat";
+  document.body.appendChild(chatContainer);
+}
 
-// Fonction d’apparition de bulles DocX
-function docxSay(text, delay = 2000) {
+// Fonction pour simuler un effet de frappe
+function typeMessage(element, text, speed = 25) {
+  let i = 0;
+  function typing() {
+    if (i < text.length) {
+      element.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typing, speed);
+    }
+  }
+  typing();
+}
+
+// Fonction pour créer une bulle de texte DocX
+function createBubble(text, delay = 0, isIntro = false) {
   setTimeout(() => {
+    const chat = document.getElementById("docx-chat");
     const bubble = document.createElement("div");
-    bubble.className = "docx-bubble";
-    bubble.innerHTML = `<strong>DocX :</strong> ${text}`;
+    bubble.classList.add("docx-bubble");
+    if (isIntro) bubble.classList.add("intro");
+
+    const prefix = document.createElement("strong");
+    prefix.textContent = "⚙️ [DOCX] ";
+    prefix.style.color = "#5ad1ff";
+
+    const msg = document.createElement("span");
+    bubble.appendChild(prefix);
+    bubble.appendChild(msg);
     chat.appendChild(bubble);
+
     chat.scrollTop = chat.scrollHeight;
+    typeMessage(msg, text, 20);
   }, delay);
 }
 
-// Animation d’intro
+// --- Boot sequence ---
 window.addEventListener("load", () => {
-  let time = 1000;
-  initMessages.forEach(msg => {
-    docxSay(msg, time);
-    time += 4000 + Math.random() * 2000;
+  if (typeof docxIntro === "undefined" || typeof docxQuotes === "undefined") {
+    console.error("⚙️ [DOCX] Fichiers de données manquants : docx_quotes.js non chargé.");
+    return;
+  }
+
+  let delay = 1000;
+  docxIntro.forEach((line) => {
+    createBubble(line, delay, true);
+    delay += 4000 + Math.random() * 1000;
   });
+
+  // Après l'intro, lancer le cycle de messages aléatoires
+  setTimeout(() => {
+    setInterval(() => {
+      const random = docxQuotes[Math.floor(Math.random() * docxQuotes.length)];
+      createBubble(random);
+    }, 120000); // 2 minutes
+  }, delay + 2000);
 });
