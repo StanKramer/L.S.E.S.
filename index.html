@@ -3,106 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>L.S.E.S. — PiouPiouPedia</title>
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="assets/img/favicon.png">
-
-  <!-- Feuille de style principale -->
+  <title>L.S.E.S. — Guide Médical</title>
+  <link rel="icon" type="image/png" href="assets/img/logo.png">
   <link rel="stylesheet" href="assets/css/styles.css">
-
-  <style>
-    /* ===============================
-       MENUS DÉROULANTS DYNAMIQUES
-       =============================== */
-    nav ul li {
-      position: relative;
-    }
-
-    nav ul li ul {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: rgba(10, 25, 45, 0.95);
-      border: 1px solid rgba(90, 209, 255, 0.2);
-      border-radius: 10px;
-      list-style: none;
-      padding: 8px 0;
-      margin: 0;
-      min-width: 180px;
-      box-shadow: 0 0 15px rgba(90, 209, 255, 0.1);
-      z-index: 1000;
-    }
-
-    nav ul li:hover ul {
-      display: block;
-      animation: fadeInMenu 0.3s ease;
-    }
-
-    nav ul li ul li {
-      padding: 8px 16px;
-    }
-
-    nav ul li ul li a {
-      color: #bfeaff;
-      text-decoration: none;
-      display: block;
-      transition: all 0.3s ease;
-      font-size: 0.9rem;
-    }
-
-    nav ul li ul li a:hover {
-      color: var(--accent);
-      text-shadow: 0 0 6px var(--accent);
-      transform: translateX(4px);
-    }
-
-    @keyframes fadeInMenu {
-      from { opacity: 0; transform: translateY(-6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+  <script src="assets/js/app.js" defer></script>
 </head>
 
 <body>
-  <!-- ==============================
-       HEADER
-  =============================== -->
   <header>
     <div class="logo">
-      <img src="assets/img/logo.png" alt="Logo L.S.E.S.">
-      <h1>L.S.E.S. — PiouPiouPedia</h1>
+      <img src="assets/img/logo.png" alt="L.S.E.S.">
+      <h1>L.S.E.S. — Guide Médical</h1>
     </div>
     <nav>
-      <ul id="dynamic-menu">
-        <!-- Menu statique de secours (affiché si GitHub API échoue) -->
-        <li>
-          <a href="#" class="navlink">Accueil ▾</a>
-          <ul>
-            <li><a href="accueil/presentation.html">Présentation</a></li>
-            <li><a href="accueil/reglement.html">Règlement Intérieur</a></li>
-            <li><a href="accueil/historique.html">Historique</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#" class="navlink">Médecine Générale ▾</a>
-          <ul>
-            <li><a href="medecine/pathologies.html">Pathologies</a></li>
-            <li><a href="medecine/protocoles.html">Protocoles</a></li>
-            <li><a href="medecine/formation.html">Formation</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#" class="navlink">Chirurgie ▾</a>
-          <ul>
-            <li><a href="chirurgie/appendicite.html">Appendicite</a></li>
-            <li><a href="chirurgie/abces.html">Abcès</a></li>
-            <li><a href="chirurgie/traumatologie.html">Traumatologie</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#" class="navlink">Gynécologie ▾</a>
-          <ul>
-            <li><a href="gynecologie/suivi.html">Suivi de grossesse</a></li>
-            <li><a hr
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="departements/urgences/index.html">Urgences</a></li>
+        <li><a href="departements/chirurgie/index.html">Chirurgie</a></li>
+        <li><a href="departements/psy/index.html">Psychologie</a></li>
+        <li><a href="departements/gynecologie/index.html">Gynécologie</a></li>
+        <li><a href="departements/medecine-legale/index.html">Médecine légale</a></li>
+        <li><a href="glossaire.html">Glossaire</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="intro">
+      <h2>Bienvenue dans le réseau médical du L.S.E.S.</h2>
+      <p class="quote">« Parce que sauver une vie ne devrait pas dépendre d’une bonne connexion Wi-Fi. »</p>
+
+      <p>Bienvenue sur le <strong>Guide Médical Intergalactique du L.S.E.S.</strong>, supervisé par l’intelligence artificielle <strong>DocX</strong>. Ce portail centralise protocoles, formations et réflexions pour le personnel médical interplanétaire.</p>
+
+      <div class="docx-message">
+        <span class="ai-tag">[DocX] :</span>
+        <span id="docx-init">Chargement des ressources cognitives... Veuillez patienter pendant que j’évalue votre niveau d’incompétence.</span>
+      </div>
+
+      <p>Vous pouvez accéder aux différents départements via le menu supérieur. Les données sont mises à jour en temps réel (en théorie).</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 <strong>PiouPiou le Magnifique</strong> — ProjectV</p>
+    <p><em>« Parce qu’il fallait bien quelqu’un pour écrire ce bazar. »</em></p>
+  </footer>
+
+  <!-- Zone DocX (bulles dynamiques) -->
+  <div id="docx-chat"></div>
+</body>
+</html>
