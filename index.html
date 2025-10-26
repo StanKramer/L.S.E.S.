@@ -4,58 +4,61 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>L.S.E.S. — Guide Médical Futuriste</title>
- <link rel="icon" href="assets/img/favicon.png">
-<link rel="stylesheet" href="assets/css/styles.css?v=4">
-<script src="assets/js/app.js?v=4"></script>
+  <link rel="icon" href="assets/img/favicon.png">
+  <link rel="stylesheet" href="assets/css/styles.css?v=5">
   <meta name="description" content="L.S.E.S. — Interface Médicale supervisée par l’IA DocX.">
 </head>
 
 <body>
   <header class="nav">
-    <a class="brand" href="/LSES_Futuriste/index.html">
-      <img src="/LSES_Futuriste/assets/img/logo-lses.png" alt="L.S.E.S.">
+    <a class="brand" href="index.html">
+      <img src="assets/img/logo-lses.png" alt="L.S.E.S.">
       <span>L.S.E.S. — Guide Médical</span>
     </a>
     <ul>
-      <li><a class="navlink" href="#">Accueil</a></li>
-      <li><a class="navlink" href="#">Urgences</a></li>
-      <li><a class="navlink" href="#">Chirurgie</a></li>
-      <li><a class="navlink" href="#">Psychologie</a></li>
-      <li><a class="navlink" href="#">Gynécologie</a></li>
-      <li><a class="navlink" href="#">Médecine légale</a></li>
-      <li><a class="navlink" href="#">Glossaire</a></li>
+      <li><a class="navlink" href="index.html">Accueil</a></li>
+      <li><a class="navlink" href="departements/urgences.html">Urgences</a></li>
+      <li><a class="navlink" href="departements/chirurgie.html">Chirurgie</a></li>
+      <li><a class="navlink" href="departements/psychologie.html">Psychologie</a></li>
+      <li><a class="navlink" href="departements/gynecologie.html">Gynécologie</a></li>
+      <li><a class="navlink" href="departements/medecine-legale.html">Médecine légale</a></li>
+      <li><a class="navlink" href="glossaire.html">Glossaire</a></li>
     </ul>
   </header>
 
-  <div class="container">
+  <main class="container">
     <div class="banner">
       <h1>Bienvenue dans le réseau médical du L.S.E.S.</h1>
       <p><em>“Parce que sauver une vie ne devrait pas dépendre d’une bonne connexion Wi-Fi.”</em></p>
     </div>
 
-    <p>
-      Bienvenue sur le <strong>Guide Médical Intergalactique du L.S.E.S.</strong><br>
-      Sous la supervision de l’intelligence artificielle <strong>DocX</strong>, ce portail centralise protocoles, formations et réflexions
-      pour le personnel médical interplanétaire.
-    </p>
+    <section>
+      <p>
+        Bienvenue sur le <strong>Guide Médical Intergalactique du L.S.E.S.</strong><br>
+        Sous la supervision de l’intelligence artificielle <strong>DocX</strong>, ce portail centralise protocoles, formations et réflexions
+        pour le personnel médical interplanétaire.
+      </p>
 
-    <blockquote class="note">
-      💬 <strong>[DocX] :</strong><br>
-      Chargement des ressources cognitives...  
-      Veuillez patienter pendant que j’évalue votre niveau d’incompétence.
-    </blockquote>
+      <blockquote class="note">
+        💬 <strong>[DocX] :</strong><br>
+        Chargement des ressources cognitives...  
+        Veuillez patienter pendant que j’évalue votre niveau d’incompétence.
+      </blockquote>
 
-    <p>
-      Vous pouvez accéder aux différents départements via le menu supérieur.  
-      Les données sont mises à jour en temps réel (en théorie).
-    </p>
-  </div>
+      <p>
+        Vous pouvez accéder aux différents départements via le menu supérieur.  
+        Les données sont mises à jour en temps réel (en théorie).
+      </p>
+    </section>
+  </main>
 
   <footer class="footer">
     © 2025 <span>PiouPiou le Magnifique</span> — <span>ProjectV</span><br>
     <em>« Parce qu’il fallait bien quelqu’un pour écrire ce bazar. »</em>
   </footer>
 
-  <script src="/LSES_Futuriste/assets/js/app.js?v=4"></script>
-</body>
-</html>
+  <script src="assets/js/app.js?v=5"></script>
+  <script>
+    document.querySelectorAll('.navlink').forEach(link => {
+      if (!link.href.includes('http')) {
+        const path = window.location.pathname.includes('departements') ? '..
