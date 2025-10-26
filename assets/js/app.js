@@ -1,5 +1,5 @@
 /* =======================================================
-   DOCX SYSTEM — Boot + Quotes + Glow Emotionnel
+   DOCX SYSTEM — Boot + Quotes + Glow Émotionnel Aléatoire
    ======================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -11,29 +11,39 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // Effet d'apparition du module DocX
+  // Apparition progressive
   chat.style.opacity = "0";
   setTimeout(() => (chat.style.opacity = "1"), 2500);
 
-  // Séquence d'initialisation (intro)
+  // Séquence d'initialisation
   setTimeout(() => {
     docxIntro.forEach((line, i) => {
       setTimeout(() => createBubble(line, "system"), i * 1800);
     });
-  }, 2000);
+  }, 1500);
 
-  // Défilement automatique des citations
+  // Rotation automatique des citations
   setInterval(() => {
-    const random = docxQuotes[Math.floor(Math.random() * docxQuotes.length)];
-    createBubble(random);
-  }, 24000);
+    const randomQuote = docxQuotes[Math.floor(Math.random() * docxQuotes.length)];
+    createBubble(randomQuote);
+  }, 20000);
 
-  // Création dynamique d'une bulle
+  // Table des émotions génériques aléatoires
+  const randomMoods = [
+    "bubble-calm",
+    "bubble-ironic",
+    "bubble-angry",
+    "bubble-sad",
+    "bubble-romantic",
+    "bubble-hyper"
+  ];
+
+  // Création d'une bulle
   function createBubble(text, tone) {
     const bubble = document.createElement("div");
     bubble.classList.add("docx-bubble");
 
-    // Attribution des émotions selon le contenu
+    // Attribution émotionnelle basée sur le contenu
     if (text.match(/pioupiou/i)) bubble.classList.add("bubble-pioupiou");
     else if (text.match(/raven/i)) bubble.classList.add("bubble-raven");
     else if (text.match(/\b69\b/)) bubble.classList.add("bubble-69");
@@ -42,12 +52,16 @@ document.addEventListener("DOMContentLoaded", () => {
     else if (text.match(/canasson/i)) bubble.classList.add("bubble-canasson");
     else if (text.match(/\b63\b/)) bubble.classList.add("bubble-63");
     else if (text.match(/loris/i)) bubble.classList.add("bubble-loris");
-    else bubble.classList.add("bubble-neutral");
+    else {
+      // S’il ne parle de personne spécifique, humeur aléatoire
+      const mood = randomMoods[Math.floor(Math.random() * randomMoods.length)];
+      bubble.classList.add(mood);
+    }
 
     bubble.innerHTML = `<span class="docx-name">DocX :</span> ${text}`;
     bubbles.appendChild(bubble);
 
-    // Auto-suppression des anciennes bulles (évite l'accumulation)
-    setTimeout(() => bubble.remove(), 40000);
+    // Auto-suppression des vieilles bulles
+    setTimeout(() => bubble.remove(), 45000);
   }
 });
