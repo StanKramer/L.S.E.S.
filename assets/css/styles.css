@@ -1,0 +1,102 @@
+/* ==============================
+   L.S.E.S. — Guide Médical Intergalactique
+   Thème H2G2 — ProjectV / PiouPiou le Magnifique
+   ============================== */
+
+/* === Fond animé bleu/noir === */
+html, body {height:100%;margin:0;}
+body {
+  font-family:"Segoe UI",Roboto,Arial,sans-serif;
+  background:linear-gradient(180deg,#000000 0%,#001427 60%,#000814 100%);
+  background-size:200% 200%;
+  animation:bgmove 40s ease-in-out infinite;
+  color:#eaf7ff;
+}
+@keyframes bgmove {
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* === Conteneur principal === */
+.container {max-width:1100px;margin:0 auto;padding:100px 20px 60px;}
+h1,h2,h3{color:#00aaff;text-shadow:0 0 10px rgba(0,170,255,.4);}
+h1{border-bottom:2px solid rgba(0,170,255,.3);padding-bottom:.4rem;}
+p,li{color:#d6eaf8;line-height:1.7;}
+a{color:#00ccff;text-decoration:none;}
+a:hover{color:#4fdfff;text-shadow:0 0 6px #00ffff;}
+
+/* === Header et menu === */
+.header{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  background:rgba(0,0,0,.9);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(0,153,255,.3);
+  box-shadow:0 2px 15px rgba(0,153,255,.2);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:0 auto;padding:10px 20px;}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;color:#b7eaff;}
+.brand img{height:50px;filter:drop-shadow(0 0 5px rgba(0,153,255,.6));}
+.nav ul{list-style:none;display:flex;gap:18px;margin:0;padding:0;}
+.nav a.navlink{
+  color:#aeeeff;text-transform:uppercase;font-weight:600;
+  border-bottom:2px solid transparent;padding:8px 4px;transition:.3s;
+}
+.nav a.navlink:hover,.nav a.navlink.active{
+  color:#00ffff;border-bottom:2px solid #00ffff;text-shadow:0 0 8px #00ffff;
+}
+
+/* === Sidebar === */
+.sidebar{
+  position:fixed;top:90px;right:20px;width:220px;z-index:998;
+  background:rgba(0,15,30,.8);backdrop-filter:blur(8px);
+  border:1px solid rgba(0,153,255,.3);
+  border-radius:10px;padding:14px;
+  box-shadow:0 0 18px rgba(0,153,255,.2);
+}
+.sidebar h3{text-align:center;color:#00ccff;text-shadow:0 0 8px #00ffff;}
+.sidebar ul{list-style:none;margin:0;padding:0;}
+.sidebar li{text-align:center;margin:10px 0;}
+.sidebar a{color:#aeeeff;font-weight:600;}
+.sidebar a:hover,.sidebar a.active{color:#00ffff;text-shadow:0 0 8px #00ffff;}
+@media(max-width:900px){.sidebar{display:none;}}
+
+/* === Bannière par spécialisation === */
+.banner{padding:28px;border-radius:16px;margin-bottom:26px;text-align:center;box-shadow:0 0 22px rgba(0,191,255,.25);}
+.banner.urgences{background:linear-gradient(90deg,#1c0000,#6b0012,#1c0000);color:#ff6666;}
+.banner.chirurgie{background:linear-gradient(90deg,#00131a,#004e59,#00131a);color:#00e5ff;}
+.banner.psy{background:linear-gradient(90deg,#1a0026,#4b0082,#1a0026);color:#d580ff;}
+.banner.gyneco{background:linear-gradient(90deg,#200014,#a83d73,#200014);color:#ffb6c1;}
+.banner.medleg{background:linear-gradient(90deg,#121212,#445280,#121212);color:#b0c4de;}
+.banner.form{background:linear-gradient(90deg,#002010,#005c3a,#002010);color:#00e676;}
+
+/* === Encadrés H2G2 === */
+.note, .aside {
+  background:rgba(0,20,40,.55);
+  border-left:4px solid #00ccff;
+  padding:14px 18px;
+  margin:20px 0;
+  border-radius:8px;
+  color:#d6f7ff;
+  font-style:italic;
+  box-shadow:0 0 12px rgba(0,191,255,.2);
+}
+.note strong, .aside strong {color:#00ffff;}
+.aside {border-left-color:#00ff88;}
+
+/* === Tables === */
+table{width:100%;border-collapse:collapse;background:rgba(0,20,40,.45);margin:12px 0 20px;}
+th,td{border:1px solid rgba(0,153,255,.2);padding:10px;}
+th{background:rgba(0,153,255,.15);color:#9fe9ff;text-align:left;}
+
+/* === Footer === */
+.footer{
+  background:#000c1a;
+  border-top:1px solid rgba(0,153,255,.25);
+  color:#79e1ff;
+  text-align:center;
+  padding:14px 0;
+  margin-top:40px;
+}
+.footer span{color:#00ccff;}
+.footer em{color:#99ccff;font-style:italic;font-size:.9rem;}
