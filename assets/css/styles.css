@@ -1,27 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap');
 
+:root {
+  --color-bg-dark: #010b18;
+  --color-bg-light: #0a1f35;
+  --color-accent: #00bfff;
+  --color-accent-soft: #0080ff;
+  --color-text: #e0f6ff;
+  --font-main: 'Rajdhani', sans-serif;
+}
+
+/* --- RESET --- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Rajdhani', sans-serif;
+  font-family: var(--font-main);
 }
 
+/* --- FOND GLOBAL ANIMÉ --- */
 body {
-  background: linear-gradient(180deg, #010a14 0%, #03182e 100%);
-  color: #d8ecff;
+  background: linear-gradient(120deg, #010b18, #041a30, #010b18);
+  background-size: 200% 200%;
+  animation: backgroundMove 25s ease infinite;
+  color: var(--color-text);
   line-height: 1.6;
   min-height: 100vh;
 }
 
-/* --- NAVBAR --- */
+@keyframes backgroundMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* --- NAVIGATION --- */
 .nav {
   background: rgba(0, 10, 25, 0.9);
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0.8rem 2rem;
-  border-bottom: 1px solid #00aaff;
+  border-bottom: 1px solid var(--color-accent);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -32,7 +51,7 @@ body {
   align-items: center;
   gap: 10px;
   text-decoration: none;
-  color: #00bfff;
+  color: var(--color-accent);
   font-weight: bold;
   font-size: 1.2rem;
 }
@@ -56,80 +75,27 @@ body {
 }
 
 .navlink:hover {
-  color: #00eaff;
-  text-shadow: 0 0 8px #00eaff;
+  color: var(--color-accent);
+  text-shadow: 0 0 8px var(--color-accent);
 }
 
-/* --- CONTAINER --- */
+/* --- CONTENU --- */
 .container {
   max-width: 1100px;
   margin: 0 auto;
   padding: 2rem;
 }
 
-/* --- HEADINGS --- */
-h1, h2, h3 {
+/* --- TITRES --- */
+h1, h2 {
   color: #dff6ff;
-  text-shadow: 0 0 6px #008cff;
+  text-shadow: 0 0 6px var(--color-accent);
   margin-bottom: 1rem;
 }
 
 h1 {
+  text-transform: uppercase;
   font-size: 2rem;
-  text-transform: uppercase;
-}
-
-/* --- LINKS --- */
-a {
-  color: #00bfff;
-  transition: color 0.3s;
-}
-
-a:hover {
-  color: #00ffff;
-}
-
-/* --- BLOCKQUOTES (DocX) --- */
-blockquote.note {
-  background: rgba(0, 153, 255, 0.1);
-  border-left: 3px solid #00c8ff;
-  padding: 1rem 1.5rem;
-  margin: 1.5rem 0;
-  font-style: italic;
-  color: #aee3ff;
-  border-radius: 8px;
-}
-
-blockquote.aside {
-  background: rgba(0, 255, 255, 0.05);
-  border-left: 3px dashed #00ffff;
-  padding: 1rem 1.5rem;
-  margin: 1.5rem 0;
-  font-style: italic;
-  color: #aee3ff;
-  border-radius: 8px;
-}
-
-/* --- TABLES --- */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1.5rem;
-}
-
-th, td {
-  border: 1px solid rgba(0, 200, 255, 0.2);
-  padding: 0.8rem;
-}
-
-th {
-  background: rgba(0, 100, 180, 0.3);
-  color: #aee3ff;
-  text-transform: uppercase;
-}
-
-td {
-  background: rgba(0, 40, 80, 0.2);
 }
 
 /* --- FOOTER --- */
@@ -144,49 +110,48 @@ td {
 }
 
 .footer span {
-  color: #00c8ff;
+  color: var(--color-accent);
 }
 
-.footer em {
-  display: block;
-  margin-top: 0.5rem;
-  color: #6acaff;
-  opacity: 0.8;
+/* --- DOCX CHAT BUBBLES --- */
+#docx-chat {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 320px;
+  max-height: 50vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 2000;
 }
 
-/* --- BANNER --- */
-.banner {
-  background: rgba(0, 30, 60, 0.6);
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 0 20px rgba(0, 100, 255, 0.2);
-  text-align: center;
-  margin-bottom: 2rem;
-  transition: 0.4s ease;
+.docx-bubble {
+  background: rgba(0, 60, 120, 0.25);
+  border: 1px solid rgba(0, 180, 255, 0.4);
+  color: #aee3ff;
+  padding: 0.8rem 1rem;
+  border-radius: 10px 10px 0 10px;
+  box-shadow: 0 0 10px rgba(0,150,255,0.3);
+  font-size: 0.9rem;
+  animation: fadeIn 0.8s ease;
+  backdrop-filter: blur(3px);
 }
 
-.banner:hover {
-  box-shadow: 0 0 25px rgba(0, 150, 255, 0.4);
+.docx-bubble.intro {
+  background: rgba(0, 200, 255, 0.15);
+  border-color: rgba(0, 255, 255, 0.5);
 }
 
-/* --- ANIMATIONS --- */
-@keyframes glow {
-  from { text-shadow: 0 0 5px #00bfff; }
-  to { text-shadow: 0 0 20px #00ffff; }
-}
-
-h1:hover {
-  animation: glow 1s alternate infinite;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
-  .nav ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .container {
-    padding: 1rem;
-  }
+  #docx-chat { width: 90%; right: 5%; }
+  .nav ul { flex-direction: column; }
+  .container { padding: 1rem; }
 }
