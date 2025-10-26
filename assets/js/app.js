@@ -1,3 +1,12 @@
+// Effet de démarrage visuel de DocX
+document.addEventListener("DOMContentLoaded", () => {
+  const chat = document.getElementById("docx-chat");
+  if (chat) {
+    chat.style.opacity = "0";
+    setTimeout(() => chat.style.opacity = "1", 2500);
+  }
+});
+
 // =======================================================
 //   DOCX — IA sarcastique du L.S.E.S. (v10)
 //   Effet de frappe + bulles émotionnelles colorées
