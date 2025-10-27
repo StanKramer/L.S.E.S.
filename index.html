@@ -9,17 +9,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="assets/img/mark.svg">
 
-  <!-- STYLES & SCRIPTS -->
+  <!-- STYLES -->
   <link rel="stylesheet" href="assets/css/styles.css">
+
+  <!-- SCRIPTS -->
   <script src="assets/js/docx_quotes.js" defer></script>
   <script src="assets/js/app.js" defer></script>
 </head>
 
 <body>
-  <!-- ÉCRAN DE DÉMARRAGE IA -->
+  <!-- ÉCRAN DE DÉMARRAGE -->
   <div id="boot-screen">
     <div id="boot-logo">
-      <img src="assets/img/logo.svg" alt="L.S.E.S. logo">
+      <img src="assets/img/logo.svg" alt="L.S.E.S. Logo">
       <p id="boot-text"></p>
     </div>
   </div>
@@ -54,29 +56,33 @@
     </nav>
   </header>
 
-  <!-- CONTENU -->
+  <!-- CONTENU PRINCIPAL -->
   <main>
     <section class="intro">
       <h2>Bienvenue au L.S.E.S.</h2>
       <p class="quote">« Parce que sauver une vie ne devrait pas dépendre d’une bonne connexion Wi-Fi. »</p>
 
       <div class="docx-message">
-        <span class="ai-tag">[DocX] :</span> Chargement des modules cognitifs... patience, chair molle.
+        <span class="ai-tag">[DocX] :</span> Initialisation du wiki... récupération des fragments de conscience de PiouPiou.
       </div>
 
       <p>Bienvenue sur le <strong>Guide Médical L.S.E.S.</strong>, sous la supervision de l’intelligence artificielle <strong>DocX</strong>.  
-      Ce wiki rassemble procédures, formations, réflexions et sarcasmes sur le monde médical.</p>
-
-      <p>Accédez aux différentes rubriques via le menu supérieur.  
-      Chaque section sera enrichie au fur et à mesure.</p>
+      Ce wiki rassemble procédures, formations et réflexions issues du service médical du L.S.E.S., avec un soupçon de sarcasme numérique.</p>
     </section>
   </main>
 
-  <!-- PIED DE PAGE -->
-  <footer>
-    <p>© 2025 <strong>PiouPiou le Magnifique</strong> — Project V</p>
-  </footer>
-
-  <div id="docx-chat"></div>
+  <!-- INJECTION DU FOOTER -->
+  <script>
+    async function loadFooter() {
+      try {
+        const res = await fetch('assets/components/footer.html');
+        const html = await res.text();
+        document.body.insertAdjacentHTML('beforeend', html);
+      } catch (err) {
+        console.error('Erreur lors du chargement du footer :', err);
+      }
+    }
+    loadFooter();
+  </script>
 </body>
 </html>
