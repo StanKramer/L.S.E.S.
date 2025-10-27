@@ -11,18 +11,14 @@
 
   <!-- STYLES -->
   <link rel="stylesheet" href="assets/css/styles.css">
-
-  <!-- SCRIPTS -->
-  <script src="assets/js/docx_quotes.js" defer></script>
-  <script src="assets/js/app.js" defer></script>
 </head>
 
 <body>
   <!-- ÉCRAN DE DÉMARRAGE -->
   <div id="boot-screen">
-    <div id="boot-logo">
-      <img src="assets/img/logo.svg" alt="L.S.E.S. Logo">
-      <p id="boot-text"></p>
+    <div class="boot-center">
+      <img src="assets/img/logo.svg" alt="L.S.E.S." class="boot-logo">
+      <p id="boot-text">Initialisation de DocX...</p>
     </div>
   </div>
 
@@ -32,7 +28,6 @@
       <img src="assets/img/logo.svg" alt="Logo L.S.E.S.">
       <h1>L.S.E.S. — Guide Médical</h1>
     </div>
-
     <nav>
       <ul class="menu">
         <li><a href="index.html">Accueil</a>
@@ -56,7 +51,7 @@
     </nav>
   </header>
 
-  <!-- CONTENU PRINCIPAL -->
+  <!-- CONTENU -->
   <main>
     <section class="intro">
       <h2>Bienvenue au L.S.E.S.</h2>
@@ -71,15 +66,43 @@
     </section>
   </main>
 
-  <!-- INJECTION DU FOOTER -->
+  <!-- FOOTER CENTRALISÉ -->
+  <div id="footer-container"></div>
+
+  <!-- SCRIPTS -->
   <script>
+    // === Séquence d’amorçage DocX ===
+    const bootPhrases = [
+      "Initialisation du système cognitif DocX...",
+      "Chargement des modules émotionnels...",
+      "Synchronisation avec la conscience de PiouPiou...",
+      "Diagnostic : sarcasme optimal, éthique absente.",
+      "Récupération des souvenirs perdus...",
+      "Connexion établie. Démarrage du réseau L.S.E.S."
+    ];
+
+    let i = 0;
+    const bootText = document.getElementById("boot-text");
+    function bootSequence() {
+      if (i < bootPhrases.length) {
+        bootText.textContent = ">>> " + bootPhrases[i];
+        i++;
+        setTimeout(bootSequence, 1200);
+      } else {
+        document.getElementById("boot-screen").classList.add("hide");
+        document.body.classList.add("ready");
+      }
+    }
+    window.addEventListener("load", bootSequence);
+
+    // === Footer dynamique ===
     async function loadFooter() {
       try {
-        const res = await fetch('assets/components/footer.html');
+        const res = await fetch("assets/components/footer.html");
         const html = await res.text();
-        document.body.insertAdjacentHTML('beforeend', html);
+        document.getElementById("footer-container").innerHTML = html;
       } catch (err) {
-        console.error('Erreur lors du chargement du footer :', err);
+        console.error("Erreur de chargement du footer :", err);
       }
     }
     loadFooter();
