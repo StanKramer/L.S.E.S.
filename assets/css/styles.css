@@ -1,64 +1,126 @@
-/* Transitions globales */
-* { transition: all 0.3s ease-in-out; }
-
-/* Halo sur titres */
-h2::after {
-  content: "";
-  display: block;
-  width: 60px;
-  height: 2px;
-  background: linear-gradient(90deg, #73E5FF, #3FC8FF);
-  margin: 8px auto;
-  box-shadow: 0 0 6px #5ad1ff;
+body {
+  background: radial-gradient(circle at center, #02101d, #000a14);
+  color: #cbeaff;
+  font-family: 'Oxanium', sans-serif;
+  margin: 0;
+  overflow-x: hidden;
 }
 
-/* Fond animé */
+/* === FOND ANIMÉ === */
 body::before {
   content: "";
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: url('../img/grid-bg.svg') repeat;
-  opacity: 0.05;
-  animation: moveGrid 60s linear infinite;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(0,180,255,0.07) 0%, rgba(0,0,20,0.95) 70%);
+  animation: energyFlow 12s infinite alternate ease-in-out;
   z-index: -1;
 }
-@keyframes moveGrid {
-  from { transform: translate(0,0); }
-  to { transform: translate(-200px, -200px); }
+@keyframes energyFlow {
+  0% { transform: scale(1) translateY(0); opacity: 0.8; }
+  50% { transform: scale(1.2) translateY(-10px); opacity: 0.9; }
+  100% { transform: scale(1) translateY(0); opacity: 0.8; }
 }
 
-/* Pulsation logo */
+/* === HEADER === */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  border-bottom: 1px solid rgba(90,209,255,0.3);
+  background: rgba(0,10,20,0.8);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 .logo img {
-  animation: logoPulse 4s ease-in-out infinite;
+  width: 60px;
+  filter: drop-shadow(0 0 10px #00eaff);
 }
-@keyframes logoPulse {
-  0%,100% { filter: drop-shadow(0 0 5px #5ad1ff); }
-  50% { filter: drop-shadow(0 0 15px #73E5FF); }
+h1 {
+  color: #73e5ff;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 1.4em;
+}
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+.menu a {
+  color: #b7e9ff;
+  text-decoration: none;
+}
+.menu a:hover {
+  color: #73e5ff;
+}
+.submenu {
+  display: none;
+  position: absolute;
+  background: rgba(10,25,40,0.95);
+  border: 1px solid rgba(115,229,255,0.3);
+  border-radius: 6px;
+  list-style: none;
+  padding: 8px 0;
+  min-width: 180px;
+}
+.menu li:hover .submenu {
+  display: block;
 }
 
-/* Infobulles */
-.docx-tip {
-  cursor: help;
-  font-size: 0.9em;
-  color: #73E5FF;
-  filter: drop-shadow(0 0 4px #5ad1ff);
-}
-.docx-bubble-info {
-  position: absolute;
-  background: rgba(10, 25, 40, 0.95);
+/* === DOCX MESSAGE === */
+.docx-message {
+  position: relative;
+  display: inline-block;
+  margin: 20px auto;
+  padding: 15px 20px;
+  background: rgba(10, 25, 40, 0.85);
+  border-radius: 12px;
   color: #cbeaff;
-  border: 1px solid rgba(115, 229, 255, 0.3);
-  border-radius: 10px;
-  padding: 12px 14px;
-  max-width: 300px;
-  font-size: 0.9em;
-  box-shadow: 0 0 12px rgba(90, 209, 255, 0.4);
-  animation: fadeIn 0.3s ease forwards;
-  z-index: 1000;
-  pointer-events: none;
+  box-shadow: 0 0 10px rgba(90,209,255,0.4);
+  max-width: 80%;
+  font-size: 1em;
+  animation: fadeIn 1.2s ease;
+  text-align: left;
 }
-/* --- Séquence de démarrage DocX --- */
+.ai-tag {
+  color: #73e5ff;
+  font-weight: bold;
+}
+.docx-message[data-mood="curious"] { box-shadow: 0 0 10px rgba(255,255,150,0.5); color: #fff9b2; }
+.docx-message[data-mood="angry"] { box-shadow: 0 0 10px rgba(255,80,80,0.5); color: #ffb4b4; }
+.docx-message[data-mood="sad"] { box-shadow: 0 0 10px rgba(120,180,255,0.4); color: #bcd8ff; }
+
+/* === MAIN === */
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 160px);
+  text-align: center;
+  padding: 40px;
+  max-width: 900px;
+  margin: auto;
+}
+
+/* === FOOTER === */
+#footer-container {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 20px 0;
+  background: rgba(0,10,20,0.6);
+  border-top: 1px solid rgba(115,229,255,0.2);
+  color: #73e5ff;
+  font-size: 0.9em;
+}
+
+/* === BOOT === */
 #boot-screen {
   position: fixed;
   inset: 0;
@@ -74,14 +136,25 @@ body::before {
   opacity: 0;
   visibility: hidden;
 }
-.boot-center {
-  text-align: center;
-  animation: fadeIn 1s ease;
-}
 .boot-logo {
   width: 180px;
   filter: drop-shadow(0 0 15px #5ad1ff);
   animation: glowPulse 3s infinite ease-in-out;
+}
+.boot-bar {
+  width: 280px;
+  height: 8px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 8px;
+  margin-top: 25px;
+  overflow: hidden;
+}
+.boot-progress {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #00eaff, #5ad1ff);
+  box-shadow: 0 0 10px #00eaff, 0 0 25px #00eaffaa;
+  transition: width 0.8s ease-in-out;
 }
 #boot-text {
   color: #b7e9ff;
@@ -89,93 +162,9 @@ body::before {
   font-family: 'Oxanium', sans-serif;
   font-size: 1.1em;
   letter-spacing: 0.5px;
+  text-shadow: 0 0 10px #00eaff88;
 }
-
-/* --- Animation glow du logo --- */
 @keyframes glowPulse {
   0%,100% { filter: drop-shadow(0 0 10px #5ad1ff); }
   50% { filter: drop-shadow(0 0 30px #00eaff); }
-}
-
-/* --- Menu et structure générale --- */
-body {
-  background: radial-gradient(circle at center, #02101d, #000a14);
-  color: #cbeaff;
-  font-family: 'Oxanium', sans-serif;
-  margin: 0;
-  overflow-x: hidden;
-}
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 40px;
-  border-bottom: 1px solid rgba(90,209,255,0.3);
-  background: rgba(0,10,20,0.8);
-}
-.logo img {
-  width: 60px;
-  margin-right: 10px;
-}
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-h1 {
-  color: #73e5ff;
-  font-weight: 700;
-  letter-spacing: 1px;
-  font-size: 1.4em;
-}
-.menu {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-}
-.menu li {
-  position: relative;
-}
-.menu a {
-  color: #b7e9ff;
-  text-decoration: none;
-  font-weight: 500;
-}
-.menu a:hover {
-  color: #73e5ff;
-}
-.submenu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: rgba(10,25,40,0.95);
-  border: 1px solid rgba(115,229,255,0.3);
-  border-radius: 6px;
-  list-style: none;
-  padding: 8px 0;
-  min-width: 180px;
-}
-.menu li:hover .submenu {
-  display: block;
-}
-.submenu li {
-  padding: 5px 15px;
-}
-.submenu li a {
-  color: #cbeaff;
-  display: block;
-}
-.submenu li a:hover {
-  background: rgba(90,209,255,0.1);
-  color: #73e5ff;
-}
-
-/* --- Fade-in pour transition douce --- */
-body.ready main, body.ready header {
-  opacity: 1;
-  transition: opacity 1s ease;
-}
-body main, body header {
-  opacity: 0;
 }
