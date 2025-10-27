@@ -58,3 +58,124 @@ body::before {
   z-index: 1000;
   pointer-events: none;
 }
+/* --- Séquence de démarrage DocX --- */
+#boot-screen {
+  position: fixed;
+  inset: 0;
+  background: #000d1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 9999;
+  transition: opacity 1s ease, visibility 1s ease;
+}
+#boot-screen.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+.boot-center {
+  text-align: center;
+  animation: fadeIn 1s ease;
+}
+.boot-logo {
+  width: 180px;
+  filter: drop-shadow(0 0 15px #5ad1ff);
+  animation: glowPulse 3s infinite ease-in-out;
+}
+#boot-text {
+  color: #b7e9ff;
+  margin-top: 20px;
+  font-family: 'Oxanium', sans-serif;
+  font-size: 1.1em;
+  letter-spacing: 0.5px;
+}
+
+/* --- Animation glow du logo --- */
+@keyframes glowPulse {
+  0%,100% { filter: drop-shadow(0 0 10px #5ad1ff); }
+  50% { filter: drop-shadow(0 0 30px #00eaff); }
+}
+
+/* --- Menu et structure générale --- */
+body {
+  background: radial-gradient(circle at center, #02101d, #000a14);
+  color: #cbeaff;
+  font-family: 'Oxanium', sans-serif;
+  margin: 0;
+  overflow-x: hidden;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  border-bottom: 1px solid rgba(90,209,255,0.3);
+  background: rgba(0,10,20,0.8);
+}
+.logo img {
+  width: 60px;
+  margin-right: 10px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+h1 {
+  color: #73e5ff;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 1.4em;
+}
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+.menu li {
+  position: relative;
+}
+.menu a {
+  color: #b7e9ff;
+  text-decoration: none;
+  font-weight: 500;
+}
+.menu a:hover {
+  color: #73e5ff;
+}
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: rgba(10,25,40,0.95);
+  border: 1px solid rgba(115,229,255,0.3);
+  border-radius: 6px;
+  list-style: none;
+  padding: 8px 0;
+  min-width: 180px;
+}
+.menu li:hover .submenu {
+  display: block;
+}
+.submenu li {
+  padding: 5px 15px;
+}
+.submenu li a {
+  color: #cbeaff;
+  display: block;
+}
+.submenu li a:hover {
+  background: rgba(90,209,255,0.1);
+  color: #73e5ff;
+}
+
+/* --- Fade-in pour transition douce --- */
+body.ready main, body.ready header {
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+body main, body header {
+  opacity: 0;
+}
