@@ -4,7 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>L.S.E.S. — Guide Médical</title>
-  <link rel="icon" type="image/png" href="assets/img/logo.png">
+
+  <!-- POLICE + FAVICON -->
+  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="assets/img/mark.svg">
+
+  <!-- STYLES + SCRIPTS -->
   <link rel="stylesheet" href="assets/css/styles.css">
   <script src="assets/js/docx_quotes.js" defer></script>
   <script src="assets/js/app.js" defer></script>
@@ -12,14 +17,18 @@
 
 <body>
 
-  <!-- Écran de démarrage DocX -->
+  <!-- ÉCRAN DE DÉMARRAGE DOCX -->
   <div id="boot-screen">
-    <div id="boot-text"></div>
+    <div id="boot-logo">
+      <img src="assets/img/logo.svg" alt="L.S.E.S. logo">
+      <p id="boot-text"></p>
+    </div>
   </div>
 
+  <!-- EN-TÊTE -->
   <header>
     <div class="logo">
-      <img src="assets/img/logo.png" alt="L.S.E.S.">
+      <img src="assets/img/logo.svg" alt="Logo L.S.E.S. — Guide Médical">
       <h1>L.S.E.S. — Guide Médical</h1>
     </div>
     <nav>
@@ -35,6 +44,7 @@
     </nav>
   </header>
 
+  <!-- CONTENU PRINCIPAL -->
   <main>
     <section class="intro">
       <h2>Bienvenue dans le réseau médical du L.S.E.S.</h2>
@@ -53,12 +63,12 @@
     </section>
   </main>
 
+  <!-- PIED DE PAGE -->
   <footer>
     <p>© 2025 <strong>PiouPiou le Magnifique</strong> — Project V</p>
     <p><em>« Parce qu’il fallait bien quelqu’un pour écrire ce bazar. »</em></p>
   </footer>
 
   <div id="docx-chat"></div>
-
 </body>
 </html>
