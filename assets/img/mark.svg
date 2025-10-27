@@ -1,0 +1,25 @@
+<!-- assets/img/mark.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Symbole L.S.E.S.">
+  <defs>
+    <linearGradient id="neo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#73E5FF"></stop>
+      <stop offset="100%" stop-color="#3FC8FF"></stop>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="4" result="b"></feGaussianBlur>
+      <feMerge><feMergeNode in="b"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+    </filter>
+    <style>
+      .bg { fill: #061626; }
+      .ring { fill:none; stroke:url(#neo); stroke-width:8; filter:url(#glow); }
+      .heart, .pulse { fill:none; stroke:url(#neo); stroke-width:7; stroke-linecap:round; stroke-linejoin:round; filter:url(#glow); }
+    </style>
+  </defs>
+
+  <rect class="bg" width="256" height="256" rx="28"></rect>
+  <g transform="translate(128,128)">
+    <circle r="80" class="ring"></circle>
+    <path class="heart" d="M -14 -18 c -18 -26 -60 -12 -60 20 c 0 34 36 51 60 72 c 24 -21 60 -38 60 -72 c 0 -32 -42 -46 -60 -20z"></path>
+    <path class="pulse" d="M -72 12 H -38 l 10 -18 l 14 44 l 16 -60 l 10 30 h 80"></path>
+  </g>
+</svg>
