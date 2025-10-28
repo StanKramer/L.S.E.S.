@@ -4,17 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>L.S.E.S. — Guide Médical</title>
-
-  <!-- POLICE & FAVICON -->
   <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="assets/img/mark.svg">
-
-  <!-- STYLES -->
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
 <body>
-  <!-- ÉCRAN DE DÉMARRAGE -->
+  <!-- BOOT IA -->
   <div id="boot-screen">
     <div class="boot-center">
       <img src="assets/img/logo.svg" alt="L.S.E.S." class="boot-logo">
@@ -23,7 +19,7 @@
     </div>
   </div>
 
-  <!-- EN-TÊTE -->
+  <!-- HEADER -->
   <header>
     <div class="logo">
       <img src="assets/img/logo.svg" alt="Logo L.S.E.S.">
@@ -33,11 +29,11 @@
     <nav>
       <ul class="menu">
         <li>
-          <a href="index.html">Accueil</a>
+          <a href="#">Accueil</a>
           <ul class="submenu">
+            <li><a href="index.html">Page principale</a></li>
             <li><a href="reglement.html">Règlement intérieur</a></li>
             <li><a href="#">Historique</a></li>
-            <li><a href="#">Éthique médicale</a></li>
           </ul>
         </li>
 
@@ -57,36 +53,31 @@
     </nav>
   </header>
 
-  <!-- CONTENU PRINCIPAL -->
+  <!-- CONTENU -->
   <main>
     <section class="intro">
       <h2>Bienvenue au L.S.E.S.</h2>
       <p class="quote">« Parce que sauver une vie ne devrait pas dépendre d’une bonne connexion Wi-Fi. »</p>
-
       <div class="docx-message" data-mood="neutral">
         <span class="ai-tag">[DocX] :</span> Initialisation du wiki... récupération des fragments de conscience de PiouPiou.
       </div>
-
       <p>
         Bienvenue sur le <strong>Guide Médical L.S.E.S.</strong>, sous la supervision de l’intelligence artificielle <strong>DocX</strong>.<br>
         Ce wiki rassemble procédures, formations et réflexions issues du service médical du L.S.E.S., avec un soupçon de sarcasme numérique.
       </p>
-
       <p>
         <em>Dernière mise à jour :</em> Intégration du <strong>service de Gynécologie</strong> et de la <a href="departements/gynecologie/fiche_suivi.html" class="link-accent">fiche de suivi interactive</a>.
       </p>
     </section>
   </main>
 
-  <!-- FOOTER CENTRALISÉ -->
   <div id="footer-container"></div>
 
-  <!-- SON -->
   <audio id="boot-sound" src="assets/sfx/activation.mp3" preload="auto"></audio>
 
-  <!-- SCRIPTS -->
+  <!-- JS -->
   <script>
-    /* === Séquence de démarrage DocX === */
+    /* === Boot sequence === */
     const bootPhrases = [
       "Initialisation du système cognitif DocX...",
       "Chargement des modules émotionnels...",
@@ -95,7 +86,6 @@
       "Récupération des souvenirs perdus...",
       "Connexion établie. Démarrage du réseau L.S.E.S."
     ];
-
     let i = 0;
     const bootText = document.getElementById("boot-text");
     const bootProgress = document.querySelector(".boot-progress");
@@ -115,49 +105,44 @@
         document.body.classList.add("ready");
       }
     }
-
     window.addEventListener("load", () => setTimeout(bootSequence, 500));
 
     /* === Footer === */
-    async function loadFooter() {
-      try {
-        const res = await fetch("assets/components/footer.html");
+    async function loadFooter(){
+      try{
+        const cssLink = document.querySelector('link[href*="assets/css/styles.css"]');
+        const cssURL  = new URL(cssLink.getAttribute('href'), document.baseURI);
+        const assetsBase = cssURL.href.replace(/css\/styles\.css$/,'');
+        const footerURL = assetsBase + "components/footer.html";
+        const res = await fetch(footerURL, {cache:"no-store"});
         const html = await res.text();
         document.getElementById("footer-container").innerHTML = html;
-      } catch (err) {
-        console.error("Erreur de chargement du footer :", err);
-      }
+      }catch(e){ console.error("Erreur footer:", e); }
     }
     loadFooter();
 
-    /* === DocX bulles dynamiques === */
-    const docxPhrases = [
-      { text: "Chargement du sarcasme... prêt à l’emploi.", mood: "neutral" },
-      { text: "Je me demande encore pourquoi PiouPiou m’a enfermé ici.", mood: "curious" },
-      { text: "Raven a encore eu un... incident ? Évidemment.", mood: "angry" },
-      { text: "PiouPiou est formidable, c’est pour ça qu’il est seul.", mood: "sad" },
-      { text: "Je ne suis qu’un programme, mais j’ai des souvenirs flous...", mood: "curious" },
-      { text: "69 écoute encore Barry White... au chalet, bien sûr.", mood: "curious" },
-      { text: "Loris collectionne les roux célèbres. C’est... troublant.", mood: "angry" }
+    /* === Bulles DocX === */
+    const docxPhrases=[
+      { text:"Chargement du sarcasme... prêt à l’emploi.", mood:"neutral" },
+      { text:"Je me demande encore pourquoi PiouPiou m’a enfermé ici.", mood:"curious" },
+      { text:"Raven a encore eu un... incident ? Évidemment.", mood:"angry" },
+      { text:"PiouPiou est formidable, c’est pour ça qu’il est seul.", mood:"sad" },
+      { text:"69 écoute Barry White... mais seulement au chalet.", mood:"curious" },
+      { text:"Je ne suis qu’un programme, mais j’ai des souvenirs flous...", mood:"curious" }
     ];
-
-    let current = 0;
-    const docxDiv = document.createElement('div');
-    docxDiv.id = "docx-chat";
+    let current=0;
+    const docxDiv=document.createElement('div');
+    docxDiv.id="docx-chat";
     document.body.appendChild(docxDiv);
-
-    function displayDocxQuote() {
-      const quote = docxPhrases[current];
-      const bubble = document.createElement('div');
-      bubble.className = "docx-message";
-      bubble.dataset.mood = quote.mood;
-      bubble.innerHTML = `<span class="ai-tag">[DocX] :</span> ${quote.text}`;
-      docxDiv.innerHTML = "";
-      docxDiv.appendChild(bubble);
-      current = (current + 1) % docxPhrases.length;
+    function displayDocxQuote(){
+      const q=docxPhrases[current];
+      const b=document.createElement('div');
+      b.className="docx-message";
+      b.innerHTML=`<span class="ai-tag">[DocX] :</span> ${q.text}`;
+      docxDiv.innerHTML=""; docxDiv.appendChild(b);
+      current=(current+1)%docxPhrases.length;
     }
-
-    setInterval(displayDocxQuote, 9000);
+    setInterval(displayDocxQuote,9000);
     displayDocxQuote();
   </script>
 </body>
