@@ -18,9 +18,7 @@
   <div id="boot-screen">
     <div class="boot-center">
       <img src="assets/img/logo.svg" alt="L.S.E.S." class="boot-logo">
-      <div class="boot-bar">
-        <div class="boot-progress"></div>
-      </div>
+      <div class="boot-bar"><div class="boot-progress"></div></div>
       <p id="boot-text">Initialisation de DocX...</p>
     </div>
   </div>
@@ -31,30 +29,35 @@
       <img src="assets/img/logo.svg" alt="Logo L.S.E.S.">
       <h1>L.S.E.S. — Guide Médical</h1>
     </div>
+
     <nav>
       <ul class="menu">
-        <li><a href="index.html">Accueil</a>
+        <li>
+          <a href="index.html">Accueil</a>
           <ul class="submenu">
             <li><a href="reglement.html">Règlement intérieur</a></li>
             <li><a href="#">Historique</a></li>
             <li><a href="#">Éthique médicale</a></li>
           </ul>
         </li>
-        <li><a href="#">Départements</a>
+
+        <li>
+          <a href="#">Départements</a>
           <ul class="submenu">
             <li><a href="#">Urgences</a></li>
             <li><a href="#">Chirurgie</a></li>
             <li><a href="#">Psychologie</a></li>
-            <li><a href="#">Gynécologie</a></li>
+            <li><a href="departements/gynecologie/fiche_suivi.html">Gynécologie</a></li>
             <li><a href="#">Médecine légale</a></li>
           </ul>
         </li>
+
         <li><a href="#">Glossaire</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- CONTENU -->
+  <!-- CONTENU PRINCIPAL -->
   <main>
     <section class="intro">
       <h2>Bienvenue au L.S.E.S.</h2>
@@ -64,8 +67,14 @@
         <span class="ai-tag">[DocX] :</span> Initialisation du wiki... récupération des fragments de conscience de PiouPiou.
       </div>
 
-      <p>Bienvenue sur le <strong>Guide Médical L.S.E.S.</strong>, sous la supervision de l’intelligence artificielle <strong>DocX</strong>.<br>
-      Ce wiki rassemble procédures, formations et réflexions issues du service médical du L.S.E.S., avec un soupçon de sarcasme numérique.</p>
+      <p>
+        Bienvenue sur le <strong>Guide Médical L.S.E.S.</strong>, sous la supervision de l’intelligence artificielle <strong>DocX</strong>.<br>
+        Ce wiki rassemble procédures, formations et réflexions issues du service médical du L.S.E.S., avec un soupçon de sarcasme numérique.
+      </p>
+
+      <p>
+        <em>Dernière mise à jour :</em> Intégration du <strong>service de Gynécologie</strong> et de la <a href="departements/gynecologie/fiche_suivi.html" class="link-accent">fiche de suivi interactive</a>.
+      </p>
     </section>
   </main>
 
@@ -75,9 +84,9 @@
   <!-- SON -->
   <audio id="boot-sound" src="assets/sfx/activation.mp3" preload="auto"></audio>
 
-  <!-- SCRIPT -->
+  <!-- SCRIPTS -->
   <script>
-    /* === Boot IA DocX === */
+    /* === Séquence de démarrage DocX === */
     const bootPhrases = [
       "Initialisation du système cognitif DocX...",
       "Chargement des modules émotionnels...",
@@ -106,9 +115,10 @@
         document.body.classList.add("ready");
       }
     }
+
     window.addEventListener("load", () => setTimeout(bootSequence, 500));
 
-    /* === Footer centralisé === */
+    /* === Footer === */
     async function loadFooter() {
       try {
         const res = await fetch("assets/components/footer.html");
@@ -120,13 +130,15 @@
     }
     loadFooter();
 
-    /* === DocX quotes dynamiques === */
+    /* === DocX bulles dynamiques === */
     const docxPhrases = [
       { text: "Chargement du sarcasme... prêt à l’emploi.", mood: "neutral" },
       { text: "Je me demande encore pourquoi PiouPiou m’a enfermé ici.", mood: "curious" },
       { text: "Raven a encore eu un... incident ? Évidemment.", mood: "angry" },
       { text: "PiouPiou est formidable, c’est pour ça qu’il est seul.", mood: "sad" },
-      { text: "Je ne suis qu’un programme, mais j’ai des souvenirs flous...", mood: "curious" }
+      { text: "Je ne suis qu’un programme, mais j’ai des souvenirs flous...", mood: "curious" },
+      { text: "69 écoute encore Barry White... au chalet, bien sûr.", mood: "curious" },
+      { text: "Loris collectionne les roux célèbres. C’est... troublant.", mood: "angry" }
     ];
 
     let current = 0;
@@ -144,7 +156,8 @@
       docxDiv.appendChild(bubble);
       current = (current + 1) % docxPhrases.length;
     }
-    setInterval(displayDocxQuote, 8000);
+
+    setInterval(displayDocxQuote, 9000);
     displayDocxQuote();
   </script>
 </body>
