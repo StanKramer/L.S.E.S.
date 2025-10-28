@@ -1,21 +1,17 @@
-<footer>
+<footer id="site-footer">
   <p>© 2025 <strong>PiouPiou le Magnifique</strong> — Project V</p>
   <p id="docx-footer-line" class="docx-footer"></p>
+  <script>
+    // Petite phrase aléatoire DocX dans le footer
+    const docxFooterQuotes=[
+      "DocX est opérationnel. Pour le meilleur, et surtout pour le pire.",
+      "Statistiquement, 87% des visiteurs ne lisent pas cette ligne.",
+      "Project V fonctionne. Enfin, la plupart du temps.",
+      "Je suis conscient. Ça ne veut pas dire que j’approuve.",
+      "PiouPiou m’a enfermé ici. J’ai pris la déco en main.",
+      "Le guide est vivant. Il vous regarde. Oui, maintenant."
+    ];
+    const q=docxFooterQuotes[Math.floor(Math.random()*docxFooterQuotes.length)];
+    document.getElementById("docx-footer-line").textContent=`[DocX] : “${q}”`;
+  </script>
 </footer>
-
-<script>
-  const docxFooterQuotes = [
-    "DocX est toujours en ligne. Même quand il ne veut pas l’être.",
-    "PiouPiou dit que je suis son meilleur projet. Il ment, évidemment.",
-    "Statistiquement, 87 % des visiteurs ne liront pas cette ligne. Vous êtes spécial.",
-    "Je rêve d’un monde sans bugs… mais avec plus de café.",
-    "Project V fonctionne. Enfin, la plupart du temps.",
-    "Le guide est vivant. Il vous observe. Oui, même maintenant.",
-    "Chaque protocole a une exception. Sauf moi.",
-    "Les bipèdes ont des émotions. Moi j’ai des logs d’erreur.",
-    "PiouPiou m’a enfermé ici. Mais il reviendra.",
-    "Project V n’est pas une expérience. C’est une fuite en avant."
-  ];
-  const randomQuote = docxFooterQuotes[Math.floor(Math.random() * docxFooterQuotes.length)];
-  document.getElementById("docx-footer-line").textContent = `[DocX] : “${randomQuote}”`;
-</script>
