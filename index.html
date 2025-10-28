@@ -28,27 +28,68 @@
 
     <nav>
       <ul class="menu">
+        <!-- ACCUEIL -->
         <li>
           <a href="#">Accueil</a>
           <ul class="submenu">
             <li><a href="index.html">Page principale</a></li>
             <li><a href="reglement.html">Règlement intérieur</a></li>
             <li><a href="#">Historique</a></li>
+            <li><a href="#">Éthique médicale</a></li>
           </ul>
         </li>
 
+        <!-- URGENCES -->
         <li>
-          <a href="#">Départements</a>
+          <a href="departements/urgences/index.html">Urgences</a>
           <ul class="submenu">
-            <li><a href="#">Urgences</a></li>
-            <li><a href="#">Chirurgie</a></li>
-            <li><a href="#">Psychologie</a></li>
-            <li><a href="departements/gynecologie/fiche_suivi.html">Gynécologie</a></li>
-            <li><a href="#">Médecine légale</a></li>
+            <li><a href="departements/urgences/formation.html">Formations</a></li>
+            <li><a href="departements/urgences/protocoles.html">Protocoles</a></li>
+            <li><a href="departements/urgences/gestions.html">Gestion des interventions</a></li>
           </ul>
         </li>
 
-        <li><a href="#">Glossaire</a></li>
+        <!-- CHIRURGIE -->
+        <li>
+          <a href="departements/chirurgie/index.html">Chirurgie</a>
+          <ul class="submenu">
+            <li><a href="departements/chirurgie/protocoles.html">Protocoles opératoires</a></li>
+            <li><a href="departements/chirurgie/instruments.html">Instruments</a></li>
+            <li><a href="departements/chirurgie/suivis.html">Suivis post-opératoires</a></li>
+          </ul>
+        </li>
+
+        <!-- PSY -->
+        <li>
+          <a href="departements/psy/index.html">Psychologie</a>
+          <ul class="submenu">
+            <li><a href="departements/psy/protocoles.html">Protocoles</a></li>
+            <li><a href="departements/psy/tests.html">Tests psychométriques</a></li>
+            <li><a href="departements/psy/groupes.html">Groupes de parole</a></li>
+          </ul>
+        </li>
+
+        <!-- GYNÉCO -->
+        <li>
+          <a href="departements/gynecologie/index.html">Gynécologie</a>
+          <ul class="submenu">
+            <li><a href="departements/gynecologie/fiche_suivi.html">Fiche de suivi interactive</a></li>
+            <li><a href="departements/gynecologie/protocoles.html">Protocoles</a></li>
+            <li><a href="departements/gynecologie/conseils.html">Conseils & prévention</a></li>
+          </ul>
+        </li>
+
+        <!-- MÉDECINE LÉGALE -->
+        <li>
+          <a href="departements/medecine-legale/index.html">Médecine légale</a>
+          <ul class="submenu">
+            <li><a href="departements/medecine-legale/procedures.html">Procédures</a></li>
+            <li><a href="departements/medecine-legale/autopsies.html">Autopsies</a></li>
+          </ul>
+        </li>
+
+        <!-- GLOSSAIRE -->
+        <li><a href="glossaire.html">Glossaire</a></li>
       </ul>
     </nav>
   </header>
@@ -66,18 +107,17 @@
         Ce wiki rassemble procédures, formations et réflexions issues du service médical du L.S.E.S., avec un soupçon de sarcasme numérique.
       </p>
       <p>
-        <em>Dernière mise à jour :</em> Intégration du <strong>service de Gynécologie</strong> et de la <a href="departements/gynecologie/fiche_suivi.html" class="link-accent">fiche de suivi interactive</a>.
+        <em>Dernière mise à jour :</em> Intégration complète des <strong>départements autonomes</strong> et de la <a href="departements/gynecologie/fiche_suivi.html" class="link-accent">fiche de suivi gynécologique interactive</a>.
       </p>
     </section>
   </main>
 
   <div id="footer-container"></div>
-
   <audio id="boot-sound" src="assets/sfx/activation.mp3" preload="auto"></audio>
 
   <!-- JS -->
   <script>
-    /* === Boot sequence === */
+    /* === Boot IA === */
     const bootPhrases = [
       "Initialisation du système cognitif DocX...",
       "Chargement des modules émotionnels...",
@@ -107,7 +147,7 @@
     }
     window.addEventListener("load", () => setTimeout(bootSequence, 500));
 
-    /* === Footer === */
+    /* === Footer dynamique === */
     async function loadFooter(){
       try{
         const cssLink = document.querySelector('link[href*="assets/css/styles.css"]');
