@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fiche Suivi Gynécologique — L.S.E.S.</title>
+
+  <!-- Style global du site -->
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Adaptation visuelle LSES + couleurs rose/violet pour la gynéco */
+    :root {
+      --accent: #b04bd6;
+      --accent-2: #ff69b4;
+      --field-bg: rgba(255,255,255,0.04);
+      --muted: #cfd1d6;
+      --glass: rgba(255,255,255,0.03);
+      --panel: rgba(10,10,20,0.7);
+    }
+    .container {
+      max-width: 1100px;
+      margin: 60px auto;
+      background: var(--panel);
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255,105,180,0.2);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.05);
+      color: var(--muted);
+      padding-bottom: 20px;
+    }
+    header {
+      background: linear-gradient(90deg, rgba(176,75,214,0.25), rgba(255,105,180,0.15));
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    header .logo {
+      width: 70px; height: 70px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: flex; justify-content: center; align-items: center;
+      border-radius: 10px; color: #fff; font-weight: 700;
+      box-shadow: 0 0 15px rgba(255,105,180,0.25);
+    }
+    header .title h1 {
+      margin: 0; color: #fff; font-size: 22px;
+    }
+    header .title p {
+      margin: 0; color: var(--accent-2); font-size: 13px;
+    }
+    .tabs {
+      background: rgba(255,255,255,0.03);
+      padding: 10px;
+      border-radius: 10px;
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+    }
+    .tab {
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      color: var(--muted);
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    .tab.active {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color: white;
+      box-shadow: 0 0 10px rgba(255,105,180,0.4);
+    }
+    .card {
+      background: rgba(255,255,255,0.02);
+      padding: 18px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.05);
+      margin: 18px 0;
+    }
+    label.field-label {
+      color: var(--accent-2);
+      font-weight: 600;
+      font-size: 13px;
+      margin-bottom: 5px;
+      display: block;
+    }
+    input, textarea, select {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 10px;
+      background: var(--field-bg);
+      color: var(--muted);
+      font-family: 'Oxanium', sans-serif;
+    }
+    textarea { min-height: 80px; resize: vertical; }
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 13px;
+      color: var(--accent);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">LSES</div>
+      <div class="title">
+        <h1>Fiche Suivi Gynécologique — L.S.E.S.</h1>
+        <p>Service Gynécologie</p>
+      </div>
+    </header>
+
+    <div class="tabs">
+      <div class="tab active" data-tab="ident">🩺 Identification</div>
+      <div class="tab" data-tab="preg">🤰 Grossesse</div>
+      <div class="tab" data-tab="echo">🔬 Échographies</div>
+      <div class="tab" data-tab="birth">🍼 Accouchement</div>
+      <div class="tab" data-tab="contracep">💊 Contraception</div>
+      <div class="tab" data-tab="sign">🧾 Signatures</div>
+    </div>
+
+    <section id="content-area">
+      <!-- Le contenu dynamique (formulaires) sera chargé ici -->
+    </section>
+
+    <footer>
+      © L.S.E.S. — Gynécologie | Propulsé par DocX & PiouPiou le Magnifique.
+    </footer>
+  </div>
+
+  <script src="../../assets/js/gyn_form.js"></script>
+</body>
+</html>
