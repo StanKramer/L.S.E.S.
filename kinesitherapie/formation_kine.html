@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>L.S.E.S. — Formation Kinésithérapie</title>
+
+  <!-- Police + Styles globaux du site -->
+  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/mark.svg">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+
+  <!-- Styles spécifiques (léger, complémentaire au thème global) -->
+  <style>
+    .kine-wrap { max-width: 1100px; margin: 2.2rem auto; padding: 0 1.2rem; color: #e1ecff; }
+    .kine-card { background: rgba(10,15,30,0.65); border: 1px solid rgba(115,229,255,0.18); border-radius: 12px; padding: 1.6rem; margin: 1.2rem 0; box-shadow: 0 0 12px rgba(0,120,255,0.20); }
+    .kine-card h2, .kine-card h3 { color: #73e5ff; margin-top: 0; }
+    .kine-lead { font-size: 1.04rem; line-height: 1.7; }
+    .kine-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    @media (min-width: 940px) { .kine-grid { grid-template-columns: 1.2fr 0.8fr; } }
+
+    .illus-box { background: rgba(255,255,255,0.02); border: 1px solid rgba(115,229,255,0.12); border-radius: 12px; padding: 1rem; }
+    .illus-box img { width: 100%; border-radius: 10px; display: block; box-shadow: 0 0 18px rgba(0,140,255,0.25); }
+
+    .docx-note { margin-top: .8rem; padding: .8rem 1rem; background: rgba(15,25,50,0.65); border-left: 3px solid #00b7ff; border-radius: 6px; color: #cfe8ff; font-style: italic; }
+
+    .checklist { list-style: none; padding-left: 0; margin: .8rem 0 0; }
+    .checklist li { margin: .35rem 0; padding-left: 1.6rem; position: relative; }
+    .checklist li::before { content: "✓"; color: #6fe3ff; position: absolute; left: 0; }
+
+    /* Bloc interactif électrodes */
+    .simu { background: rgba(20,28,48,0.7); border: 1px solid rgba(115,229,255,0.18); border-radius: 12px; padding: 1rem; margin-top: 1rem; }
+    .simu h4 { margin: .2rem 0 1rem; color: #69a8ff; }
+    .simu label { display: block; margin: .45rem 0 .25rem; font-weight: 600; color: #9ad2ff; }
+    .simu input, .simu select { width: 100%; background: #0c1324; border: 1px solid #4d6aff; color: #dfe3ff; border-radius: 8px; padding: .55rem .7rem; }
+    .simu small { color: #9db7ff; opacity: .85; }
+    .simu .btn { margin-top: .9rem; background: linear-gradient(90deg, #0062ff, #00b7ff); border: none; color: white; padding: .65rem 1rem; border-radius: 8px; cursor: pointer; font-weight: 700; }
+    .simu .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,183,255,0.25); }
+    .result { margin-top: .8rem; line-height: 1.6; }
+
+    /* Quiz DocX */
+    .quiz { background: rgba(12,20,36,0.7); border: 1px solid rgba(115,229,255,0.18); border-radius: 12px; padding: 1rem; }
+    .quiz h4 { color: #73e5ff; margin-top: 0; }
+    .quiz .q { margin: .6rem 0; }
+    .quiz .choices label { display: block; padding: .35rem .5rem; border-radius: 6px; cursor: pointer; }
+    .quiz .choices label:hover { background: rgba(115,229,255,0.08); }
+    .quiz .btn { margin-top: .8rem; background: linear-gradient(90deg, #00b7ff, #0062ff); border: none; color: white; padding: .6rem 1rem; border-radius: 8px; cursor: pointer; font-weight: 700; }
+    .quiz .feedback { margin-top: .7rem; font-weight: 700; }
+
+    /* Lien accent */
+    .link-accent { color: #73e5ff; text-decoration: underline; }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER (même menu que l’accueil, adapté aux chemins relatifs) -->
+  <header>
+    <div class="logo">
+      <img src="../assets/img/logo.svg" alt="Logo L.S.E.S.">
+      <h1>L.S.E.S. — Kinésithérapie</h1>
+    </div>
+
+    <nav>
+      <ul class="menu">
+        <li><a href="../index.html">Accueil</a></li>
+        <li><a href="../urgences/index.html">Urgences</a></li>
+        <li><a href="../chirurgie/index.html">Chirurgie</a></li>
+        <li><a href="../psy/index.html">Psychologie</a></li>
+        <li><a href="../gynecologie/index.html">Gynécologie</a></li>
+        <li><a href="../medecine-legale/index.html">Médecine légale</a></li>
+        <li><a href="../glossaire/index.html">Glossaire</a></li>
+        <li><a class="link-accent" href="formation_kine.html">Kinésithérapie</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- CONTENU -->
+  <main class="kine-wrap">
+    <!-- INTRO -->
+    <section class="kine-card">
+      <h2>Formation – Kinésithérapie (version synthétisée)</h2>
+      <p class="kine-lead">
+        La kinésithérapie vise à restaurer fonction et mobilité via le mouvement, l’éducation et des techniques de
+        stimulation neuromusculaire. Cette version synthétisée reprend l’essentiel de ton guide L.S.E.S. et l’intègre
+        dans l’esthétique du site, avec des modules interactifs pilotés par DocX.
+      </p>
+      <div class="docx-note"><strong>[DocX]</strong> : Les muscles se rappellent tout… sauf ceux de PiouPiou après trois cafés. Hydratez-vous. Étirez-vous.</div>
+    </section>
+
+    <!-- FONDAMENTAUX + ILLUSTRATION -->
+    <section class="kine-card">
+      <div class="kine-grid">
+        <div>
+          <h3>Fondamentaux cliniques</h3>
+          <ul class="checklist">
+            <li><strong>Bilan initial :</strong> douleur, amplitude, force, sensibilité, posture et marche.</li>
+            <li><strong>Objectifs SMART :</strong> mesurables par segment (douleur, ROM, force, fonction).</li>
+            <li><strong>Progressivité :</strong> charge progressive, récupération, réévaluation à chaque séance.</li>
+            <li><strong>Éducation :</strong> hygiène de vie, auto-exercices, posture, gestion de la charge.</li>
+            <li><strong>Alliance thérapeutique :</strong> adhésion + pédagogie = meilleurs résultats.</li>
+          </ul>
+          <div class="docx-note"><strong>[DocX]</strong> : “Sans progression ni suivi, c’est du tricot, pas de la kiné.”</div>
+        </div>
+
+        <aside class="illus-box">
+          <!-- Remplace l'image ci-dessous par ton illustration si tu en as une -->
+          <img src="../assets/img/muscles_diagram.png" alt="Schéma musculaire (illustration)">
+          <small>Schéma musculaire — zones fréquentes de douleur et de travail (illustration).</small>
+        </aside>
+      </div>
+    </section>
+
+    <!-- MODULES PRATIQUES -->
+    <section class="kine-card">
+      <h3>Modules de pratique – aperçu</h3>
+      <ul class="checklist">
+        <li><strong>Mobilisations & ROM :</strong> pendulaires, auto-étirements, mobilisations douces.</li>
+        <li><strong>Renforcement :</strong> isométrique → concentrique → excentrique → pliométrique (selon douleur).</li>
+        <li><strong>Neuromoteur :</strong> contrôle moteur, équilibre, proprioception, gestes fonctionnels.</li>
+        <li><strong>Respiration & douleur :</strong> cohérence cardiaque, respiration latérale/abdominale.</li>
+        <li><strong>Retour à l’effort :</strong> reprise graduée, monitoring charge/symptômes, prévention rechutes.</li>
+      </ul>
+      <div class="docx-note"><strong>[DocX]</strong> : “La magie n’existe pas. Par contre la régularité, oui.”</div>
+    </section>
+
+    <!-- ELECTROSTIMULATION INTERACTIVE -->
+    <section class="kine-card" id="electro">
+      <h3>Exercices avec électrodes – douleurs nerveuses</h3>
+      <p>
+        L’électrostimulation périphérique module la douleur par un effet “gate control” et favorise la contraction musculaire.
+        À utiliser en complément : contrôle moteur, mobilisations, éducation.
+      </p>
+
+      <div class="kine-grid">
+        <div>
+          <img src="../assets/img/electrodes_demo.png" alt="Pose des électrodes — exemple" class="illus-box" style="padding:0;">
+        </div>
+        <div>
+          <div class="simu">
+            <h4>Simulateur de séance</h4>
+            <form id="kineForm">
+              <label for="zone">Zone à traiter</label>
+              <select id="zone" required>
+                <option value="">Choisissez…</option>
+                <option value="épaule">Épaule</option>
+                <option value="lombaires">Lombaires</option>
+                <option value="cuisse">Cuisse</option>
+                <option value="avant-bras">Avant-bras</option>
+              </select>
+
+              <label for="frequence">Fréquence (Hz)</label>
+              <input type="number" id="frequence" min="2" max="120" placeholder="ex : 80">
+
+              <label for="duree">Durée (minutes)</label>
+              <input type="number" id="duree" min="5" max="60" placeholder="ex : 20">
+
+              <small>Guide rapide : douleur neuropathique → 80–100 Hz | contraction musculaire douce → 20–50 Hz</small>
+              <button class="btn" type="submit">Lancer la simulation</button>
+            </form>
+            <div id="resultat" class="result"></div>
+          </div>
+
+          <div class="docx-note"><strong>[DocX]</strong> : “Si ça picote, c’est normal. Si ça crépite, arrêtez tout.”</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONSEILS & PREVENTION -->
+    <section class="kine-card">
+      <h3>Conseils & prévention</h3>
+      <ul class="checklist">
+        <li><strong>Hygiène du mouvement :</strong> bouger souvent, varié, progressif.</li>
+        <li><strong>Charge & somnolence :</strong> sommeil + charge adaptée = meilleure récupération.</li>
+        <li><strong>Douleur ≠ danger :</strong> éducation pour lever la peur du mouvement.</li>
+        <li><strong>Auto-exercices :</strong> 10–15 minutes, 1–2 fois/jour, puis consolidation 6–12 semaines.</li>
+      </ul>
+      <div class="docx-note"><strong>[DocX]</strong> : “Le meilleur exercice est celui que vous ferez vraiment.”</div>
+    </section>
+
+    <!-- QUIZ DOCX -->
+    <section class="kine-card">
+      <div class="quiz">
+        <h4>Mini test DocX</h4>
+        <p class="q"><strong>Q1.</strong> La fréquence typique pour modulater une douleur neuropathique est :</p>
+        <div class="choices">
+          <label><input type="radio" name="q1" value="A"> 2–10 Hz</label>
+          <label><input type="radio" name="q1" value="B"> 80–100 Hz</label>
+          <label><input type="radio" name="q1" value="C"> 200–400 Hz</label>
+        </div>
+
+        <p class="q" style="margin-top:.8rem"><strong>Q2.</strong> La progression de force logique est :</p>
+        <div class="choices">
+          <label><input type="radio" name="q2" value="A"> Pliométrie → Excentrique → Concentrique → Isométrique</label>
+          <label><input type="radio" name="q2" value="B"> Isométrique → Concentrique → Excentrique → Pliométrie</label>
+          <label><input type="radio" name="q2" value="C"> Concentrique → Isométrique → Pliométrie → Excentrique</label>
+        </div>
+
+        <button class="btn" id="quizSubmit">Vérifier</button>
+        <div class="feedback" id="quizFeedback"></div>
+      </div>
+      <div class="docx-note"><strong>[DocX]</strong> : “Je corrige sans pitié. Mais avec style.”</div>
+    </section>
+
+    <!-- LIENS UTILES -->
+    <section class="kine-card">
+      <h3>Liens utiles</h3>
+      <p>
+        • <a class="link-accent" href="#electro">Aller au simulateur d’électrodes</a> — •
+        <a class="link-accent" href="../accueil/reglement.html">Règlement & procédures</a> — •
+        <a class="link-accent" href="../gynecologie/fiche_suivi.html">Fiche gynécologie interactive</a>
+      </p>
+    </section>
+  </main>
+
+  <!-- FOOTER CENTRALISÉ -->
+  <div id="footer-container"></div>
+
+  <!-- SCRIPTS PAGE -->
+  <script>
+    // Footer (chemin relatif robuste)
+    (async function loadFooter(){
+      try {
+        const res = await fetch("../assets/components/footer.html", { cache: "no-store" });
+        document.getElementById("footer-container").innerHTML = await res.text();
+      } catch (e) { console.error("Erreur footer:", e); }
+    })();
+
+    // Simulateur électrostimulation
+    (function(){
+      const form = document.getElementById('kineForm');
+      const out  = document.getElementById('resultat');
+
+      const recommandations = (freq) => {
+        if (freq >= 70) return "Mode antalgique (gate control) – courtes impulsions, intensité confortable.";
+        if (freq >= 20) return "Travail neuromusculaire léger – contraction douce et contrôlée.";
+        return "Fréquence basse : travail spécifique (endurance douloureuse) à encadrer.";
+      };
+
+      form.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const zone = document.getElementById('zone').value.trim();
+        const f = +document.getElementById('frequence').value;
+        const d = +document.getElementById('duree').value;
+
+        if(!zone || !f || !d){
+          out.innerHTML = "<p style='color:#ff9a9a'>Veuillez compléter tous les champs.</p>";
+          return;
+        }
+
+        const gain = (Math.random()*25 + 45).toFixed(1); // 45–70% “soulagement estimé”
+        out.innerHTML = `
+          <p><strong>Protocole simulé</strong> — Zone : <em>${zone}</em>, Fréquence : <em>${f} Hz</em>, Durée : <em>${d} min</em>.</p>
+          <p>${recommandations(f)}</p>
+          <p><strong>[DocX]</strong> : “Soulagement estimé : <strong>${gain}%</strong>. Continuez, mais ne grillez rien.”</p>
+        `;
+      });
+    })();
+
+    // Quiz DocX
+    (function(){
+      const btn = document.getElementById('quizSubmit');
+      const fb  = document.getElementById('quizFeedback');
+      btn.addEventListener('click', ()=>{
+        const q1 = (document.querySelector('input[name="q1"]:checked')||{}).value || "";
+        const q2 = (document.querySelector('input[name="q2"]:checked')||{}).value || "";
+        let score = 0;
+        if (q1 === "B") score++;
+        if (q2 === "B") score++;
+
+        if (score === 2) {
+          fb.style.color = "#8fffd1";
+          fb.textContent = "Parfait. [DocX] : vous pouvez tenir un TENS sans le manger.";
+        } else if (score === 1) {
+          fb.style.color = "#ffe08f";
+          fb.textContent = "Pas mal. [DocX] : un café, et on révise la progression de force.";
+        } else {
+          fb.style.color = "#ff9a9a";
+          fb.textContent = "Aïe. [DocX] : on recommence depuis 'bonjour quadriceps'.";
+        }
+      });
+    })();
+
+    // Mini bulles DocX (en bas à droite) – réutilisation style global
+    (function(){
+      const phrases = [
+        "Je loge dans les circuits. C’est cozy.",
+        "La régularité bat la motivation, à chaque fois.",
+        "Hydratez-vous. Votre fascia vous dira merci.",
+        "Electro + mouvement = combo gagnant.",
+        "Le meilleur programme est celui que vous faites.",
+      ];
+      let i = 0;
+      const dock = document.createElement('div');
+      dock.id = "docx-chat";
+      document.body.appendChild(dock);
+
+      function tick(){
+        const b = document.createElement('div');
+        b.className = "docx-message";
+        b.innerHTML = `<span class="ai-tag">[DocX] :</span> ${phrases[i]}`;
+        dock.innerHTML = ""; dock.appendChild(b);
+        i = (i+1) % phrases.length;
+      }
+      tick();
+      setInterval(tick, 10000);
+    })();
+  </script>
+</body>
+</html>
