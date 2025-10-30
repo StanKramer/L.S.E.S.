@@ -1,3 +1,4 @@
+/* ======== STYLE GLOBAL L.S.E.S ======== */
 body {
   font-family: 'Oxanium', sans-serif;
   margin: 0;
@@ -5,25 +6,30 @@ body {
   background: radial-gradient(circle at 20% 20%, #031525, #000a14 70%);
   color: #bff2ff;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
-/* Bandeau supérieur */
+/* ======== HEADER ======== */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 40px;
-  background-color: rgba(0, 10, 20, 0.8);
+  padding: 15px 50px;
+  background-color: rgba(0, 10, 20, 0.85);
   border-bottom: 2px solid #00c8ff;
   box-shadow: 0 0 15px rgba(0, 200, 255, 0.4);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
 }
 
 header img {
-  height: 60px;
+  height: 55px;
   filter: drop-shadow(0 0 8px #00c8ff);
 }
 
-/* Menu principal */
+/* ======== MENU ======== */
 .menu {
   display: flex;
   gap: 25px;
@@ -33,7 +39,9 @@ header img {
   position: relative;
   cursor: pointer;
   color: #bff2ff;
-  transition: 0.3s;
+  font-weight: 600;
+  font-size: 1em;
+  transition: color 0.3s;
 }
 
 .menu-item:hover {
@@ -41,18 +49,18 @@ header img {
   text-shadow: 0 0 10px #00c8ff;
 }
 
-/* Sous-menu déroulant */
+/* ======== SOUS-MENU ======== */
 .submenu {
   display: none;
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: rgba(0, 10, 20, 0.9);
+  background-color: rgba(0, 15, 30, 0.95);
   border: 1px solid #00c8ff;
   border-radius: 6px;
   box-shadow: 0 0 15px rgba(0, 200, 255, 0.3);
   padding: 10px 0;
-  min-width: 180px;
+  min-width: 190px;
 }
 
 .menu-item:hover .submenu {
@@ -73,31 +81,38 @@ header img {
   text-shadow: 0 0 6px #00c8ff;
 }
 
-/* Corps de page */
+/* ======== MAIN ======== */
 main {
   text-align: center;
-  padding: 60px 20px 120px;
+  padding: 140px 20px 120px;
 }
 
 h1 {
   color: #00c8ff;
   text-shadow: 0 0 10px #00c8ff;
+  font-size: 2em;
 }
 
-/* Footer */
+p {
+  font-size: 1em;
+  color: #bff2ff;
+}
+
+/* ======== FOOTER ======== */
 footer {
   position: fixed;
   bottom: 0;
   width: 100%;
   text-align: center;
-  background-color: rgba(0, 10, 20, 0.8);
+  background-color: rgba(0, 10, 20, 0.9);
   border-top: 2px solid #00c8ff;
   padding: 10px;
   color: #bff2ff;
   box-shadow: 0 0 15px rgba(0, 200, 255, 0.3);
+  font-size: 0.9em;
 }
 
-/* Fond animé */
+/* ======== FOND ANIMÉ ======== */
 @keyframes moveBackground {
   0% { background-position: 0 0; }
   100% { background-position: 100% 100%; }
