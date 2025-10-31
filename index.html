@@ -1,195 +1,72 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>L.S.E.S. — Portail Médical</title>
-
-  <!-- Police -->
-  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;600&display=swap" rel="stylesheet">
-
-  <!-- Feuille de style -->
-  <link rel="stylesheet" href="assets/css/style.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L.S.E.S. — PiouPiouPedia Médicale</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <style>
-    body {
-      margin: 0;
-      background: radial-gradient(circle at 20% 20%, #02111f, #000a14);
-      color: #bff2ff;
-      font-family: 'Oxanium', sans-serif;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #001020;
-      padding: 10px 30px;
-      box-shadow: 0 2px 10px rgba(0, 200, 255, 0.2);
-    }
-
-    header img {
-      height: 55px;
-      transition: transform 0.3s ease;
-    }
-
-    header img:hover {
-      transform: scale(1.08);
-    }
-
-    nav.menu {
-      display: flex;
-      gap: 25px;
-      flex-wrap: wrap;
-    }
-
-    nav.menu a {
-      color: #7ee6ff;
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.2s;
-      position: relative;
-    }
-
-    nav.menu a:hover {
-      color: #00ffff;
-    }
-
-    main {
-      text-align: center;
-      margin-top: 10vh;
-      flex: 1;
-    }
-
-    h1 {
-      color: #00c8ff;
-      text-shadow: 0 0 15px #00c8ff;
-      font-size: 1.8em;
-      animation: glow 2s infinite alternate;
-    }
-
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #00c8ff; }
-      to { text-shadow: 0 0 25px #00ffff; }
-    }
-
-    footer {
-      background-color: #001020;
-      color: #00c8ff;
-      text-align: center;
-      padding: 10px;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      box-shadow: 0 -2px 10px rgba(0, 200, 255, 0.3);
-    }
-
-    /* Infobulle DocX */
-    .docx-bubble {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: rgba(0, 20, 30, 0.85);
-      color: #bff2ff;
-      border: 1px solid #00c8ff;
-      border-radius: 12px;
-      padding: 12px 18px;
-      font-size: 0.9em;
-      max-width: 320px;
-      box-shadow: 0 0 15px rgba(0, 200, 255, 0.4);
-      opacity: 0;
-      animation: fadeIn 1s forwards;
-    }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-
-    .docx-title {
-      font-weight: 700;
-      color: #00ffff;
-      margin-bottom: 6px;
-      display: block;
-    }
+    /* Sécurité visuelle pour GitHub Pages si CSS externe non chargé */
+    body { background-color: #0a0f1a; color: #e0f7ff; font-family: 'Oxanium', sans-serif; }
   </style>
 </head>
-
 <body>
+
+  <!-- HEADER -->
   <header>
-    <img id="lsesLogo" alt="Logo L.S.E.S.">
-    <nav class="menu">
-      <a href="accueil/reglement.html">Accueil</a>
-      <a href="chirurgie/formation.html">Chirurgie</a>
-      <a href="gynecologie/fiche_suivi.html">Gynécologie</a>
-      <a href="medecine-legale/formation.html">Médecine légale</a>
-      <a href="psy/formation.html">Psychologie</a>
-      <a href="kinesitherapie/formation_kine.html">Kinésithérapie</a>
+    <img src="assets/img/logo-lses.png" alt="Logo L.S.E.S." class="logo">
+    <nav>
+      <ul>
+        <li><a href="#">Accueil</a>
+          <ul>
+            <li><a href="reglement.html">Règlement & Procédures</a></li>
+            <li><a href="presentation.html">Présentation</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Chirurgie</a>
+          <ul>
+            <li><a href="chirurgie/formation_chirurgie.html">Formation Chirurgicale</a></li>
+            <li><a href="chirurgie/protocoles.html">Protocoles</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Gynécologie</a>
+          <ul>
+            <li><a href="gynecologie/formation_gyneco.html">Formation Gynécologique</a></li>
+            <li><a href="gynecologie/protocoles.html">Protocoles</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Kinésithérapie</a>
+          <ul>
+            <li><a href="kinesitherapie/formation_kine.html">Formation Kiné</a></li>
+            <li><a href="kinesitherapie/protocoles.html">Protocoles</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Médecine légale</a>
+          <ul>
+            <li><a href="medleg/formation_medleg.html">Formation Légale</a></li>
+            <li><a href="medleg/protocoles.html">Procédures</a></li>
+          </ul>
+        </li>
+      </ul>
     </nav>
   </header>
 
-  <main>
-    <h1>Bienvenue sur le Portail Médical L.S.E.S.</h1>
-    <p>« Parce qu’un patient soigné, c’est un PiouPiou heureux. »</p>
-    <p>Accédez aux différents pôles depuis le menu ci-dessus.</p>
+  <!-- CONTENU PRINCIPAL -->
+  <main style="text-align:center; padding:80px 20px;">
+    <h1>Bienvenue sur la base de connaissances du L.S.E.S.</h1>
+    <p>Explorez les formations, protocoles et notes internes de nos départements médicaux.  
+      Ce guide est en constante évolution — surveillez DocX, il veille (et commente).</p>
+    <p><em>"Parce qu'au L.S.E.S., même les IA ont un sens de l'humour douteux."</em></p>
   </main>
 
+  <!-- FOOTER -->
   <footer>
-    <p>© 2025 PiouPiou le Magnifique — ProjectV</p>
+    <p>© 2025 <span>PiouPiou le Magnifique</span> — Propulsé par <span>ProjectV</span></p>
   </footer>
 
-  <!-- Bulle DocX -->
-  <div class="docx-bubble" id="docxBubble">
-    <span class="docx-title">[DocX]</span>
-    <span id="docxQuote">Initialisation de l’interface médicale...</span>
-  </div>
-
-  <script>
-    // === LOGO DYNAMIQUE ===
-    (function() {
-      const repo = location.pathname.split('/')[1]?.replace(/\./g, "") || "LSES";
-      const prefix = repo ? `/${repo}/` : "./";
-      const logo = document.getElementById("lsesLogo");
-      const logoPath = `${prefix}assets/img/logo-lses.png`;
-
-      fetch(logoPath, { method: "HEAD" })
-        .then(res => logo.src = res.ok ? logoPath : "./assets/img/logo-lses.png")
-        .catch(() => logo.src = "./assets/img/logo-lses.png");
-    })();
-
-    // === INFOBULLE DYNAMIQUE ===
-    const quotes = [
-      "Vérification du matériel médical en cours...",
-      "Chargement des données patient...",
-      "Connexion au réseau hospitalier...",
-      "DocX synchronise vos procédures...",
-      "Simulation de diagnostic IA en cours...",
-      "Réinitialisation des capteurs biologiques...",
-      "Nettoyage des instruments holographiques...",
-      "Analyse des signaux vitaux simulée...",
-      "Calibration des scanners corporels...",
-      "Mise à jour des dossiers cliniques virtuels...",
-      "Compilation des procédures médicales...",
-      "Activation du protocole d'apprentissage kiné...",
-      "Révision des cas de chirurgie avancée...",
-      "Synchronisation avec le Paleto Medical Network...",
-      "Traitement des requêtes internes de DocX...",
-      "Optimisation des schémas thérapeutiques...",
-      "Établissement du contact avec PiouPiou...",
-      "DocX supervise les unités médicales...",
-      "Préparation de la session d'entraînement kiné...",
-      "Chargement du module de psychologie cognitive..."
-    ];
-
-    function updateQuote() {
-      const q = quotes[Math.floor(Math.random() * quotes.length)];
-      document.getElementById("docxQuote").textContent = q;
-    }
-
-    updateQuote();
-    setInterval(updateQuote, 8000);
-  </script>
+  <!-- DOCX SYSTEM -->
+  <script src="assets/js/docx_quotes.js"></script>
+  <script src="assets/js/app.js"></script>
 </body>
 </html>
