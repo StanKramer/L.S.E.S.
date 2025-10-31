@@ -4,13 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>L.S.E.S. — Portail Médical</title>
+
+  <!-- POLICE -->
   <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- STYLES -->
+  <link id="dynamicCSS" rel="stylesheet">
+
+  <script>
+    // === Auto-détection de profondeur de dossier ===
+    (() => {
+      const depth = window.location.pathname.split('/').filter(p => p).length - 1;
+      const prefix = '../'.repeat(depth);
+      document.getElementById('dynamicCSS').href = `${prefix}assets/css/style.css`;
+
+      // Charger JS dynamiquement après le CSS
+      const jsApp = document.createElement('script');
+      jsApp.type = 'module';
+      jsApp.src = `${prefix}assets/js/app.js`;
+      document.head.appendChild(jsApp);
+    })();
+  </script>
 </head>
 
 <body>
   <header>
-    <img src="assets/img/logo-lses.png" alt="Logo L.S.E.S.">
+    <img id="lsesLogo" alt="Logo L.S.E.S.">
     <nav class="menu">
       <div class="menu-item">Accueil
         <div class="submenu">
@@ -62,6 +81,13 @@
     <p>© 2025 PiouPiou le Magnifique — ProjectV</p>
   </footer>
 
-  <script type="module" src="assets/js/app.js"></script>
+  <script>
+    // === Adaptation du logo selon la profondeur ===
+    (() => {
+      const depth = window.location.pathname.split('/').filter(p => p).length - 1;
+      const prefix = '../'.repeat(depth);
+      document.getElementById('lsesLogo').src = `${prefix}assets/img/logo-lses.png`;
+    })();
+  </script>
 </body>
 </html>
