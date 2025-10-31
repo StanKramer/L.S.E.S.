@@ -7,64 +7,62 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <style>
-    /* Ajustement local pour la mise en page du règlement */
     main.reglement {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 60px 20px 120px;
+      max-width: 900px;
+      margin: 80px auto 100px;
+      padding: 40px;
+      background: rgba(15, 20, 30, 0.75);
+      border: 1px solid rgba(0,224,255,0.25);
+      border-radius: 15px;
+      color: #e0f7ff;
+      box-shadow: 0 0 20px rgba(0,224,255,0.15);
       position: relative;
     }
 
-    .reglement-content {
-      max-width: 850px;
-      background: rgba(15, 20, 30, 0.7);
-      border: 1px solid rgba(0,224,255,0.3);
-      border-radius: 15px;
-      padding: 30px 40px;
-      color: #e0f7ff;
-      line-height: 1.6;
-      box-shadow: 0 0 15px rgba(0,224,255,0.2);
-    }
-
-    h1, h2, h3 {
+    main.reglement h1 {
+      text-align: center;
       color: #00e0ff;
-      text-shadow: 0 0 8px #00e0ff;
-      margin-bottom: 10px;
+      text-shadow: 0 0 10px #00e0ff;
+      margin-bottom: 25px;
     }
 
-    .docx-annotation {
+    h2 {
+      color: #00e0ff;
+      text-shadow: 0 0 6px #00e0ff;
+      margin-top: 30px;
+    }
+
+    p {
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+
+    /* --- Infobulle dynamique DocX --- */
+    .docx-tooltip {
       position: absolute;
-      right: 40px;
-      width: 260px;
-      font-size: 0.85rem;
-      background: rgba(20, 25, 35, 0.9);
+      background: rgba(10, 14, 25, 0.95);
+      color: #aee9ff;
       border: 1px solid #00e0ff;
       border-radius: 10px;
-      padding: 10px 14px;
+      padding: 10px 15px;
+      font-size: 0.85rem;
       box-shadow: 0 0 12px rgba(0,224,255,0.4);
-      color: #aee9ff;
-      animation: fadeIn 1s ease forwards;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.4s ease;
+      pointer-events: none;
+      z-index: 1000;
+      max-width: 280px;
     }
 
-    .docx-annotation p {
-      margin: 0;
+    .docx-tooltip.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Scroll synchronisé avec les annotations */
-    .annotation-track {
-      position: absolute;
-      right: 10px;
-      top: 120px;
-      width: 300px;
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
+    .docx-tooltip strong {
+      color: #00e0ff;
+      text-shadow: 0 0 6px #00e0ff;
     }
   </style>
 </head>
@@ -86,48 +84,74 @@
 
   <!-- CONTENU PRINCIPAL -->
   <main class="reglement">
-    <div class="reglement-content">
-      <h1>Règlement Intérieur & Procédures Médicales</h1>
-      <p>Ce règlement établit les normes de conduite, les obligations et les droits de l’ensemble du personnel du Los Santos Emergency Service (L.S.E.S.).  
-      Il vise à garantir la sécurité, la cohésion et l’efficacité du service médical dans toutes les situations, qu’elles soient internes ou en collaboration avec les autres organismes gouvernementaux.</p>
+    <h1>Règlement Intérieur & Procédures Médicales</h1>
 
+    <section class="article" data-docx="[DOCX → TOUS] Ce règlement est plus stable que la pharmacie de 42. C’est dire.">
       <h2>Article 1 — Tenue et comportement</h2>
       <p>Tous les membres du personnel doivent maintenir une apparence professionnelle et un comportement exemplaire.  
       La tenue réglementaire est obligatoire pendant les heures de service.</p>
+    </section>
 
+    <section class="article" data-docx="[DOCX → 42] Pas un mot sur les inventaires. Coïncidence ? Je ne crois pas.">
       <h2>Article 2 — Responsabilités</h2>
       <p>Chaque agent du L.S.E.S. est responsable de ses actes et doit respecter les protocoles établis pour la sécurité des patients, de ses collègues et de lui-même.</p>
+    </section>
 
+    <section class="article" data-docx="[DOCX → Sucre] Communication calme, oui. Méditation pendant les appels d’urgence, non.">
       <h2>Article 3 — Communication</h2>
       <p>La communication interne se doit d’être claire, respectueuse et efficace.  
       Toute remarque ou suggestion constructive est encouragée par la direction.</p>
+    </section>
 
+    <section class="article" data-docx="[DOCX → 14] Les odeurs du bateau ne sont pas considérées comme des urgences médicales.">
       <h2>Article 4 — Urgences & interventions</h2>
       <p>Lors d’une intervention, la priorité est la sauvegarde des vies humaines.  
       Les protocoles de sécurité doivent être strictement respectés et les rapports complétés à chaque retour de mission.</p>
+    </section>
 
+    <section class="article" data-docx="[DOCX → PiouPiou] Rien sur l’amour impossible ? Injustice législative.">
       <h2>Article 5 — Confidentialité</h2>
       <p>Le secret médical est une obligation absolue.  
       Toute diffusion non autorisée d’informations médicales constitue une faute grave.</p>
-    </div>
-
-    <!-- ANNOTATIONS DOCX -->
-    <div class="annotation-track">
-      <div class="docx-annotation"><p><strong>[DOCX → TOUS]</strong> Ce règlement est plus stable que le stock de la pharmacie. C’est dire.</p></div>
-      <div class="docx-annotation"><p><strong>[DOCX → 42]</strong> T’as vu ? Aucun article ne parle d’inventaire. Coïncidence ?</p></div>
-      <div class="docx-annotation"><p><strong>[DOCX → Sucre]</strong> “Comportement exemplaire”, ça inclut ne pas méditer pendant les urgences.</p></div>
-      <div class="docx-annotation"><p><strong>[DOCX → 14]</strong> Rien sur les odeurs suspectes. Ton bateau est sauf… pour l’instant.</p></div>
-      <div class="docx-annotation"><p><strong>[DOCX → PiouPiou]</strong> Article manquant : "PiouPiou est formidable, mais seul". Dommage.</p></div>
-    </div>
+    </section>
   </main>
+
+  <!-- TOOLTIP DYNAMIQUE -->
+  <div id="docxTooltip" class="docx-tooltip"></div>
 
   <!-- FOOTER -->
   <footer>
     <p>© 2025 <span>PiouPiou le Magnifique</span> — Propulsé par <span>ProjectV</span></p>
   </footer>
 
-  <!-- DOCX SYSTEM -->
+  <!-- SCRIPTS -->
   <script src="assets/js/docx_quotes.js"></script>
   <script src="assets/js/app.js"></script>
+
+  <!-- Script d’infobulle DocX -->
+  <script>
+    const tooltip = document.getElementById('docxTooltip');
+    const articles = document.querySelectorAll('.article');
+
+    articles.forEach(article => {
+      article.addEventListener('mouseenter', e => {
+        tooltip.textContent = article.dataset.docx;
+        const rect = article.getBoundingClientRect();
+        tooltip.style.top = `${rect.top + window.scrollY + 20}px`;
+        tooltip.style.left = `${rect.right + 15}px`;
+        tooltip.classList.add('visible');
+      });
+
+      article.addEventListener('mouseleave', () => {
+        tooltip.classList.remove('visible');
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      if (tooltip.classList.contains('visible')) {
+        tooltip.classList.remove('visible');
+      }
+    });
+  </script>
 </body>
 </html>
