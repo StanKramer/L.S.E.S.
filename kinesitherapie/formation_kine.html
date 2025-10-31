@@ -1,249 +1,260 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>L.S.E.S. — Formation Kinésithérapie</title>
-  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../assets/css/styles.css"/>
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png"/>
 
   <style>
-    /* === Thème global === */
-    body {
-      font-family: 'Oxanium', sans-serif;
-      background: radial-gradient(circle at 20% 20%, #031525, #000a14 70%);
-      color: #bff2ff;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
+    /* — Spécifique à la page Kiné (léger habillage local) — */
+    .kine-hero {
+      text-align:center;
+      padding: 70px 20px 20px;
+    }
+    .kine-hero h1 {
+      margin: 0 0 10px;
+      color:#00e0ff;
+      text-shadow: 0 0 12px #00e0ff;
+      font-size: clamp(1.8rem, 2vw + 1.2rem, 3rem);
+    }
+    .kine-hero p.sub {
+      margin: 0 auto;
+      max-width: 900px;
+      opacity:.9;
     }
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: rgba(0, 10, 20, 0.8);
-      padding: 10px 40px;
-      border-bottom: 2px solid #00c8ff;
-      box-shadow: 0 0 20px rgba(0, 200, 255, 0.3);
+    .kine-schema-wrap {
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      margin: 24px auto 12px;
+    }
+    .holo-badge {
+      display:inline-block;
+      margin:auto;
+      padding:10px 16px;
+      border:1px solid #00e0ff;
+      border-radius:12px;
+      background:rgba(10,14,25,.6);
+      color:#aee9ff;
+      box-shadow:0 0 14px rgba(0,224,255,.45);
+      font-size:.95rem;
     }
 
-    header img {
-      height: 60px;
-      filter: drop-shadow(0 0 8px #00d9ff);
+    .kine-grid {
+      display:grid;
+      grid-template-columns: repeat(4, minmax(240px,1fr));
+      gap: 18px;
+      padding: 24px 20px 100px;
+      max-width: 1320px;
+      margin: 0 auto;
+    }
+    @media (max-width: 1200px) {
+      .kine-grid { grid-template-columns: repeat(2, minmax(240px,1fr)); }
+    }
+    @media (max-width: 640px) {
+      .kine-grid { grid-template-columns: 1fr; }
     }
 
-    nav a {
-      color: #bff2ff;
-      text-decoration: none;
-      margin: 0 20px;
-      transition: 0.3s;
+    .kine-card {
+      background: rgba(15, 20, 30, 0.78);
+      border:1px solid rgba(0,224,255,.35);
+      border-radius:16px;
+      padding:18px 18px 12px;
+      box-shadow: 0 0 14px rgba(0,224,255,.12);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .kine-card:hover {
+      transform: translateY(-6px);
+      border-color:#00e0ff;
+      box-shadow: 0 0 18px rgba(0,224,255,.35);
+    }
+    .kine-card h3 {
+      margin:0 0 10px;
+      color:#00e0ff;
+      text-shadow:0 0 8px #00e0ff;
+      font-size:1.2rem;
+    }
+    .kine-card p { margin:.3rem 0; }
+    .kine-tip {
+      display:block;
+      margin-top:10px;
+      font-size:.9rem;
+      opacity:.9;
+    }
+    .kine-tip:before { content:"💡 "; }
+
+    /* Schéma holographique (SVG inline) */
+    .holo-figure {
+      width:min(820px, 90vw);
+      filter: drop-shadow(0 0 18px rgba(0,224,255,.55));
+      animation: holoPulse 4.5s ease-in-out infinite alternate;
+    }
+    @keyframes holoPulse {
+      from { opacity:.85; transform: scale(0.995); }
+      to   { opacity:1;    transform: scale(1.01); }
     }
 
-    nav a:hover {
-      color: #00c8ff;
-      text-shadow: 0 0 10px #00c8ff;
+    /* Infobulle locale DocX (sur les cartes) */
+    .docx-hover {
+      position:absolute;
+      right:14px; bottom:14px;
+      background:rgba(10,14,25,.95);
+      border:1px solid #00e0ff;
+      color:#aee9ff;
+      font-size:.85rem;
+      border-radius:10px;
+      padding:8px 10px;
+      box-shadow:0 0 12px rgba(0,224,255,.35);
+      opacity:0;
+      pointer-events:none;
+      transform: translateY(8px);
+      transition: all .18s ease;
+      max-width: 260px;
+      z-index:2;
     }
-
-    main {
-      text-align: center;
-      padding: 60px 20px 120px;
-    }
-
-    h1 {
-      font-size: 2.5em;
-      color: #00c8ff;
-      text-shadow: 0 0 10px #00c8ff;
-    }
-
-    /* === Image holographique === */
-    .holo-wrapper {
-      position: relative;
-      display: inline-block;
-      margin: 40px auto;
-    }
-
-    .holo-image {
-      width: 800px;
-      max-width: 90%;
-      border-radius: 12px;
-      box-shadow: 0 0 30px rgba(0, 200, 255, 0.3);
-      opacity: 0.95;
-    }
-
-    /* === Effets d'impulsions === */
-    .pulse {
-      position: absolute;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(0,255,255,0.9) 0%, rgba(0,255,255,0) 70%);
-      animation: pulseAnim 2s infinite ease-in-out;
-      box-shadow: 0 0 20px rgba(0,255,255,0.7);
-      cursor: pointer;
-    }
-
-    @keyframes pulseAnim {
-      0% { transform: scale(0.8); opacity: 0.8; }
-      50% { transform: scale(1.2); opacity: 1; }
-      100% { transform: scale(0.8); opacity: 0.8; }
-    }
-
-    .pulse1 { top: 35%; left: 42%; animation-delay: 0s; }
-    .pulse2 { top: 50%; left: 58%; animation-delay: 0.6s; }
-    .pulse3 { top: 65%; left: 48%; animation-delay: 1.2s; }
-    .pulse4 { top: 80%; left: 52%; animation-delay: 1.8s; }
-
-    /* === Infobulles interactives === */
-    .tooltip {
-      position: absolute;
-      background: rgba(0, 10, 20, 0.95);
-      border: 1px solid #00c8ff;
-      color: #bff2ff;
-      padding: 8px 12px;
-      border-radius: 10px;
-      font-size: 0.9em;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      box-shadow: 0 0 15px rgba(0,200,255,0.3);
-    }
-
-    /* === Cartes d’exercices === */
-    .exercise-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-      margin-top: 40px;
-    }
-
-    .exercise {
-      background-color: rgba(0, 25, 40, 0.7);
-      border: 1px solid #00c8ff;
-      border-radius: 12px;
-      padding: 20px;
-      transition: 0.3s;
-      box-shadow: 0 0 10px rgba(0, 200, 255, 0.2);
-    }
-
-    .exercise:hover {
-      box-shadow: 0 0 25px rgba(0, 200, 255, 0.6);
-      transform: scale(1.02);
-    }
-
-    .exercise h2 {
-      color: #00c8ff;
-      font-size: 1.3em;
-      margin-bottom: 10px;
-    }
-
-    .exercise p {
-      font-size: 0.95em;
-      color: #bff2ff;
-    }
-
-    .docx-comment {
-      font-style: italic;
-      color: #00c8ff;
-      font-size: 0.85em;
-      margin-top: 10px;
-      display: block;
-    }
-
-    footer {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      text-align: center;
-      background-color: rgba(0, 10, 20, 0.8);
-      border-top: 2px solid #00c8ff;
-      padding: 10px;
-      font-size: 0.9em;
-      color: #bff2ff;
-      box-shadow: 0 0 10px rgba(0, 200, 255, 0.3);
-    }
+    .kine-card:hover .docx-hover { opacity:1; transform: translateY(0); }
+    .docx-hover strong { color:#00e0ff; text-shadow:0 0 6px #00e0ff; }
   </style>
 </head>
 
 <body>
+  <!-- HEADER -->
   <header>
-    <img src="../assets/img/logo-lses.png" alt="Logo L.S.E.S.">
+    <a href="../index.html" style="display:flex;align-items:center;gap:8px">
+      <img src="../assets/img/logo-lses.png" alt="Logo L.S.E.S." class="logo"/>
+    </a>
     <nav>
-      <a href="../index.html">Accueil</a>
-      <a href="../chirurgie/formation.html">Chirurgie</a>
-      <a href="../gynecologie/fiche_suivi.html">Gynécologie</a>
-      <a href="../medecine-legale/formation.html">Médecine légale</a>
-      <a href="../psy/formation.html">Psychologie</a>
-      <a href="../glossaire.html">Glossaire</a>
+      <ul>
+        <li><a href="../index.html">Accueil</a></li>
+        <li><a href="../chirurgie/formation_chirurgie.html">Chirurgie</a></li>
+        <li><a href="../gynecologie/formation_gyneco.html">Gynécologie</a></li>
+        <li><a href="./formation_kine.html">Kinésithérapie</a></li>
+        <li><a href="../medleg/formation_medleg.html">Médecine légale</a></li>
+      </ul>
     </nav>
   </header>
 
-  <main>
+  <!-- HERO -->
+  <section class="kine-hero">
     <h1>Formation — Kinésithérapie & Rééducation Neuromusculaire</h1>
-    <p>« La douleur n’est pas une faiblesse… c’est juste ton nerf qui râle. » – <em>DocX</em></p>
+    <p class="sub"><em>« La douleur n’est pas une faiblesse… c’est juste ton nerf qui râle. » — DocX</em></p>
 
-    <div class="holo-wrapper" id="holoArea">
-      <img src="../assets/img/A_digital_interface_in_the_image_showcases_interac.png" alt="Schéma holographique Kinésithérapie L.S.E.S." class="holo-image">
-      <div class="pulse pulse1" data-muscle="Lombaires" data-link="#exo-lombaires"></div>
-      <div class="pulse pulse2" data-muscle="Trapèzes" data-link="#exo-cervicales"></div>
-      <div class="pulse pulse3" data-muscle="Nerf sciatique" data-link="#exo-sciatique"></div>
-      <div class="pulse pulse4" data-muscle="Mollets / Quadriceps" data-link="#exo-recuperation"></div>
-      <div class="tooltip" id="tooltip"></div>
+    <div class="kine-schema-wrap">
+      <span class="holo-badge">Schéma holographique Kinésithérapie — L.S.E.S.</span>
     </div>
 
-    <section class="exercise-grid">
-      <div class="exercise" id="exo-lombaires">
-        <h2>Stimulation lombaire</h2>
-        <p>Placer deux électrodes de part et d’autre de la colonne lombaire. Intensité progressive jusqu’à perception du picotement sans douleur. Durée : 15 minutes.</p>
-        <span class="docx-comment">💡 « Si tu sens tes jambes danser seules, t’es un peu trop haut sur l’intensité. »</span>
-      </div>
+    <!-- Schéma holographique : SVG inline (affichage immédiat) -->
+    <div class="kine-schema-wrap">
+      <!-- 👉 Si tu as un PNG, place-le dans ../assets/img/schema-kine.png et décommente la ligne suivante -->
+      <!-- <img src="../assets/img/schema-kine.png" alt="Schéma Kinésithérapie L.S.E.S." class="holo-figure"> -->
 
-      <div class="exercise" id="exo-cervicales">
-        <h2>Relaxation cervicale</h2>
-        <p>Électrodes sur les trapèzes supérieurs. Respiration lente et profonde pendant la stimulation douce. Durée : 10 minutes.</p>
-        <span class="docx-comment">💬 « Respire. Non, pas comme un poisson, comme un humain. »</span>
-      </div>
+      <!-- SVG de secours (holographique) -->
+      <svg class="holo-figure" viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="rg" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#00e0ff" stop-opacity=".85"/>
+            <stop offset="100%" stop-color="#00e0ff" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect x="0" y="0" width="800" height="420" fill="url(#rg)" opacity=".12"/>
+        <g fill="none" stroke="#9beaff" stroke-width="2.2" opacity=".95">
+          <!-- Silhouette unisexe simplifiée -->
+          <path d="M400,40
+                   c-40,0 -70,36 -70,80
+                   c0,28 14,55 40,70
+                   v40
+                   c-28,18 -46,54 -46,94
+                   v26
+                   h152
+                   v-26
+                   c0-40 -18-76 -46-94
+                   v-40
+                   c26-15 40-42 40-70
+                   c0-44 -30-80 -70-80z"/>
+          <!-- Points holo (nerveux) -->
+          <circle cx="400" cy="120" r="10"/>
+          <circle cx="400" cy="210" r="10"/>
+          <circle cx="360" cy="270" r="8"/>
+          <circle cx="440" cy="270" r="8"/>
+          <circle cx="400" cy="330" r="9"/>
+        </g>
+        <!-- halos -->
+        <g opacity=".6">
+          <circle cx="400" cy="120" r="30" fill="url(#rg)"/>
+          <circle cx="400" cy="210" r="30" fill="url(#rg)"/>
+          <circle cx="360" cy="270" r="24" fill="url(#rg)"/>
+          <circle cx="440" cy="270" r="24" fill="url(#rg)"/>
+          <circle cx="400" cy="330" r="26" fill="url(#rg)"/>
+        </g>
+      </svg>
+    </div>
+  </section>
 
-      <div class="exercise" id="exo-sciatique">
-        <h2>Stimulation sciatique</h2>
-        <p>Électrodes positionnées sur le trajet du nerf sciatique. Intensité modérée avec alternance droite/gauche. Durée : 20 minutes.</p>
-        <span class="docx-comment">⚡ « Ce n’est pas un test de résistance. Baisse avant de faire griller le patient. »</span>
-      </div>
+  <!-- GRILLE D'EXERCICES -->
+  <section class="kine-grid">
+    <!-- LOMBAIRE -->
+    <article class="kine-card" data-docx="[DOCX → TOUS] Les jambes qui dansent toutes seules ? Baisse un peu l’intensité.">
+      <h3>Stimulation lombaire</h3>
+      <p>Placer deux électrodes de part et d’autre de la colonne lombaire. Intensité progressive jusqu’à perception du picotement sans douleur.</p>
+      <p>Durée : <strong>15 minutes</strong>.</p>
+      <span class="kine-tip">« Si tu sens tes jambes danser seules, c’est un peu trop haut sur l’intensité. »</span>
+      <div class="docx-hover"><strong>[DOCX]</strong> Zone lombaire : le classique. Efficace, sobre, sans feu d’artifice.</div>
+    </article>
 
-      <div class="exercise" id="exo-recuperation">
-        <h2>Récupération musculaire post-effort</h2>
-        <p>Programme doux à basse fréquence. Utilisation sur quadriceps ou mollets après activité sportive. Durée : 12 minutes.</p>
-        <span class="docx-comment">💬 « Bravo, ton muscle travaille plus pendant sa sieste que toi toute la semaine. »</span>
-      </div>
-    </section>
-  </main>
+    <!-- CERVICALE -->
+    <article class="kine-card" data-docx="[DOCX → TOUS] Respire… mais pas comme un poisson.">
+      <h3>Relaxation cervicale</h3>
+      <p>Électrodes sur les trapèzes supérieurs. Respiration lente et profonde pendant la stimulation douce.</p>
+      <p>Durée : <strong>10 minutes</strong>.</p>
+      <span class="kine-tip">« Respire. Non, pas comme un poisson, comme un humain. »</span>
+      <div class="docx-hover"><strong>[DOCX]</strong> Le cou n’aime pas les tensions. Tes épaules non plus.</div>
+    </article>
 
+    <!-- SCIATIQUE -->
+    <article class="kine-card" data-docx="[DOCX → TOUS] Ce n’est pas un test de résistance. On ne grille personne aujourd’hui.">
+      <h3>Stimulation sciatique</h3>
+      <p>Électrodes positionnées sur le trajet du nerf sciatique. Intensité modérée avec alternance droite/gauche.</p>
+      <p>Durée : <strong>20 minutes</strong>.</p>
+      <span class="kine-tip">« Ce n’est pas un test de résistance. Baisse avant de faire griller le patient. »</span>
+      <div class="docx-hover"><strong>[DOCX]</strong> Le nerf râle ? On négocie, on n’attaque pas au marteau.</div>
+    </article>
+
+    <!-- RÉCUP MUSCULAIRE -->
+    <article class="kine-card" data-docx="[DOCX → TOUS] Bravo, tes muscles ont plus bossé que toi pendant ta sieste.">
+      <h3>Récupération musculaire post-effort</h3>
+      <p>Programme doux à basse fréquence. Utilisation sur quadriceps ou mollets après activité sportive.</p>
+      <p>Durée : <strong>12 minutes</strong>.</p>
+      <span class="kine-tip">« Bravo, ton muscle travaillera plus pendant sa sieste que toi toute la semaine. »</span>
+      <div class="docx-hover"><strong>[DOCX]</strong> Idéal après les “je cours mais je me plains”.</div>
+    </article>
+  </section>
+
+  <!-- FOOTER -->
   <footer>
-    <p>© 2025 PiouPiou le Magnifique — L.S.E.S. | <em>Parce qu’il fallait bien quelqu’un pour électrocuter avec style.</em></p>
+    <p>© 2025 <span>PiouPiou le Magnifique</span> — Propulsé par <span>ProjectV</span></p>
   </footer>
 
+  <!-- DOCX SYSTEM -->
+  <script src="../assets/js/docx_quotes.js"></script>
+  <script src="../assets/js/app.js"></script>
+
+  <!-- Infobulles DocX contextuelles (cartes) -->
   <script>
-    const tooltip = document.getElementById('tooltip');
-    const pulses = document.querySelectorAll('.pulse');
-
-    pulses.forEach(pulse => {
-      pulse.addEventListener('mousemove', (e) => {
-        tooltip.innerHTML = `<strong>${pulse.dataset.muscle}</strong><br><small>→ Cliquer pour voir l'exercice</small>`;
-        tooltip.style.opacity = 1;
-        tooltip.style.left = (e.pageX + 10) + 'px';
-        tooltip.style.top = (e.pageY - 30) + 'px';
-      });
-
-      pulse.addEventListener('mouseleave', () => {
-        tooltip.style.opacity = 0;
-      });
-
-      pulse.addEventListener('click', () => {
-        const target = document.querySelector(pulse.dataset.link);
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          target.style.boxShadow = "0 0 30px rgba(0, 200, 255, 0.8)";
-          setTimeout(() => target.style.boxShadow = "0 0 10px rgba(0, 200, 255, 0.2)", 1500);
-        }
+    // Affiche une petite bulle DocX selon data-docx quand on survole (et pousse aussi la bulle globale)
+    document.querySelectorAll('.kine-card').forEach(card => {
+      const msg = card.getAttribute('data-docx');
+      card.addEventListener('mouseenter', () => {
+        const bubble = document.createElement('div');
+        bubble.className = 'docx-hover';
+        bubble.innerHTML = `<strong>[DOCX]</strong> ${msg.replace(/^\[(DOCX|DocX).*\]\s*/,'')}`;
+        // évite doublon si existe déjà (on garde celle du HTML)
+        if (!card.querySelector('.docx-hover')) card.appendChild(bubble);
       });
     });
   </script>
