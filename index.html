@@ -8,37 +8,40 @@
   <!-- Police -->
   <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <!-- CSS global -->
+  <!-- Feuille de style principale -->
   <link id="dynamicCSS" rel="stylesheet">
 
-  <!-- Style minimal pour affichage de secours -->
+  <!-- CSS minimal en cas d’échec -->
   <style>
-    body {margin:0;padding:0;background:#000;color:#bff2ff;text-align:center;font-family:'Oxanium',sans-serif;}
-    h1{color:#00c8ff;margin-top:150px;text-shadow:0 0 10px #00c8ff;}
+    body {margin:0;padding:0;font-family:'Oxanium',sans-serif;background:#000;color:#bff2ff;text-align:center;}
     header,footer{background:#001020;color:#00c8ff;padding:10px;}
-    .menu{margin:10px auto;}
+    h1{color:#00c8ff;margin-top:140px;text-shadow:0 0 10px #00c8ff;}
   </style>
 
   <script>
-    (function(){
-      // Nom du dépôt GitHub détecté automatiquement
+    (async function() {
+      // === Détection du dépôt GitHub ===
       let repo = location.pathname.split('/')[1] || "";
-      if(repo.endsWith('.')) repo = repo.slice(0, -1); // supprime le point final
-
-      // Préfixe base
+      repo = repo.replace(/\./g, ""); // enlève les points pour éviter les erreurs
       const prefix = repo ? `/${repo}/` : "./";
 
-      // === CSS ===
-      const css = document.getElementById("dynamicCSS");
-      css.href = `${prefix}assets/css/style.css`;
+      // === Test CSS existant ===
+      const cssPath = `${prefix}assets/css/style.css`;
+      try {
+        const test = await fetch(cssPath, { method: "HEAD" });
+        if (test.ok) document.getElementById("dynamicCSS").href = cssPath;
+        else document.getElementById("dynamicCSS").href = "./assets/css/style.css";
+      } catch {
+        document.getElementById("dynamicCSS").href = "./assets/css/style.css";
+      }
 
-      // === JS ===
-      const js = document.createElement("script");
-      js.type = "module";
-      js.src = `${prefix}assets/js/app.js`;
-      document.head.appendChild(js);
+      // === Chargement JS principal ===
+      const script = document.createElement("script");
+      script.type = "module";
+      script.src = `${prefix}assets/js/app.js`;
+      document.head.appendChild(script);
 
-      // === Logo ===
+      // === Préfixe global (pour logo etc.) ===
       window.__LSES_PREFIX__ = prefix;
     })();
   </script>
@@ -70,7 +73,7 @@
         <div class="submenu"><a href="psy/formation.html">Formation</a></div>
       </div>
       <div class="menu-item">Kinésithérapie
-        <div class="submenu"><a href="kine/formation_kine.html">Formation Kiné</a></div>
+        <div class="submenu"><a href="kinesitherapie/formation_kine.html">Formation Kiné</a></div>
       </div>
     </nav>
   </header>
@@ -86,9 +89,17 @@
   </footer>
 
   <script>
-    (function(){
+    (async function() {
       const prefix = window.__LSES_PREFIX__ || "./";
-      document.getElementById("lsesLogo").src = `${prefix}assets/img/logo-lses.png`;
+      const logo = document.getElementById("lsesLogo");
+      const logoPath = `${prefix}assets/img/logo-lses.png`;
+      try {
+        const test = await fetch(logoPath, { method: "HEAD" });
+        if (test.ok) logo.src = logoPath;
+        else logo.src = "./assets/img/logo-lses.png";
+      } catch {
+        logo.src = "./assets/img/logo-lses.png";
+      }
     })();
   </script>
 </body>
