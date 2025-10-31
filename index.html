@@ -11,21 +11,108 @@
   <!-- Feuille de style principale -->
   <link id="dynamicCSS" rel="stylesheet">
 
-  <!-- CSS minimal en cas d’échec -->
+  <!-- CSS de secours -->
   <style>
-    body {margin:0;padding:0;font-family:'Oxanium',sans-serif;background:#000;color:#bff2ff;text-align:center;}
-    header,footer{background:#001020;color:#00c8ff;padding:10px;}
-    h1{color:#00c8ff;margin-top:140px;text-shadow:0 0 10px #00c8ff;}
+    body {
+      margin: 0;
+      padding: 0;
+      background: #020b16;
+      color: #bff2ff;
+      font-family: 'Oxanium', sans-serif;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: #001020;
+      color: #00c8ff;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 8px rgba(0, 200, 255, 0.2);
+    }
+
+    nav.menu {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      justify-content: center;
+      font-weight: 600;
+    }
+
+    .menu-item {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .menu-item a {
+      color: #7ee6ff;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .menu-item:hover > a {
+      color: #00ffff;
+    }
+
+    .submenu {
+      display: none;
+      position: absolute;
+      top: 30px;
+      left: 0;
+      background: #001a28;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #00c8ff;
+      z-index: 999;
+    }
+
+    .submenu a {
+      display: block;
+      margin: 5px 0;
+      color: #bff2ff;
+    }
+
+    .menu-item:hover .submenu {
+      display: block;
+    }
+
+    main {
+      flex: 1;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      color: #00c8ff;
+      font-size: 2em;
+      text-shadow: 0 0 10px #00c8ff;
+    }
+
+    footer {
+      background: #001020;
+      color: #00c8ff;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 -2px 8px rgba(0, 200, 255, 0.2);
+    }
   </style>
 
   <script>
     (async function() {
-      // === Détection du dépôt GitHub ===
+      // Corrige les points dans le nom du dépôt pour GitHub Pages
       let repo = location.pathname.split('/')[1] || "";
-      repo = repo.replace(/\./g, ""); // enlève les points pour éviter les erreurs
+      repo = repo.replace(/\./g, ""); // LSES au lieu de L.S.E.S.
       const prefix = repo ? `/${repo}/` : "./";
 
-      // === Test CSS existant ===
+      // Chargement sécurisé du CSS
       const cssPath = `${prefix}assets/css/style.css`;
       try {
         const test = await fetch(cssPath, { method: "HEAD" });
@@ -35,13 +122,12 @@
         document.getElementById("dynamicCSS").href = "./assets/css/style.css";
       }
 
-      // === Chargement JS principal ===
+      // Chargement JS principal
       const script = document.createElement("script");
       script.type = "module";
       script.src = `${prefix}assets/js/app.js`;
       document.head.appendChild(script);
 
-      // === Préfixe global (pour logo etc.) ===
       window.__LSES_PREFIX__ = prefix;
     })();
   </script>
@@ -51,28 +137,33 @@
   <header>
     <img id="lsesLogo" alt="Logo L.S.E.S." style="height:60px;">
     <nav class="menu">
-      <div class="menu-item">Accueil
+      <div class="menu-item"><a href="accueil/reglement.html">Accueil</a>
         <div class="submenu">
           <a href="accueil/reglement.html">Règlement intérieur</a>
           <a href="glossaire.html">Glossaire</a>
         </div>
       </div>
-      <div class="menu-item">Chirurgie
+
+      <div class="menu-item"><a href="#">Chirurgie</a>
         <div class="submenu"><a href="chirurgie/formation.html">Formation</a></div>
       </div>
-      <div class="menu-item">Gynécologie
+
+      <div class="menu-item"><a href="#">Gynécologie</a>
         <div class="submenu">
           <a href="gynecologie/fiche_suivi.html">Fiche de suivi</a>
           <a href="gynecologie/protocoles.html">Protocoles</a>
         </div>
       </div>
-      <div class="menu-item">Médecine légale
+
+      <div class="menu-item"><a href="#">Médecine légale</a>
         <div class="submenu"><a href="medecine-legale/formation.html">Formation</a></div>
       </div>
-      <div class="menu-item">Psychologie
+
+      <div class="menu-item"><a href="#">Psychologie</a>
         <div class="submenu"><a href="psy/formation.html">Formation</a></div>
       </div>
-      <div class="menu-item">Kinésithérapie
+
+      <div class="menu-item"><a href="#">Kinésithérapie</a>
         <div class="submenu"><a href="kinesitherapie/formation_kine.html">Formation Kiné</a></div>
       </div>
     </nav>
@@ -93,6 +184,7 @@
       const prefix = window.__LSES_PREFIX__ || "./";
       const logo = document.getElementById("lsesLogo");
       const logoPath = `${prefix}assets/img/logo-lses.png`;
+
       try {
         const test = await fetch(logoPath, { method: "HEAD" });
         if (test.ok) logo.src = logoPath;
