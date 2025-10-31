@@ -3,136 +3,131 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>L.S.E.S. — Règlement intérieur & procédures médicales</title>
+  <title>L.S.E.S. — Règlement & Procédures</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <style>
+    /* Ajustement local pour la mise en page du règlement */
+    main.reglement {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 60px 20px 120px;
+      position: relative;
+    }
 
-  <!-- Police & icône -->
-  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/svg+xml" href="../assets/img/mark.svg">
+    .reglement-content {
+      max-width: 850px;
+      background: rgba(15, 20, 30, 0.7);
+      border: 1px solid rgba(0,224,255,0.3);
+      border-radius: 15px;
+      padding: 30px 40px;
+      color: #e0f7ff;
+      line-height: 1.6;
+      box-shadow: 0 0 15px rgba(0,224,255,0.2);
+    }
 
-  <!-- Style principal -->
-  <link rel="stylesheet" href="../assets/css/styles.css">
+    h1, h2, h3 {
+      color: #00e0ff;
+      text-shadow: 0 0 8px #00e0ff;
+      margin-bottom: 10px;
+    }
+
+    .docx-annotation {
+      position: absolute;
+      right: 40px;
+      width: 260px;
+      font-size: 0.85rem;
+      background: rgba(20, 25, 35, 0.9);
+      border: 1px solid #00e0ff;
+      border-radius: 10px;
+      padding: 10px 14px;
+      box-shadow: 0 0 12px rgba(0,224,255,0.4);
+      color: #aee9ff;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .docx-annotation p {
+      margin: 0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Scroll synchronisé avec les annotations */
+    .annotation-track {
+      position: absolute;
+      right: 10px;
+      top: 120px;
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+  </style>
 </head>
-
 <body>
+
   <!-- HEADER -->
   <header>
-    <div class="logo">
-      <img src="../assets/img/logo.svg" alt="Logo L.S.E.S.">
-      <h1>L.S.E.S. — Règlement Intérieur</h1>
-    </div>
-
+    <img src="assets/img/logo-lses.png" alt="Logo L.S.E.S." class="logo">
     <nav>
-      <ul class="menu">
-        <li><a href="../index.html">Accueil</a></li>
-        <li><a href="../urgences/index.html">Urgences</a></li>
-        <li><a href="../chirurgie/index.html">Chirurgie</a></li>
-        <li><a href="../psy/index.html">Psychologie</a></li>
-        <li><a href="../gynecologie/index.html">Gynécologie</a></li>
-        <li><a href="../medecine-legale/index.html">Médecine légale</a></li>
-        <li><a href="../glossaire/index.html">Glossaire</a></li>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="chirurgie/formation_chirurgie.html">Chirurgie</a></li>
+        <li><a href="gynecologie/formation_gyneco.html">Gynécologie</a></li>
+        <li><a href="kinesitherapie/formation_kine.html">Kinésithérapie</a></li>
+        <li><a href="medleg/formation_medleg.html">Médecine légale</a></li>
       </ul>
     </nav>
   </header>
 
   <!-- CONTENU PRINCIPAL -->
-  <main class="reglement-container">
-    <section class="reglement-intro">
-      <h2>Règlement intérieur & procédures médicales</h2>
-      <p class="quote">« Les règles existent pour éviter qu’on réinvente la roue… et qu’on la fasse exploser. »  
-      <br><em>– DocX</em></p>
-      <p>
-        Le présent règlement doit être su et appliqué par tout le personnel soignant rattaché à l’hôpital.
-        En cas d’écart, des sanctions peuvent être appliquées.  
-      </p>
-    </section>
+  <main class="reglement">
+    <div class="reglement-content">
+      <h1>Règlement Intérieur & Procédures Médicales</h1>
+      <p>Ce règlement établit les normes de conduite, les obligations et les droits de l’ensemble du personnel du Los Santos Emergency Service (L.S.E.S.).  
+      Il vise à garantir la sécurité, la cohésion et l’efficacité du service médical dans toutes les situations, qu’elles soient internes ou en collaboration avec les autres organismes gouvernementaux.</p>
 
-    <section class="reglement-content">
-      <h3>L.S.E.S – Règlement intérieur & procédures médicales</h3>
-      <p>Le règlement intérieur doit être su et appliqué par tous les personnels soignants rattachés à l’hôpital.</p>
-      <p>Si un membre hospitalier agit à l’encontre de ce règlement, des sanctions lui seront appliquées.</p>
-      <p>Le respect et l’application irréprochable de ces règles procureront à quiconque agent, une réussite au sein de nos services hospitaliers.</p>
+      <h2>Article 1 — Tenue et comportement</h2>
+      <p>Tous les membres du personnel doivent maintenir une apparence professionnelle et un comportement exemplaire.  
+      La tenue réglementaire est obligatoire pendant les heures de service.</p>
 
-      <h3>Table des matières</h3>
-      <ul class="toc">
-        <li>Règles générales et permanentes relatives à la discipline</li>
-        <li>Horaire de travail</li>
-        <li>Rôles & postes</li>
-        <li>Absences</li>
-        <li>Usage des locaux de l’entreprise</li>
-        <li>Usage du matériel et des moyens mis à disposition par l’entreprise</li>
-        <li>Véhicules</li>
-        <li>Appels d’intervention</li>
-        <li>Factures</li>
-        <li>Code pénal</li>
-        <li>Hygiène et sécurité</li>
-      </ul>
+      <h2>Article 2 — Responsabilités</h2>
+      <p>Chaque agent du L.S.E.S. est responsable de ses actes et doit respecter les protocoles établis pour la sécurité des patients, de ses collègues et de lui-même.</p>
 
-      <h3>Règles générales et permanentes relatives à la discipline</h3>
-      <p>
-        Tout membre de l’hôpital doit faire preuve de rigueur, de respect et de professionnalisme.  
-        L’usage de langage inapproprié, de comportement déplacé ou de toute action compromettant
-        l’intégrité de l’institution sera passible de sanctions.
-      </p>
+      <h2>Article 3 — Communication</h2>
+      <p>La communication interne se doit d’être claire, respectueuse et efficace.  
+      Toute remarque ou suggestion constructive est encouragée par la direction.</p>
 
-      <div class="docx-note" data-section="discipline">
-        <strong>[DocX] :</strong> Rappel : la discipline, c’est ce qu’on invoque quand l’organisation manque.  
-        <br>« Si vous pensez que cette règle ne s’applique pas à vous, elle s’applique surtout à vous. »
-      </div>
+      <h2>Article 4 — Urgences & interventions</h2>
+      <p>Lors d’une intervention, la priorité est la sauvegarde des vies humaines.  
+      Les protocoles de sécurité doivent être strictement respectés et les rapports complétés à chaque retour de mission.</p>
 
-      <h3>Horaire de travail</h3>
-      <p>
-        Les horaires doivent être respectés scrupuleusement. Toute absence ou retard non justifié sera signalé au supérieur hiérarchique.
-      </p>
+      <h2>Article 5 — Confidentialité</h2>
+      <p>Le secret médical est une obligation absolue.  
+      Toute diffusion non autorisée d’informations médicales constitue une faute grave.</p>
+    </div>
 
-      <div class="docx-note" data-section="horaires">
-        <strong>[DocX] :</strong> PiouPiou appelle ça “repos”, les autres appellent ça “coma léger”.  
-        <br>Le temps est une construction sociale. Les retards aussi.
-      </div>
-
-      <h3>Rôles & postes</h3>
-      <p>
-        Chaque employé est tenu de connaître son rôle et ses responsabilités au sein de son service.  
-        La hiérarchie doit être respectée, et la collaboration entre pôles encouragée.
-      </p>
-
-      <div class="docx-note" data-section="roles">
-        <strong>[DocX] :</strong> Si tout le monde est responsable, personne ne l’est.  
-        <br>Titre ronflant détecté. Cherchez la responsabilité réelle.
-      </div>
-
-      <h3>Absences</h3>
-      <p>
-        Toute absence doit être signalée au plus tard 2 heures avant le début du service.  
-        En cas d’urgence médicale, un justificatif devra être fourni.
-      </p>
-
-      <div class="docx-note" data-section="absences">
-        <strong>[DocX] :</strong> Motif “raison personnelle” détecté. Traduction : chaos évité de justesse.  
-        <br>L’anticipation est une vertu rare. Plus rare que les pauses.
-      </div>
-    </section>
+    <!-- ANNOTATIONS DOCX -->
+    <div class="annotation-track">
+      <div class="docx-annotation"><p><strong>[DOCX → TOUS]</strong> Ce règlement est plus stable que le stock de la pharmacie. C’est dire.</p></div>
+      <div class="docx-annotation"><p><strong>[DOCX → 42]</strong> T’as vu ? Aucun article ne parle d’inventaire. Coïncidence ?</p></div>
+      <div class="docx-annotation"><p><strong>[DOCX → Sucre]</strong> “Comportement exemplaire”, ça inclut ne pas méditer pendant les urgences.</p></div>
+      <div class="docx-annotation"><p><strong>[DOCX → 14]</strong> Rien sur les odeurs suspectes. Ton bateau est sauf… pour l’instant.</p></div>
+      <div class="docx-annotation"><p><strong>[DOCX → PiouPiou]</strong> Article manquant : "PiouPiou est formidable, mais seul". Dommage.</p></div>
+    </div>
   </main>
 
   <!-- FOOTER -->
-  <div id="footer-container"></div>
+  <footer>
+    <p>© 2025 <span>PiouPiou le Magnifique</span> — Propulsé par <span>ProjectV</span></p>
+  </footer>
 
-  <!-- SCRIPT PRINCIPAL -->
-  <script>
-    /* === FOOTER CENTRALISÉ === */
-    async function loadFooter(){
-      try{
-        const res = await fetch("../assets/components/footer.html", {cache:"no-store"});
-        const html = await res.text();
-        document.getElementById("footer-container").innerHTML = html;
-      }catch(e){ console.error("Erreur footer:", e); }
-    }
-    loadFooter();
-
-    /* === INFOS BULLES DOCX === */
-    document.querySelectorAll('.docx-note').forEach(note => {
-      note.addEventListener('mouseenter', () => note.classList.add('highlight'));
-      note.addEventListener('mouseleave', () => note.classList.remove('highlight'));
-    });
-  </script>
+  <!-- DOCX SYSTEM -->
+  <script src="assets/js/docx_quotes.js"></script>
+  <script src="assets/js/app.js"></script>
 </body>
 </html>
