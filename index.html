@@ -2,170 +2,131 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>L.S.E.S. — Portail Médical</title>
 
   <!-- Police -->
   <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <!-- Feuille de style principale -->
-  <link id="dynamicCSS" rel="stylesheet">
+  <!-- Feuille de style -->
+  <link rel="stylesheet" href="assets/css/style.css">
 
-  <!-- CSS de secours -->
   <style>
     body {
       margin: 0;
-      padding: 0;
-      background: #020b16;
+      background: radial-gradient(circle at 20% 20%, #02111f, #000a14);
       color: #bff2ff;
       font-family: 'Oxanium', sans-serif;
-      text-align: center;
-      min-height: 100vh;
       display: flex;
       flex-direction: column;
+      min-height: 100vh;
     }
 
     header {
-      background: #001020;
-      color: #00c8ff;
-      padding: 15px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      box-shadow: 0 2px 8px rgba(0, 200, 255, 0.2);
+      background-color: #001020;
+      padding: 10px 30px;
+      box-shadow: 0 2px 10px rgba(0, 200, 255, 0.2);
+    }
+
+    header img {
+      height: 55px;
+      transition: transform 0.3s ease;
+    }
+
+    header img:hover {
+      transform: scale(1.08);
     }
 
     nav.menu {
       display: flex;
-      flex-wrap: wrap;
       gap: 25px;
-      justify-content: center;
-      font-weight: 600;
+      flex-wrap: wrap;
     }
 
-    .menu-item {
-      position: relative;
-      cursor: pointer;
-    }
-
-    .menu-item a {
+    nav.menu a {
       color: #7ee6ff;
       text-decoration: none;
+      font-weight: 600;
       transition: color 0.2s;
+      position: relative;
     }
 
-    .menu-item:hover > a {
+    nav.menu a:hover {
       color: #00ffff;
     }
 
-    .submenu {
-      display: none;
-      position: absolute;
-      top: 30px;
-      left: 0;
-      background: #001a28;
-      padding: 10px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px #00c8ff;
-      z-index: 999;
-    }
-
-    .submenu a {
-      display: block;
-      margin: 5px 0;
-      color: #bff2ff;
-    }
-
-    .menu-item:hover .submenu {
-      display: block;
-    }
-
     main {
+      text-align: center;
+      margin-top: 10vh;
       flex: 1;
-      padding: 40px 20px;
     }
 
     h1 {
       color: #00c8ff;
-      font-size: 2em;
-      text-shadow: 0 0 10px #00c8ff;
+      text-shadow: 0 0 15px #00c8ff;
+      font-size: 1.8em;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #00c8ff; }
+      to { text-shadow: 0 0 25px #00ffff; }
     }
 
     footer {
-      background: #001020;
+      background-color: #001020;
       color: #00c8ff;
+      text-align: center;
       padding: 10px;
       position: fixed;
       bottom: 0;
-      left: 0;
       width: 100%;
-      text-align: center;
-      box-shadow: 0 -2px 8px rgba(0, 200, 255, 0.2);
+      box-shadow: 0 -2px 10px rgba(0, 200, 255, 0.3);
+    }
+
+    /* Infobulle DocX */
+    .docx-bubble {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0, 20, 30, 0.85);
+      color: #bff2ff;
+      border: 1px solid #00c8ff;
+      border-radius: 12px;
+      padding: 12px 18px;
+      font-size: 0.9em;
+      max-width: 320px;
+      box-shadow: 0 0 15px rgba(0, 200, 255, 0.4);
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .docx-title {
+      font-weight: 700;
+      color: #00ffff;
+      margin-bottom: 6px;
+      display: block;
     }
   </style>
-
-  <script>
-    (async function() {
-      // Corrige les points dans le nom du dépôt pour GitHub Pages
-      let repo = location.pathname.split('/')[1] || "";
-      repo = repo.replace(/\./g, ""); // LSES au lieu de L.S.E.S.
-      const prefix = repo ? `/${repo}/` : "./";
-
-      // Chargement sécurisé du CSS
-      const cssPath = `${prefix}assets/css/style.css`;
-      try {
-        const test = await fetch(cssPath, { method: "HEAD" });
-        if (test.ok) document.getElementById("dynamicCSS").href = cssPath;
-        else document.getElementById("dynamicCSS").href = "./assets/css/style.css";
-      } catch {
-        document.getElementById("dynamicCSS").href = "./assets/css/style.css";
-      }
-
-      // Chargement JS principal
-      const script = document.createElement("script");
-      script.type = "module";
-      script.src = `${prefix}assets/js/app.js`;
-      document.head.appendChild(script);
-
-      window.__LSES_PREFIX__ = prefix;
-    })();
-  </script>
 </head>
 
 <body>
   <header>
-    <img id="lsesLogo" alt="Logo L.S.E.S." style="height:60px;">
+    <img id="lsesLogo" alt="Logo L.S.E.S.">
     <nav class="menu">
-      <div class="menu-item"><a href="accueil/reglement.html">Accueil</a>
-        <div class="submenu">
-          <a href="accueil/reglement.html">Règlement intérieur</a>
-          <a href="glossaire.html">Glossaire</a>
-        </div>
-      </div>
-
-      <div class="menu-item"><a href="#">Chirurgie</a>
-        <div class="submenu"><a href="chirurgie/formation.html">Formation</a></div>
-      </div>
-
-      <div class="menu-item"><a href="#">Gynécologie</a>
-        <div class="submenu">
-          <a href="gynecologie/fiche_suivi.html">Fiche de suivi</a>
-          <a href="gynecologie/protocoles.html">Protocoles</a>
-        </div>
-      </div>
-
-      <div class="menu-item"><a href="#">Médecine légale</a>
-        <div class="submenu"><a href="medecine-legale/formation.html">Formation</a></div>
-      </div>
-
-      <div class="menu-item"><a href="#">Psychologie</a>
-        <div class="submenu"><a href="psy/formation.html">Formation</a></div>
-      </div>
-
-      <div class="menu-item"><a href="#">Kinésithérapie</a>
-        <div class="submenu"><a href="kinesitherapie/formation_kine.html">Formation Kiné</a></div>
-      </div>
+      <a href="accueil/reglement.html">Accueil</a>
+      <a href="chirurgie/formation.html">Chirurgie</a>
+      <a href="gynecologie/fiche_suivi.html">Gynécologie</a>
+      <a href="medecine-legale/formation.html">Médecine légale</a>
+      <a href="psy/formation.html">Psychologie</a>
+      <a href="kinesitherapie/formation_kine.html">Kinésithérapie</a>
     </nav>
   </header>
 
@@ -179,20 +140,56 @@
     <p>© 2025 PiouPiou le Magnifique — ProjectV</p>
   </footer>
 
+  <!-- Bulle DocX -->
+  <div class="docx-bubble" id="docxBubble">
+    <span class="docx-title">[DocX]</span>
+    <span id="docxQuote">Initialisation de l’interface médicale...</span>
+  </div>
+
   <script>
-    (async function() {
-      const prefix = window.__LSES_PREFIX__ || "./";
+    // === LOGO DYNAMIQUE ===
+    (function() {
+      const repo = location.pathname.split('/')[1]?.replace(/\./g, "") || "LSES";
+      const prefix = repo ? `/${repo}/` : "./";
       const logo = document.getElementById("lsesLogo");
       const logoPath = `${prefix}assets/img/logo-lses.png`;
 
-      try {
-        const test = await fetch(logoPath, { method: "HEAD" });
-        if (test.ok) logo.src = logoPath;
-        else logo.src = "./assets/img/logo-lses.png";
-      } catch {
-        logo.src = "./assets/img/logo-lses.png";
-      }
+      fetch(logoPath, { method: "HEAD" })
+        .then(res => logo.src = res.ok ? logoPath : "./assets/img/logo-lses.png")
+        .catch(() => logo.src = "./assets/img/logo-lses.png");
     })();
+
+    // === INFOBULLE DYNAMIQUE ===
+    const quotes = [
+      "Vérification du matériel médical en cours...",
+      "Chargement des données patient...",
+      "Connexion au réseau hospitalier...",
+      "DocX synchronise vos procédures...",
+      "Simulation de diagnostic IA en cours...",
+      "Réinitialisation des capteurs biologiques...",
+      "Nettoyage des instruments holographiques...",
+      "Analyse des signaux vitaux simulée...",
+      "Calibration des scanners corporels...",
+      "Mise à jour des dossiers cliniques virtuels...",
+      "Compilation des procédures médicales...",
+      "Activation du protocole d'apprentissage kiné...",
+      "Révision des cas de chirurgie avancée...",
+      "Synchronisation avec le Paleto Medical Network...",
+      "Traitement des requêtes internes de DocX...",
+      "Optimisation des schémas thérapeutiques...",
+      "Établissement du contact avec PiouPiou...",
+      "DocX supervise les unités médicales...",
+      "Préparation de la session d'entraînement kiné...",
+      "Chargement du module de psychologie cognitive..."
+    ];
+
+    function updateQuote() {
+      const q = quotes[Math.floor(Math.random() * quotes.length)];
+      document.getElementById("docxQuote").textContent = q;
+    }
+
+    updateQuote();
+    setInterval(updateQuote, 8000);
   </script>
 </body>
 </html>
