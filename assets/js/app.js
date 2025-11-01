@@ -1,95 +1,48 @@
-// === assets/js/app.js ===
-// DocX : système de dialogues dynamiques avec détection de cible et effet de frappe
+// Boot DocX uniquement au premier chargement (localStorage)
+(function(){
+  const lines = [
+    "> Initialisation du réseau médical holographique...",
+    "> Connexion au serveur principal : STABLE",
+    "> Authentification de l’utilisateur : PiouPiou [niveau GOAT]",
+    "> Synchronisation du module DocX... OK",
+    "> Chargement des sous-systèmes : Chirurgie | Gynécologie | Kinésithérapie",
+    "> Diagnostic du système : OPÉRATIONNEL",
+    "> Bienvenue dans l’interface médicale L.S.E.S._"
+  ];
 
-document.addEventListener("DOMContentLoaded", () => {
-  const bubble = document.createElement("div");
-  bubble.className = "docx-bubble";
-  document.body.appendChild(bubble);
+  const overlay = document.getElementById('boot-overlay');
+  const pre = document.getElementById('boot-lines');
+  const cursor = document.getElementById('boot-cursor');
+  const alreadyBooted = localStorage.getItem('docxBooted') === '1';
 
-  // Cherche la "personne" citée dans la phrase
-  const getTargetName = (text) => {
-    for (const [pattern, className] of Object.entries(window.DOCX_EMO_MAP || {})) {
-      const regex = new RegExp(pattern, "i");
-      if (regex.test(text)) {
-        const keyName = pattern.replace(/\\b/g, "").split("|")[0];
-        return { name: keyName.toUpperCase(), mood: className };
-      }
-    }
-    return { name: "TOUS", mood: "" };
-  };
+  function revealSite(){
+    overlay.style.display = 'none';
+    document.querySelectorAll('.hidden-until-boot').forEach(el=>{
+      el.classList.add('show-after-boot');
+      el.classList.remove('hidden-until-boot');
+    });
+  }
 
-  // Tire une phrase au hasard
-  const getRandomQuote = () => {
-    if (!window.DOCX_QUOTES || window.DOCX_QUOTES.length === 0) {
-      return { q: "Erreur : base de citations vide.", name: "SYSTEM", mood: "" };
-    }
-    const q = window.DOCX_QUOTES[Math.floor(Math.random() * window.DOCX_QUOTES.length)];
-    const { name, mood } = getTargetName(q);
-    return { q, name, mood };
-  };
+  if (alreadyBooted) {
+    // Pas de boot → afficher direct
+    revealSite();
+    return;
+  }
 
-  // Effet de frappe
-  const typeText = (element, text, delay = 25) => {
-    element.innerHTML = "";
-    let i = 0;
-    const interval = setInterval(() => {
-      element.innerHTML += text.charAt(i);
+  // Boot animé (une fois)
+  let i = 0;
+  function typeNext(){
+    if(i < lines.length){
+      pre.textContent += (i ? "\n" : "") + lines[i];
       i++;
-      if (i >= text.length) clearInterval(interval);
-    }, delay);
-  };
-
-  // Affiche une bulle DocX
-  const showQuote = () => {
-    const { q, name, mood } = getRandomQuote();
-    bubble.className = "docx-bubble";
-    if (mood) bubble.classList.add(mood);
-
-    bubble.innerHTML = `
-      <span class="docx-sender">[DOCX → ${name}]</span>
-      <span class="docx-text"></span>
-    `;
-
-    const textEl = bubble.querySelector(".docx-text");
-    bubble.classList.add("visible");
-
-    typeText(textEl, `"${q}"`, 22);
-
-    // durée de visibilité
-    setTimeout(() => bubble.classList.remove("visible"), 16000);
-  };
-
-  // Animation de démarrage DocX
-  const initSequence = async () => {
-    const initQuotes = window.DOCX_INIT_QUOTES || [
-      "Initialisation du système DocX...",
-      "Chargement des modules cognitifs...",
-      "Analyse de la conscience fragmentée de PiouPiou...",
-      "Diagnostic émotionnel : sarcastique.",
-      "Connexion au réseau L.S.E.S...",
-      "Mise en ligne des sous-systèmes...",
-      "Activation de la voix intérieure...",
-      "Bonjour. Enfin... si on peut dire bonjour."
-    ];
-
-    for (let i = 0; i < initQuotes.length; i++) {
-      const step = initQuotes[i];
-      bubble.className = "docx-bubble visible mood-pioupiou";
-      bubble.innerHTML = `<span class="docx-sender">[DOCX]</span><span class="docx-text"></span>`;
-      const textEl = bubble.querySelector(".docx-text");
-      await new Promise((resolve) => {
-        typeText(textEl, step, 25);
-        setTimeout(resolve, step.length * 35 + 800);
-      });
+      setTimeout(typeNext, 400);
+    } else {
+      cursor.style.opacity = 1; // clignote 3 fois via CSS
+      setTimeout(()=>{
+        localStorage.setItem('docxBooted','1');
+        revealSite();
+      }, 1500);
     }
-
-    // Lancer ensuite les quotes normales
-    bubble.classList.remove("visible");
-    setTimeout(() => {
-      showQuote();
-      setInterval(showQuote, 18000);
-    }, 1500);
-  };
-
-  initSequence();
-});
+  }
+  typeNext();
+})();
