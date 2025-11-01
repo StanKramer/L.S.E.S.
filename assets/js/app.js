@@ -63,3 +63,22 @@ holoPoints.forEach(pt => {
     `;
   });
 });
+
+// === Arrière-plan holographique animé ===
+function createHoloBackground() {
+  const holoBg = document.createElement("div");
+  holoBg.classList.add("holo-bg");
+  document.body.appendChild(holoBg);
+
+  for (let i = 0; i < 80; i++) {
+    const p = document.createElement("div");
+    p.classList.add("particle");
+    p.style.left = Math.random() * 100 + "%";
+    p.style.top = Math.random() * 100 + "%";
+    p.style.animationDuration = 6 + Math.random() * 10 + "s";
+    p.style.animationDelay = Math.random() * 8 + "s";
+    holoBg.appendChild(p);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", createHoloBackground);
