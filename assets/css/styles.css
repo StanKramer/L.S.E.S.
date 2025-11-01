@@ -86,3 +86,71 @@ body {
   color: #8ee;
   font-size: 0.85rem;
 }
+/* === FENÊTRE D’AUTHENTIFICATION === */
+.auth-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 10, 20, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeIn 0.6s ease;
+}
+.auth-popup .auth-content {
+  background: rgba(0, 40, 60, 0.7);
+  border: 1px solid rgba(0,255,255,0.4);
+  border-radius: 10px;
+  padding: 30px 50px;
+  color: #9ff;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0,255,255,0.2);
+}
+.auth-popup button {
+  margin-top: 15px;
+  background: rgba(0,255,255,0.2);
+  color: #00ffff;
+  border: 1px solid #00ffff;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.auth-popup button:hover {
+  background: rgba(0,255,255,0.4);
+}
+.fade-out {
+  animation: fadeOut 0.5s forwards;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fadeOut {
+  to { opacity: 0; visibility: hidden; }
+}
+
+/* === BULLES DE CITATIONS === */
+.quote-panel {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 360px;
+  color: #aef;
+  font-size: 0.9rem;
+  z-index: 9000;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.quote-panel.visible {
+  opacity: 1;
+}
+.quote-box {
+  background: rgba(0,30,50,0.7);
+  border: 1px solid rgba(0,255,255,0.3);
+  border-radius: 8px;
+  padding: 12px 16px;
+  box-shadow: 0 0 12px rgba(0,255,255,0.15);
+  animation: fadeIn 0.5s ease;
+}
