@@ -2,99 +2,172 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Glossaire Médical — L.S.E.S. Interface Médicale</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>L.S.E.S. — Glossaire Médical</title>
+  <link rel="icon" href="assets/img/logo.png">
   <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="icon" href="assets/img/favicon.png">
   <style>
-    body {background: radial-gradient(circle at top, rgba(0,60,120,0.3), black);}
-    #glossaire-container {max-width: 900px;margin: 100px auto 60px;padding: 2rem;background: rgba(0,10,30,0.6);border-radius: 20px;box-shadow: 0 0 20px rgba(0,180,255,0.2);}
-    .search-bar {text-align:center;margin-bottom:1.5rem;}
-    .search-bar input {padding:10px 20px;border:none;border-radius:15px;background:#0d1a26;color:#0ff;outline:none;width:80%;text-align:center;}
-    .glossaire-entry {display:flex;align-items:center;background:rgba(0,15,30,0.7);padding:15px;border-radius:12px;margin-bottom:15px;transition:all 0.3s ease;}
-    .glossaire-entry:hover {transform:translateY(-2px);box-shadow:0 0 15px rgba(0,255,255,0.2);}
-    .glossaire-entry img {width:80px;height:80px;object-fit:contain;margin-right:20px;filter:drop-shadow(0 0 8px #00eaff);}
-    .glossaire-entry .definition h3 {margin:0;color:#00eaff;}
-    .glossaire-entry .definition p {color:#ddd;}
+    main {
+      padding: 150px 10% 100px;
+      color: #aef;
+      text-shadow: 0 0 6px rgba(0,255,255,0.4);
+      font-family: "Rajdhani", sans-serif;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2rem;
+      color: #00ffff;
+    }
+    .glossary-section {
+      margin-bottom: 60px;
+      background: rgba(0,20,40,0.5);
+      border: 1px solid rgba(0,255,255,0.2);
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 0 15px rgba(0,255,255,0.1);
+    }
+    .term {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+    .term img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin-right: 20px;
+      border-radius: 8px;
+      border: 1px solid rgba(0,255,255,0.3);
+      box-shadow: 0 0 10px rgba(0,255,255,0.2);
+    }
+    .term h3 {
+      color: #00ffff;
+      margin: 0;
+    }
+    .term p {
+      margin: 4px 0 0;
+      font-size: 0.95rem;
+      color: #bff;
+    }
+    .term:hover {
+      transform: scale(1.02);
+      transition: 0.3s ease;
+      background: rgba(0,60,80,0.15);
+    }
+    .search-bar {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .search-bar input {
+      background: rgba(0,40,60,0.6);
+      border: 1px solid rgba(0,255,255,0.4);
+      color: #9ff;
+      border-radius: 8px;
+      padding: 10px 18px;
+      width: 300px;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+    .search-bar input:focus {
+      box-shadow: 0 0 12px rgba(0,255,255,0.5);
+    }
   </style>
 </head>
 <body>
+  <!-- Fond holographique -->
+  <div class="holo-bg"></div>
 
-<header class="header">
-  <nav class="nav">
-    <a class="brand" href="index.html">
-      <img src="assets/img/logo-lses.png" alt="L.S.E.S.">
-      <span>L.S.E.S. — Interface Médicale</span>
-    </a>
-    <ul>
-      <li><a href="index.html">Accueil</a></li>
-      <li><a href="chirurgie/">Chirurgie</a></li>
-      <li><a href="gynecologie/">Gynécologie</a></li>
-      <li><a href="kinesitherapie/">Kinésithérapie</a></li>
-      <li><a href="medecine-legale/">Médecine légale</a></li>
-      <li><a href="glossaire.html" class="active">Glossaire</a></li>
-    </ul>
-  </nav>
-</header>
+  <!-- Header -->
+  <header class="header">
+    <nav class="nav">
+      <a href="index.html" class="brand">
+        <img src="assets/img/logo.png" alt="Logo L.S.E.S." class="logo">
+        <span>L.S.E.S. — Interface Médicale</span>
+      </a>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="chirurgie/">Chirurgie</a></li>
+        <li><a href="gynecologie/">Gynécologie</a></li>
+        <li><a href="kinesitherapie/">Kinésithérapie</a></li>
+        <li><a href="medecine-legale/">Médecine légale</a></li>
+        <li><a href="glossaire.html" class="active">Glossaire</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<main id="glossaire-container">
-  <h1>Glossaire Médical Illustré</h1>
-  <p><em>Référentiel holographique du L.S.E.S. — version DocX 3.2</em></p>
-
-  <div class="search-bar">
-    <input type="text" id="search" placeholder="🔍 Rechercher un terme...">
-  </div>
-
-  <div id="entries">
-    <div class="glossaire-entry">
-      <img src="assets/img/instruments/defibrillateur.png" alt="Défibrillateur">
-      <div class="definition">
-        <h3>Défibrillateur</h3>
-        <p>Appareil délivrant un choc électrique pour relancer le cœur — ou réveiller les stagiaires.</p>
-      </div>
+  <!-- Contenu principal -->
+  <main>
+    <h1>Glossaire Médical Interactif — L.S.E.S.</h1>
+    <div class="search-bar">
+      <input type="text" id="searchTerm" placeholder="Rechercher un terme médical...">
     </div>
 
-    <div class="glossaire-entry">
-      <img src="assets/img/instruments/electrostim.png" alt="Électrostimulateur">
-      <div class="definition">
-        <h3>Électrostimulateur</h3>
-        <p>Dispositif utilisant des impulsions électriques pour stimuler les muscles sans bouger un orteil.</p>
+    <!-- Section Glossaire -->
+    <section id="glossaryContainer" class="glossary-section">
+      <!-- Exemple de termes initiaux — peut être complété automatiquement -->
+      <div class="term">
+        <img src="assets/img/glossaire/defibrillateur.png" alt="Défibrillateur">
+        <div>
+          <h3>Défibrillateur</h3>
+          <p>Appareil médical qui délivre une impulsion électrique pour rétablir un rythme cardiaque normal lors d’un arrêt cardiaque.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="glossaire-entry">
-      <img src="assets/img/instruments/sonde-ecg.png" alt="Sonde ECG">
-      <div class="definition">
-        <h3>Sonde ECG</h3>
-        <p>Capteur chargé de vérifier que votre cœur bat toujours après avoir lu le règlement interne.</p>
+      <div class="term">
+        <img src="assets/img/glossaire/stethoscope.png" alt="Stéthoscope">
+        <div>
+          <h3>Stéthoscope</h3>
+          <p>Instrument utilisé pour écouter les sons internes du corps, tels que les battements du cœur ou la respiration.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="glossaire-entry">
-      <img src="assets/img/instruments/bande-kine.png" alt="Bande kiné">
-      <div class="definition">
-        <h3>Bande Kinésithérapique</h3>
-        <p>Adhésif miraculeux censé tout réparer, y compris l’ego après une séance douloureuse.</p>
+      <div class="term">
+        <img src="assets/img/glossaire/seringue.png" alt="Seringue">
+        <div>
+          <h3>Seringue</h3>
+          <p>Dispositif servant à injecter ou prélever des liquides, souvent utilisé pour administrer des médicaments ou vaccins.</p>
+        </div>
       </div>
-    </div>
-  </div>
-</main>
 
-<footer class="footer">
-  © 2025 <span>PiouPiou le Magnifique</span> — <span>ProjectV</span><br>
-  <em>« Toute ressemblance avec des stagiaires existants est purement intentionnelle. »</em>
-</footer>
+      <div class="term">
+        <img src="assets/img/glossaire/electrostimulateur.png" alt="Électrostimulateur">
+        <div>
+          <h3>Électrostimulateur</h3>
+          <p>Appareil utilisé en kinésithérapie pour contracter les muscles via impulsions électriques afin de favoriser la rééducation.</p>
+        </div>
+      </div>
 
-<script>
-  const search = document.getElementById('search');
-  const entries = document.querySelectorAll('.glossaire-entry');
-  search.addEventListener('input', () => {
-    const q = search.value.toLowerCase();
-    entries.forEach(e => {
-      e.style.display = e.innerText.toLowerCase().includes(q) ? 'flex' : 'none';
+      <div class="term">
+        <img src="assets/img/glossaire/pince_hemostatique.png" alt="Pince Hémostatique">
+        <div>
+          <h3>Pince Hémostatique</h3>
+          <p>Instrument chirurgical utilisé pour comprimer les vaisseaux sanguins et contrôler les saignements lors d’une opération.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    © 2025 <strong>PiouPiou le Magnifique</strong> — <em>ProjectV</em><br>
+    <small>« La médecine, c’est 80 % de papier, 20 % de café. »</small>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+
+  <script>
+    // === Recherche interactive dans le glossaire ===
+    const searchInput = document.getElementById("searchTerm");
+    const glossaryContainer = document.getElementById("glossaryContainer");
+    searchInput.addEventListener("keyup", () => {
+      const filter = searchInput.value.toLowerCase();
+      const terms = glossaryContainer.querySelectorAll(".term");
+      terms.forEach(term => {
+        const text = term.innerText.toLowerCase();
+        term.style.display = text.includes(filter) ? "flex" : "none";
+      });
     });
-  });
-</script>
-
+  </script>
 </body>
 </html>
