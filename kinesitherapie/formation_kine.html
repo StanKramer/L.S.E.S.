@@ -1,150 +1,48 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Kinésithérapie — L.S.E.S.</title>
-  <link rel="stylesheet" href="../assets/css/styles.css"/>
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png"/>
-  <style>
-    .kine-hero{text-align:center;padding:64px 16px 10px}
-    .kine-hero h1{color:#00e0ff;text-shadow:0 0 12px #00e0ff;margin:0 0 8px}
-    .kine-hero .sub{opacity:.9}
-    .kine-schema{position:relative;max-width:min(900px,92vw);margin:24px auto}
-    .kine-schema .scan{position:absolute;left:0;right:0;height:3px;top:34%;
-      background:linear-gradient(90deg,transparent,#00e0ff,transparent);
-      opacity:.7;animation:scanMove 4s linear infinite}
-    @keyframes scanMove{0%{top:0;opacity:.6}50%{top:92%;opacity:.3}100%{top:0;opacity:.6}}
-    .kine-schema .figure{width:100%;filter:drop-shadow(0 0 22px rgba(0,224,255,.45)) brightness(1.18)}
-    .hotspot{--s:22px;position:absolute;width:var(--s);height:var(--s);border-radius:50%;
-      transform:translate(-50%,-50%);cursor:pointer;background:radial-gradient(circle,#00e0ff 0 35%,rgba(0,224,255,.25) 36% 100%);
-      box-shadow:0 0 12px rgba(0,224,255,.7),0 0 26px rgba(0,224,255,.35) inset;animation:pulse 2.4s ease-in-out infinite}
-    @keyframes pulse{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.12)}}
-    .hotspot .tip{position:absolute;left:50%;bottom:calc(100% + 10px);transform:translateX(-50%);
-      background:rgba(10,14,25,.96);border:1px solid #00e0ff;border-radius:10px;padding:7px 10px;font-size:.86rem;opacity:0;transition:opacity .16s}
-    .hotspot:hover .tip{opacity:1}
-    .hotspot[data-zone="cervical"]{left:50%; top:22%}
-    .hotspot[data-zone="lombaire"]{left:50%; top:45%}
-    .hotspot[data-zone="sciatique"]{left:50%; top:62%}
-    .hotspot[data-zone="bras"]{left:35%; top:38%}
-    .hotspot[data-zone="jambe"]{left:50%; top:78%}
-    .hotspot[data-zone="cheville"]{left:50%; top:88%}
-
-    .projection-holo{position:absolute;pointer-events:none;opacity:0;transform:translate(-50%,-50%) scale(.92);
-      transition:opacity .35s ease, transform .35s ease;z-index:5;width:260px;max-width:36vw;aspect-ratio:16/9;
-      border:1px solid rgba(0,224,255,.35);border-radius:12px;overflow:hidden;
-      box-shadow:0 0 18px rgba(0,224,255,.45), inset 0 0 18px rgba(0,224,255,.18);
-      background:radial-gradient(circle at 50% 50%, rgba(0,224,255,.10), transparent 70%)}
-    .projection-holo.active{opacity:1;transform:translate(-50%,-50%) scale(1)}
-    .projection-holo video{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 10px #00e0ff) brightness(1.25);opacity:.97}
-    /* Fallback holographique si video introuvable */
-    .fallback-holo{
-      width:100%; height:100%; position:relative;
-      background: radial-gradient(circle at 50% 50%, rgba(0,224,255,.12), transparent 70%);
-      overflow:hidden;
-    }
-    .fallback-holo::before, .fallback-holo::after{
-      content:""; position:absolute; left:-20%; right:-20%; height:2px; background:linear-gradient(90deg,transparent,#00e0ff,transparent);
-      animation:fb-scan 2.6s linear infinite;
-    }
-    .fallback-holo::after{animation-delay:1.3s}
-    @keyframes fb-scan{0%{top:10%}50%{top:85%}100%{top:10%}}
-    .fallback-label{position:absolute;left:0;right:0;bottom:0;padding:4px 6px;text-align:center;
-      font-size:.8rem;color:#aee9ff;background:linear-gradient(180deg,transparent,rgba(5,12,20,.85))}
-    .kine-grid{display:grid;grid-template-columns:repeat(3,minmax(260px,1fr));gap:18px;max-width:1280px;margin:18px auto 120px;padding:0 18px}
-    @media (max-width:1100px){.kine-grid{grid-template-columns:repeat(2,minmax(260px,1fr))}}
-    @media (max-width:680px){.kine-grid{grid-template-columns:1fr}}
-    .kine-card{background:rgba(15,20,30,.78);border:1px solid rgba(0,224,255,.35);border-radius:16px;padding:18px;box-shadow:0 0 14px rgba(0,224,255,.12);transition:.18s}
-    .kine-card:hover{transform:translateY(-6px);border-color:#00e0ff;box-shadow:0 0 18px rgba(0,224,255,.35)}
-    .kine-card h3{margin:0 0 6px;color:#00e0ff;text-shadow:0 0 8px #00e0ff}
-    .tabs{margin-top:10px;border-top:1px solid rgba(0,224,255,.25);padding-top:8px}
-    .tab-buttons{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}
-    .tab-buttons button{background:rgba(10,14,25,.7);border:1px solid rgba(0,224,255,.35);color:#aee9ff;border-radius:8px;padding:6px 10px;cursor:pointer}
-    .tab-buttons button.active{border-color:#00e0ff;color:#00e0ff;box-shadow:0 0 10px rgba(0,224,255,.35)}
-    .tab-panel{display:none}.tab-panel.active{display:block}
-    .exercise-anim{margin-top:10px;border:1px solid rgba(0,224,255,.3);border-radius:10px;box-shadow:0 0 12px rgba(0,224,255,.4);overflow:hidden;background:radial-gradient(circle at 50% 50%, rgba(0,224,255,.1), transparent 70%)}
-    .exercise-anim video{width:100%;filter:drop-shadow(0 0 8px #00e0ff) brightness(1.3);opacity:.95}
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formation — Kinésithérapie & Rééducation Neuromusculaire</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
-<body class="theme-lses">
-  <header class="site-header">
-    <a href="../index.html" class="brand">
-      <img src="../assets/img/logo-lses.png" alt="L.S.E.S." class="logo">
-      <span class="brand-title">L.S.E.S. — Interface Médicale</span>
-    </a>
-    <nav class="main-nav">
-      <ul>
-        <li class="has-sub"><a href="../index.html">Accueil</a>
-          <ul class="submenu"><li><a href="../reglement.html">Règlement & Procédures</a></li></ul>
-        </li>
-        <li class="has-sub"><a href="../chirurgie/index.html">Chirurgie</a>
-          <ul class="submenu"><li><a href="../chirurgie/formation_chirurgie.html">Formation</a></li></ul>
-        </li>
-        <li class="has-sub"><a href="../gynecologie/index.html">Gynécologie</a>
-          <ul class="submenu"><li><a href="../gynecologie/formation_gyneco.html">Formation</a></li></ul>
-        </li>
-        <li class="has-sub"><a class="active" href="./index.html">Kinésithérapie</a>
-          <ul class="submenu"><li><a href="./formation_kine.html">Formation</a></li></ul>
-        </li>
-        <li class="has-sub"><a href="../medecine-legale/index.html">Médecine légale</a>
-          <ul class="submenu"><li><a href="../medecine-legale/formation_medleg.html">Formation</a></li></ul>
-        </li>
-        <li><a href="../glossaire/index.html">Glossaire</a></li>
-      </ul>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="../assets/img/logo.svg" alt="Logo L.S.E.S." onerror="this.onerror=null;this.src='../assets/img/logo.png';">
+      <h1>L.S.E.S. — <span>Interface Médicale</span></h1>
+    </div>
+    <nav>
+      <a href="../index.html">Accueil</a>
+      <a href="../chirurgie/formation.html">Chirurgie</a>
+      <a href="../gynecologie/formation.html">Gynécologie</a>
+      <a href="formation_kine.html">Kinésithérapie</a>
+      <a href="../medecine-legale/formation.html">Médecine légale</a>
+      <a href="../psy/formation.html">Psychologie</a>
     </nav>
   </header>
 
-  <section class="kine-hero">
-    <h1>Formation — Kinésithérapie & Rééducation Neuromusculaire</h1>
-    <p class="sub"><em>« Si tu sens tes jambes danser seules, baisse un peu l’intensité. » — DocX</em></p>
+  <main class="kine-main">
+    <h2>Formation — Kinésithérapie & Rééducation Neuromusculaire</h2>
+    <p class="quote">« La douleur n’est pas une faiblesse… c’est juste ton nerf qui râle. » — DocX</p>
 
-    <div class="kine-schema" id="schema">
-      <div class="scan" aria-hidden="true"></div>
-      <img class="figure" src="../assets/img/schema-kine.png" alt="Schéma Kinésithérapie L.S.E.S." />
-      <!-- Projection -->
-      <div id="projection" class="projection-holo" aria-hidden="true">
-        <video id="projectionVideo" autoplay loop muted playsinline></video>
-        <div class="fallback-holo" id="projectionFallback" hidden>
-          <div class="fallback-label">Projection holographique (fallback)</div>
-        </div>
-      </div>
-      <!-- Hotspots -->
-      <div class="hotspot" data-zone="cervical"  data-target="#zone-cervical"><span class="tip">Cervicales</span></div>
-      <div class="hotspot" data-zone="lombaire"  data-target="#zone-lombaire"><span class="tip">Lombaires</span></div>
-      <div class="hotspot" data-zone="sciatique" data-target="#zone-sciatique"><span class="tip">Sciatique</span></div>
-      <div class="hotspot" data-zone="bras"      data-target="#zone-bras"><span class="tip">Bras / Épaule</span></div>
-      <div class="hotspot" data-zone="jambe"     data-target="#zone-jambe"><span class="tip">Quadriceps / Mollet</span></div>
-      <div class="hotspot" data-zone="cheville"  data-target="#zone-cheville"><span class="tip">Cheville</span></div>
+    <div class="holo-container">
+      <img src="../assets/img/holo_body.png" alt="Schéma holographique Kinésithérapie" class="holo-body">
+      <div class="holo-point" data-zone="cervical" style="top:22%; left:50%;"></div>
+      <div class="holo-point" data-zone="bras" style="top:40%; left:35%;"></div>
+      <div class="holo-point" data-zone="lombaire" style="top:45%; left:50%;"></div>
+      <div class="holo-point" data-zone="sciatique" style="top:60%; left:52%;"></div>
+      <div class="holo-point" data-zone="jambe" style="top:70%; left:48%;"></div>
+      <div class="holo-point" data-zone="cheville" style="top:85%; left:50%;"></div>
     </div>
-  </section>
 
-  <!-- Cartes (électro / expert / physique) — abrégé ici : garde tes contenus actuels -->
-  <section class="kine-grid" id="cards">
-    <!-- Exemple 1 -->
-    <article class="kine-card" id="zone-cervical">
-      <h3>Relaxation cervicale</h3>
-      <div class="tabs" data-tabs>
-        <div class="tab-buttons">
-          <button class="active" data-tab="cerv-simple">Électrostimulation</button>
-          <button data-tab="cerv-expert">Protocole expert</button>
-          <button data-tab="cerv-physique">Exercices physiques</button>
-        </div>
-        <div class="tab-panel active" id="cerv-simple"><p>Trapèzes — 10 min, intensité confortable.</p></div>
-        <div class="tab-panel" id="cerv-expert"><ul><li>2×10 min (2–4 Hz / 80–100 µs)</li><li>Étirements doux</li></ul></div>
-        <div class="tab-panel" id="cerv-physique">
-          <ul><li>Inclinaisons latérales 3×6</li><li>Rotations 3×6</li></ul>
-          <div class="exercise-anim"><video src="../assets/anims/cervical.webm" autoplay loop muted playsinline></video></div>
-        </div>
-      </div>
-    </article>
+    <section id="info-zone" class="info-zone hidden"></section>
+  </main>
 
-    <!-- … répète tes autres cartes existantes (lombaire, sciatique, bras, jambe, cheville) … -->
-  </section>
-
-  <footer class="site-footer">
-    © 2025 <strong>PiouPiou le Magnifique</strong> — Propulsé par <strong>ProjectV</strong>
+  <footer>
+    <p>© 2025 PiouPiou le Magnifique — ProjectV</p>
   </footer>
 
-  <script src="../assets/js/kine_interact.js"></script>
+  <script src="../assets/js/app.js"></script>
 </body>
 </html>
