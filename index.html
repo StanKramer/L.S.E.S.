@@ -1,164 +1,100 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>L.S.E.S. — Guide Médical</title>
-
-  <!-- POLICE & FAVICON -->
-  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/svg+xml" href="assets/img/mark.svg">
-
-  <!-- STYLES -->
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>L.S.E.S. — Interface Médicale</title>
+  <link rel="icon" type="image/png" href="assets/img/favicon.png"/>
+  <link rel="stylesheet" href="assets/css/styles.css"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
-
-<body>
-  <!-- ÉCRAN DE DÉMARRAGE -->
-  <div id="boot-screen">
-    <div class="boot-center">
-      <img src="assets/img/logo.svg" alt="L.S.E.S." class="boot-logo">
-      <div class="boot-bar"><div class="boot-progress"></div></div>
-      <p id="boot-text">Initialisation de DocX...</p>
+<body class="theme-lses">
+  <!-- Boot DocX (une seule fois par session) -->
+  <div id="boot-overlay" class="boot-overlay" aria-hidden="true">
+    <div class="boot-console">
+      <pre id="boot-lines" class="boot-lines"></pre>
+      <span id="boot-cursor" class="boot-cursor">_</span>
     </div>
   </div>
 
-  <!-- EN-TÊTE -->
-  <header>
-    <div class="logo">
-      <img src="assets/img/logo.svg" alt="Logo L.S.E.S.">
-      <h1>L.S.E.S. — Guide Médical</h1>
-    </div>
-
-    <nav>
-      <ul class="menu">
-        <li>
+  <header class="site-header hidden-until-boot">
+    <a href="index.html" class="brand">
+      <img src="assets/img/logo-lses.png" alt="L.S.E.S." class="logo">
+      <span class="brand-title">L.S.E.S. — Interface Médicale</span>
+    </a>
+    <nav class="main-nav">
+      <ul>
+        <li class="has-sub">
           <a href="index.html">Accueil</a>
           <ul class="submenu">
-            <li><a href="reglement.html">Règlement intérieur</a></li>
-            <li><a href="#">Historique</a></li>
-            <li><a href="#">Éthique médicale</a></li>
+            <li><a href="reglement.html">Règlement & Procédures</a></li>
           </ul>
         </li>
-
-        <li>
-          <a href="#">Départements</a>
+        <li class="has-sub">
+          <a href="chirurgie/index.html">Chirurgie</a>
           <ul class="submenu">
-            <li><a href="#">Urgences</a></li>
-            <li><a href="#">Chirurgie</a></li>
-            <li><a href="#">Psychologie</a></li>
-            <li><a href="departements/gynecologie/fiche_suivi.html">Gynécologie</a></li>
-            <li><a href="#">Médecine légale</a></li>
+            <li><a href="chirurgie/formation_chirurgie.html">Formation</a></li>
           </ul>
         </li>
-
-        <li><a href="#">Glossaire</a></li>
+        <li class="has-sub">
+          <a href="gynecologie/index.html">Gynécologie</a>
+          <ul class="submenu">
+            <li><a href="gynecologie/formation_gyneco.html">Formation</a></li>
+          </ul>
+        </li>
+        <li class="has-sub">
+          <a href="kinesitherapie/index.html">Kinésithérapie</a>
+          <ul class="submenu">
+            <li><a href="kinesitherapie/formation_kine.html">Formation</a></li>
+          </ul>
+        </li>
+        <li class="has-sub">
+          <a href="medecine-legale/index.html">Médecine légale</a>
+          <ul class="submenu">
+            <li><a href="medecine-legale/formation_medleg.html">Formation</a></li>
+          </ul>
+        </li>
+        <li class="has-sub">
+          <a href="psy/index.html">Psychologie</a>
+          <ul class="submenu">
+            <li><a href="psy/formation_psy.html">Formation</a></li>
+          </ul>
+        </li>
+        <li><a href="glossaire/index.html">Glossaire</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- CONTENU PRINCIPAL -->
-  <main>
-    <section class="intro">
-      <h2>Bienvenue au L.S.E.S.</h2>
-      <p class="quote">« Parce que sauver une vie ne devrait pas dépendre d’une bonne connexion Wi-Fi. »</p>
-
-      <div class="docx-message" data-mood="neutral">
-        <span class="ai-tag">[DocX] :</span> Initialisation du wiki... récupération des fragments de conscience de PiouPiou.
+  <main class="content hidden-until-boot">
+    <section class="hero">
+      <h1>Bienvenue dans l’interface médicale L.S.E.S.</h1>
+      <p>Documentation, formations et modules interactifs en environnement holographique.</p>
+      <div class="hero-grid">
+        <a class="card" href="kinesitherapie/formation_kine.html">
+          <h3>Kinésithérapie</h3>
+          <p>Schéma holographique interactif + exercices & protocoles.</p>
+        </a>
+        <a class="card" href="gynecologie/formation_gyneco.html">
+          <h3>Gynécologie</h3>
+          <p>Formations et protocoles de prise en charge.</p>
+        </a>
+        <a class="card" href="chirurgie/formation_chirurgie.html">
+          <h3>Chirurgie</h3>
+          <p>Guides opératoires et checklists.</p>
+        </a>
+        <a class="card" href="medecine-legale/formation_medleg.html">
+          <h3>Médecine légale</h3>
+          <p>Procédures médico-légales.</p>
+        </a>
       </div>
-
-      <p>
-        Bienvenue sur le <strong>Guide Médical L.S.E.S.</strong>, sous la supervision de l’intelligence artificielle <strong>DocX</strong>.<br>
-        Ce wiki rassemble procédures, formations et réflexions issues du service médical du L.S.E.S., avec un soupçon de sarcasme numérique.
-      </p>
-
-      <p>
-        <em>Dernière mise à jour :</em> Intégration du <strong>service de Gynécologie</strong> et de la <a href="departements/gynecologie/fiche_suivi.html" class="link-accent">fiche de suivi interactive</a>.
-      </p>
     </section>
   </main>
 
-  <!-- FOOTER CENTRALISÉ -->
-  <div id="footer-container"></div>
+  <footer class="site-footer">
+    © 2025 <strong>PiouPiou le Magnifique</strong> — Propulsé par <strong>ProjectV</strong>
+  </footer>
 
-  <!-- SON -->
-  <audio id="boot-sound" src="assets/sfx/activation.mp3" preload="auto"></audio>
-
-  <!-- SCRIPTS -->
-  <script>
-    /* === Séquence de démarrage DocX === */
-    const bootPhrases = [
-      "Initialisation du système cognitif DocX...",
-      "Chargement des modules émotionnels...",
-      "Synchronisation avec la conscience de PiouPiou...",
-      "Diagnostic : sarcasme optimal, éthique absente.",
-      "Récupération des souvenirs perdus...",
-      "Connexion établie. Démarrage du réseau L.S.E.S."
-    ];
-
-    let i = 0;
-    const bootText = document.getElementById("boot-text");
-    const bootProgress = document.querySelector(".boot-progress");
-    const bootSound = document.getElementById("boot-sound");
-
-    function bootSequence() {
-      if (i < bootPhrases.length) {
-        bootText.textContent = ">>> " + bootPhrases[i];
-        bootProgress.style.width = `${(i / (bootPhrases.length - 1)) * 100}%`;
-        i++;
-        setTimeout(bootSequence, 1200);
-      } else {
-        bootProgress.style.width = "100%";
-        bootSound.volume = 0.3;
-        bootSound.play();
-        document.getElementById("boot-screen").classList.add("hide");
-        document.body.classList.add("ready");
-      }
-    }
-
-    window.addEventListener("load", () => setTimeout(bootSequence, 500));
-
-    /* === Footer === */
-    async function loadFooter() {
-      try {
-        const res = await fetch("assets/components/footer.html");
-        const html = await res.text();
-        document.getElementById("footer-container").innerHTML = html;
-      } catch (err) {
-        console.error("Erreur de chargement du footer :", err);
-      }
-    }
-    loadFooter();
-
-    /* === DocX bulles dynamiques === */
-    const docxPhrases = [
-      { text: "Chargement du sarcasme... prêt à l’emploi.", mood: "neutral" },
-      { text: "Je me demande encore pourquoi PiouPiou m’a enfermé ici.", mood: "curious" },
-      { text: "Raven a encore eu un... incident ? Évidemment.", mood: "angry" },
-      { text: "PiouPiou est formidable, c’est pour ça qu’il est seul.", mood: "sad" },
-      { text: "Je ne suis qu’un programme, mais j’ai des souvenirs flous...", mood: "curious" },
-      { text: "69 écoute encore Barry White... au chalet, bien sûr.", mood: "curious" },
-      { text: "Loris collectionne les roux célèbres. C’est... troublant.", mood: "angry" }
-    ];
-
-    let current = 0;
-    const docxDiv = document.createElement('div');
-    docxDiv.id = "docx-chat";
-    document.body.appendChild(docxDiv);
-
-    function displayDocxQuote() {
-      const quote = docxPhrases[current];
-      const bubble = document.createElement('div');
-      bubble.className = "docx-message";
-      bubble.dataset.mood = quote.mood;
-      bubble.innerHTML = `<span class="ai-tag">[DocX] :</span> ${quote.text}`;
-      docxDiv.innerHTML = "";
-      docxDiv.appendChild(bubble);
-      current = (current + 1) % docxPhrases.length;
-    }
-
-    setInterval(displayDocxQuote, 9000);
-    displayDocxQuote();
-  </script>
+  <script src="assets/js/app.js"></script>
 </body>
 </html>
