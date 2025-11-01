@@ -2,33 +2,80 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>L.S.E.S. — Interface Médicale</title>
+  <link rel="icon" href="assets/img/logo.png">
   <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="icon" href="assets/img/favicon.png">
   <style>
-    /* === Effet halo sur le logo === */
+    /* Halo autour du logo */
     .logo {
       width: 60px;
       height: auto;
-      filter: drop-shadow(0 0 10px rgba(0,255,255,0.7));
+      filter: drop-shadow(0 0 8px rgba(0,255,255,0.7));
       animation: pulse 3s infinite ease-in-out;
+      transition: transform 0.3s ease;
+    }
+    .logo:hover {
+      transform: scale(1.05);
     }
     @keyframes pulse {
-      0%, 100% { filter: drop-shadow(0 0 5px rgba(0,255,255,0.3)); }
+      0%, 100% { filter: drop-shadow(0 0 6px rgba(0,255,255,0.4)); }
       50% { filter: drop-shadow(0 0 20px rgba(0,255,255,1)); }
+    }
+
+    /* Mise en forme principale */
+    .content {
+      padding: 160px 40px 120px;
+      text-align: center;
+      color: #c8f6ff;
+    }
+    .content h1 {
+      font-size: 2rem;
+      text-shadow: 0 0 12px #00ffff;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 40px;
+    }
+    .card {
+      background: rgba(0,25,35,0.6);
+      border: 1px solid rgba(0,255,255,0.3);
+      border-radius: 12px;
+      color: #8ef;
+      text-decoration: none;
+      padding: 20px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 12px rgba(0,255,255,0.08);
+    }
+    .card:hover {
+      background: rgba(0,40,60,0.9);
+      box-shadow: 0 0 18px rgba(0,255,255,0.4);
+    }
+
+    /* Bandeau d’authentification */
+    .auth {
+      background: rgba(0,255,255,0.08);
+      border: 1px solid rgba(0,255,255,0.3);
+      padding: 10px 20px;
+      border-radius: 8px;
+      display: inline-block;
+      margin-top: 10px;
+      font-family: "Orbitron", sans-serif;
     }
   </style>
 </head>
-<body>
 
-  <!-- Arrière-plan holographique animé -->
+<body>
+  <!-- Fond holographique animé -->
   <div class="holo-bg"></div>
 
+  <!-- Header -->
   <header class="header">
     <nav class="nav">
-      <a class="brand" href="index.html">
-        <img src="assets/img/logo-lses.png" alt="L.S.E.S." class="logo">
+      <a href="index.html" class="brand">
+        <img src="assets/img/logo.png" alt="Logo L.S.E.S." class="logo">
         <span>L.S.E.S. — Interface Médicale</span>
       </a>
       <ul>
@@ -42,15 +89,15 @@
     </nav>
   </header>
 
-  <section class="hero">
-    <div class="overlay">
-      <h1>Bienvenue sur l’Interface Médicale du L.S.E.S.</h1>
-      <p>Authentification de l’utilisateur : <strong>PiouPiou [niveau GOAT]</strong></p>
-    </div>
-  </section>
-
+  <!-- Contenu principal -->
   <main class="content">
-    <h2>Accès rapide</h2>
+    <h1>Bienvenue dans l’Interface Médicale du L.S.E.S.</h1>
+    <p class="auth">Authentification de l’utilisateur : <strong>PiouPiou [niveau GOAT]</strong></p>
+
+    <p>Accès sécurisé aux pôles médicaux interplanétaires.  
+      <br>« Parce que sauver une vie ne devrait pas dépendre d’une bonne connexion Wi-Fi. »
+    </p>
+
     <div class="grid">
       <a href="chirurgie/" class="card">Pôle Chirurgical</a>
       <a href="gynecologie/" class="card">Pôle Gynécologique</a>
@@ -60,9 +107,10 @@
     </div>
   </main>
 
+  <!-- Footer -->
   <footer class="footer">
-    © 2025 <span>PiouPiou le Magnifique</span> — <span>ProjectV</span><br>
-    <em>« La médecine, c’est 80% de papier, 20% de café. »</em>
+    © 2025 <strong>PiouPiou le Magnifique</strong> — <em>ProjectV</em><br>
+    <small>« La médecine, c’est 80 % de papier, 20 % de café. »</small>
   </footer>
 
   <script src="assets/js/app.js"></script>
