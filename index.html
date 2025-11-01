@@ -6,8 +6,25 @@
   <title>L.S.E.S. — Interface Médicale</title>
   <link rel="stylesheet" href="assets/css/styles.css">
   <link rel="icon" href="assets/img/favicon.png">
+  <style>
+    /* === Effet halo sur le logo === */
+    .logo {
+      width: 60px;
+      height: auto;
+      filter: drop-shadow(0 0 10px rgba(0,255,255,0.7));
+      animation: pulse 3s infinite ease-in-out;
+    }
+    @keyframes pulse {
+      0%, 100% { filter: drop-shadow(0 0 5px rgba(0,255,255,0.3)); }
+      50% { filter: drop-shadow(0 0 20px rgba(0,255,255,1)); }
+    }
+  </style>
 </head>
 <body>
+
+  <!-- Arrière-plan holographique animé -->
+  <div class="holo-bg"></div>
+
   <header class="header">
     <nav class="nav">
       <a class="brand" href="index.html">
