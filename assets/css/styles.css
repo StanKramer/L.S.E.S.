@@ -154,3 +154,114 @@ body {
   box-shadow: 0 0 12px rgba(0,255,255,0.15);
   animation: fadeIn 0.5s ease;
 }
+/* === FOND BLEU UNIFIÉ === */
+body {
+  background: radial-gradient(circle at center, rgba(0,60,90,1) 0%, rgba(0,25,45,1) 80%, rgba(0,15,25,1) 100%);
+  color: #bff;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* === PARTICULES BLEUES === */
+.holo-bg .particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(0,255,255,0.8);
+  animation: float 14s ease-in-out infinite alternate;
+}
+@keyframes float {
+  from { transform: translateY(0px); opacity: 0.5; }
+  to { transform: translateY(-25px); opacity: 1; }
+}
+
+/* === INFOS BULLES AVEC HALO PAR ÉMOTION === */
+.quote-panel {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  max-width: 480px;
+  font-size: 1.05rem;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.quote-panel.visible {
+  opacity: 1;
+}
+.quote-box {
+  position: relative;
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,255,255,0.3);
+  background: rgba(0,25,40,0.75);
+  color: #bff;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0,255,255,0.2);
+}
+.emotion-halo {
+  position: absolute;
+  inset: -30%;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.5;
+  animation: haloPulse 6s infinite alternate ease-in-out;
+}
+@keyframes haloPulse {
+  from { transform: scale(1); opacity: 0.4; }
+  to { transform: scale(1.4); opacity: 0.7; }
+}
+
+/* === COULEURS PAR ÉMOTION === */
+.emotion-halo.calme { background: rgba(0, 200, 255, 0.6); }
+.emotion-halo.colere { background: rgba(255, 80, 80, 0.6); }
+.emotion-halo.joie { background: rgba(100, 255, 170, 0.6); }
+.emotion-halo.ironie { background: rgba(200, 120, 255, 0.6); }
+
+/* === FENÊTRE D’AUTHENTIFICATION === */
+.auth-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 10, 20, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeIn 0.6s ease;
+}
+.auth-content {
+  background: rgba(0, 40, 60, 0.8);
+  border: 1px solid rgba(0,255,255,0.4);
+  border-radius: 10px;
+  padding: 30px 50px;
+  text-align: center;
+  color: #9ff;
+  box-shadow: 0 0 25px rgba(0,255,255,0.2);
+}
+.auth-popup button {
+  margin-top: 15px;
+  background: rgba(0,255,255,0.2);
+  color: #00ffff;
+  border: 1px solid #00ffff;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.auth-popup button:hover {
+  background: rgba(0,255,255,0.4);
+}
+.fade-out {
+  animation: fadeOut 0.5s forwards;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fadeOut {
+  to { opacity: 0; visibility: hidden; }
+}
