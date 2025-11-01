@@ -1,56 +1,51 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>L.S.E.S. — Interface Médicale</title>
   <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="icon" href="assets/img/favicon.png">
 </head>
 <body>
-  <!-- Authentification au premier chargement -->
-  <div id="auth-popup" class="auth-popup">
-    <div class="auth-box">
-      <h2>Authentification de l’utilisateur</h2>
-      <p><strong>PiouPiou</strong> [niveau goat]</p>
-      <button id="enter-btn">Accéder à l’interface</button>
-    </div>
-  </div>
-
-  <!-- Header -->
-  <header>
-    <div class="logo-container">
-      <img src="assets/img/logo.svg" alt="Logo L.S.E.S." onerror="this.onerror=null;this.src='assets/img/logo.png';">
-      <h1>L.S.E.S. — <span>Interface Médicale</span></h1>
-    </div>
-    <nav>
-      <a href="index.html">Accueil</a>
-      <a href="chirurgie/formation.html">Chirurgie</a>
-      <a href="gynecologie/formation.html">Gynécologie</a>
-      <a href="kinesitherapie/formation_kine.html">Kinésithérapie</a>
-      <a href="medecine-legale/formation.html">Médecine légale</a>
-      <a href="psy/formation.html">Psychologie</a>
-      <a href="glossaire.html">Glossaire</a>
+  <header class="header">
+    <nav class="nav">
+      <a class="brand" href="index.html">
+        <img src="assets/img/logo-lses.png" alt="L.S.E.S." class="logo">
+        <span>L.S.E.S. — Interface Médicale</span>
+      </a>
+      <ul>
+        <li><a href="index.html" class="active">Accueil</a></li>
+        <li><a href="chirurgie/">Chirurgie</a></li>
+        <li><a href="gynecologie/">Gynécologie</a></li>
+        <li><a href="kinesitherapie/">Kinésithérapie</a></li>
+        <li><a href="medecine-legale/">Médecine légale</a></li>
+        <li><a href="glossaire.html">Glossaire</a></li>
+      </ul>
     </nav>
   </header>
 
-  <!-- Corps principal -->
-  <main>
-    <section class="intro">
-      <h2>Bienvenue dans l’interface médicale du L.S.E.S.</h2>
-      <p>Documentation, formations et modules interactifs en environnement holographique.</p>
-    </section>
+  <section class="hero">
+    <div class="overlay">
+      <h1>Bienvenue sur l’Interface Médicale du L.S.E.S.</h1>
+      <p>Authentification de l’utilisateur : <strong>PiouPiou [niveau GOAT]</strong></p>
+    </div>
+  </section>
 
-    <section class="grid-links">
-      <a href="kinesitherapie/formation_kine.html" class="module-card">Kinésithérapie<br><small>Schéma holographique interactif + exercices & protocoles.</small></a>
-      <a href="gynecologie/formation.html" class="module-card">Gynécologie<br><small>Formations et protocoles de prise en charge.</small></a>
-      <a href="chirurgie/formation.html" class="module-card">Chirurgie<br><small>Guides opératoires et checklists.</small></a>
-      <a href="medecine-legale/formation.html" class="module-card">Médecine légale<br><small>Procédures médico-légales et documentation judiciaire.</small></a>
-    </section>
+  <main class="content">
+    <h2>Accès rapide</h2>
+    <div class="grid">
+      <a href="chirurgie/" class="card">Pôle Chirurgical</a>
+      <a href="gynecologie/" class="card">Pôle Gynécologique</a>
+      <a href="kinesitherapie/" class="card">Pôle Kinésithérapie</a>
+      <a href="medecine-legale/" class="card">Médecine Légale</a>
+      <a href="glossaire.html" class="card">Glossaire Médical</a>
+    </div>
   </main>
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 PiouPiou le Magnifique — ProjectV</p>
+  <footer class="footer">
+    © 2025 <span>PiouPiou le Magnifique</span> — <span>ProjectV</span><br>
+    <em>« La médecine, c’est 80% de papier, 20% de café. »</em>
   </footer>
 
   <script src="assets/js/app.js"></script>
