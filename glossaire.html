@@ -3,109 +3,98 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Glossaire Médical — L.S.E.S. Guide Intergalactique</title>
+  <title>Glossaire Médical — L.S.E.S. Interface Médicale</title>
   <link rel="stylesheet" href="assets/css/styles.css">
   <link rel="icon" href="assets/img/favicon.png">
+  <style>
+    body {background: radial-gradient(circle at top, rgba(0,60,120,0.3), black);}
+    #glossaire-container {max-width: 900px;margin: 100px auto 60px;padding: 2rem;background: rgba(0,10,30,0.6);border-radius: 20px;box-shadow: 0 0 20px rgba(0,180,255,0.2);}
+    .search-bar {text-align:center;margin-bottom:1.5rem;}
+    .search-bar input {padding:10px 20px;border:none;border-radius:15px;background:#0d1a26;color:#0ff;outline:none;width:80%;text-align:center;}
+    .glossaire-entry {display:flex;align-items:center;background:rgba(0,15,30,0.7);padding:15px;border-radius:12px;margin-bottom:15px;transition:all 0.3s ease;}
+    .glossaire-entry:hover {transform:translateY(-2px);box-shadow:0 0 15px rgba(0,255,255,0.2);}
+    .glossaire-entry img {width:80px;height:80px;object-fit:contain;margin-right:20px;filter:drop-shadow(0 0 8px #00eaff);}
+    .glossaire-entry .definition h3 {margin:0;color:#00eaff;}
+    .glossaire-entry .definition p {color:#ddd;}
+  </style>
 </head>
 <body>
 
-  <header class="header">
-    <nav class="nav">
-      <a class="brand" href="index.html">
-        <img src="assets/img/logo-lses.png" alt="L.S.E.S.">
-        <span>L.S.E.S. — Guide Médical</span>
-      </a>
-      <ul>
-        <li><a class="navlink" href="index.html">Accueil</a></li>
-        <li><a class="navlink" href="urgences/">Urgences</a></li>
-        <li><a class="navlink" href="chirurgie/">Chirurgie</a></li>
-        <li><a class="navlink" href="psy/">Psychologie</a></li>
-        <li><a class="navlink" href="gynecologie/">Gynécologie</a></li>
-        <li><a class="navlink" href="medecine-legale/">Médecine légale</a></li>
-        <li><a class="navlink" href="glossaire.html">Glossaire</a></li>
-      </ul>
-    </nav>
-  </header>
+<header class="header">
+  <nav class="nav">
+    <a class="brand" href="index.html">
+      <img src="assets/img/logo-lses.png" alt="L.S.E.S.">
+      <span>L.S.E.S. — Interface Médicale</span>
+    </a>
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="chirurgie/">Chirurgie</a></li>
+      <li><a href="gynecologie/">Gynécologie</a></li>
+      <li><a href="kinesitherapie/">Kinésithérapie</a></li>
+      <li><a href="medecine-legale/">Médecine légale</a></li>
+      <li><a href="glossaire.html" class="active">Glossaire</a></li>
+    </ul>
+  </nav>
+</header>
 
-  <div class="container">
-    <div class="banner form">
-      <h1>Glossaire Médical Intergalactique</h1>
-      <p><em>“Parce qu’un bon diagnostic commence par un bon dictionnaire.”</em></p>
-    </div>
+<main id="glossaire-container">
+  <h1>Glossaire Médical Illustré</h1>
+  <p><em>Référentiel holographique du L.S.E.S. — version DocX 3.2</em></p>
 
-    <main>
-      <p>
-        Ce glossaire recense les termes médicaux, techniques et administratifs utilisés dans le cadre des activités du L.S.E.S.
-        Les définitions sont fournies par <strong>DocX</strong>, sous réserve de son humeur du moment.
-      </p>
-
-      <blockquote class="note">
-        💬 <strong>[DocX] :</strong><br>
-        J’ai compilé ces définitions avec précision.
-        Toute incohérence est donc la faute des humains.
-      </blockquote>
-
-      <table>
-        <thead>
-          <tr><th>Terme</th><th>Définition</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><b>Adrénaline</b></td>
-            <td>Substance chimique permettant de courir plus vite, crier plus fort, et réfléchir beaucoup moins.</td>
-          </tr>
-          <tr>
-            <td><b>Autopsie</b></td>
-            <td>Processus médical où un médecin obtient toutes les réponses que le patient n’avait pas le temps de donner.</td>
-          </tr>
-          <tr>
-            <td><b>Biométrie</b></td>
-            <td>Ensemble des caractéristiques corporelles permettant à DocX de vous reconnaître avant même que vous n’ayez parlé.</td>
-          </tr>
-          <tr>
-            <td><b>Coma</b></td>
-            <td>État de repos prolongé non validé par les ressources humaines.</td>
-          </tr>
-          <tr>
-            <td><b>Diagnostic</b></td>
-            <td>Supposition éclairée qui devient une vérité lorsqu’elle est prononcée avec suffisamment de confiance.</td>
-          </tr>
-          <tr>
-            <td><b>IA Médicale</b></td>
-            <td>Forme d’intelligence artificielle censée aider les humains, mais qui finit souvent par les juger silencieusement.</td>
-          </tr>
-          <tr>
-            <td><b>Patient</b></td>
-            <td>Individu qui se présente volontairement ou involontairement pour devenir un cas d’étude.</td>
-          </tr>
-          <tr>
-            <td><b>Statistiques</b></td>
-            <td>Moyenne de ce qui ne devrait pas arriver mais qui arrive quand même.</td>
-          </tr>
-          <tr>
-            <td><b>Stéthoscope</b></td>
-            <td>Objet utilisé pour écouter des bruits internes, ou pour paraître concentré lorsqu’on n’a rien compris.</td>
-          </tr>
-          <tr>
-            <td><b>Urgence</b></td>
-            <td>Concept abstrait où tout devient soudainement important en même temps.</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <blockquote class="aside">
-        💬 <strong>[DocX] :</strong><br>
-        J’aurais pu ajouter plus de termes, mais le dernier stagiaire a éteint mon serveur.
-        Ironie : il travaillait au service des urgences.
-      </blockquote>
-    </main>
+  <div class="search-bar">
+    <input type="text" id="search" placeholder="🔍 Rechercher un terme...">
   </div>
 
-  <footer class="footer">
-    © 2025 <span>PiouPiou le Magnifique</span> — <span>ProjectV</span><br>
-    <em>« Parce qu’il fallait bien quelqu’un pour écrire ce bazar. »</em>
-  </footer>
+  <div id="entries">
+    <div class="glossaire-entry">
+      <img src="assets/img/instruments/defibrillateur.png" alt="Défibrillateur">
+      <div class="definition">
+        <h3>Défibrillateur</h3>
+        <p>Appareil délivrant un choc électrique pour relancer le cœur — ou réveiller les stagiaires.</p>
+      </div>
+    </div>
 
-  <script src="assets/js/app.js"></script>
+    <div class="glossaire-entry">
+      <img src="assets/img/instruments/electrostim.png" alt="Électrostimulateur">
+      <div class="definition">
+        <h3>Électrostimulateur</h3>
+        <p>Dispositif utilisant des impulsions électriques pour stimuler les muscles sans bouger un orteil.</p>
+      </div>
+    </div>
+
+    <div class="glossaire-entry">
+      <img src="assets/img/instruments/sonde-ecg.png" alt="Sonde ECG">
+      <div class="definition">
+        <h3>Sonde ECG</h3>
+        <p>Capteur chargé de vérifier que votre cœur bat toujours après avoir lu le règlement interne.</p>
+      </div>
+    </div>
+
+    <div class="glossaire-entry">
+      <img src="assets/img/instruments/bande-kine.png" alt="Bande kiné">
+      <div class="definition">
+        <h3>Bande Kinésithérapique</h3>
+        <p>Adhésif miraculeux censé tout réparer, y compris l’ego après une séance douloureuse.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  © 2025 <span>PiouPiou le Magnifique</span> — <span>ProjectV</span><br>
+  <em>« Toute ressemblance avec des stagiaires existants est purement intentionnelle. »</em>
+</footer>
+
+<script>
+  const search = document.getElementById('search');
+  const entries = document.querySelectorAll('.glossaire-entry');
+  search.addEventListener('input', () => {
+    const q = search.value.toLowerCase();
+    entries.forEach(e => {
+      e.style.display = e.innerText.toLowerCase().includes(q) ? 'flex' : 'none';
+    });
+  });
+</script>
+
 </body>
 </html>
