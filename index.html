@@ -1,89 +1,119 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>L.S.E.S. — Interface Médicale</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="icon" href="assets/img/logo.png" type="image/png">
 </head>
-
 <body>
-  <div class="holo-bg"></div>
+  <div class="bg-stars"></div>
 
-  <!-- === Authentification === -->
-  <div id="auth-overlay">
-    <div class="auth-box">
-      <h2>Authentification de l’utilisateur :</h2>
-      <p><strong>PiouPiou</strong> [niveau GOAT]</p>
-      <button id="enter-btn">Accéder à l’interface</button>
+  <header class="topbar">
+    <div class="wrapper nav">
+      <a class="brand" href="index.html">
+        <img src="assets/img/logo.png" alt="L.S.E.S.">
+        <span>L.S.E.S. — Interface Médicale</span>
+      </a>
+      <nav class="menu">
+        <a href="index.html">Accueil</a>
+
+        <div class="dd">
+          <a href="chirurgie.html" class="dd-btn">Chirurgie ▾</a>
+          <div class="dd-list">
+            <a href="chirurgie.html#checklists">Checklists & Pré-ops</a>
+            <a href="chirurgie.html#appendicite">Appendicectomie</a>
+            <a href="chirurgie.html#postop">Suivi post-op</a>
+          </div>
+        </div>
+
+        <div class="dd">
+          <a href="gynecologie.html" class="dd-btn">Gynécologie ▾</a>
+          <div class="dd-list">
+            <a href="gynecologie.html#priseencharge">Prise en charge</a>
+            <a href="gynecologie.html#fiche">Fiche de suivi</a>
+          </div>
+        </div>
+
+        <div class="dd">
+          <a href="kinesitherapie.html" class="dd-btn">Kinésithérapie ▾</a>
+          <div class="dd-list">
+            <a href="kinesitherapie.html#holo">Schéma interactif</a>
+            <a href="kinesitherapie.html#exos">Exercices & TENS</a>
+          </div>
+        </div>
+
+        <div class="dd">
+          <a href="medecinelegale.html" class="dd-btn">Médecine légale ▾</a>
+          <div class="dd-list">
+            <a href="medecinelegale.html#procedures">Procédures</a>
+            <a href="medecinelegale.html#docs">Documents</a>
+          </div>
+        </div>
+
+        <a href="glossaire.html">Glossaire</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrapper">
+    <section class="hero">
+      <h1>Bienvenue dans l’Interface Médicale du L.S.E.S.</h1>
+      <p class="sub">« Parce que sauver une vie ne devrait pas dépendre d’une bonne connexion Wi-Fi. »</p>
+      <div class="grid">
+        <article class="tile">
+          <h3>Kinésithérapie</h3>
+          <p>Schéma holographique interactif + exercices & protocoles.</p>
+          <a href="kinesitherapie.html" aria-label="Kinésithérapie"></a>
+        </article>
+        <article class="tile">
+          <h3>Gynécologie</h3>
+          <p>Formations et protocoles de prise en charge.</p>
+          <a href="gynecologie.html" aria-label="Gynécologie"></a>
+        </article>
+        <article class="tile">
+          <h3>Chirurgie</h3>
+          <p>Guides opératoires, checklists et aide post-opératoire.</p>
+          <a href="chirurgie.html" aria-label="Chirurgie"></a>
+        </article>
+        <article class="tile">
+          <h3>Médecine légale</h3>
+          <p>Procédures médico-légales et documentation judiciaire.</p>
+          <a href="medecinelegale.html" aria-label="Médecine légale"></a>
+        </article>
+      </div>
+    </section>
+
+    <p class="center mt-3">L.S.E.S. — Interface Médicale</p>
+  </main>
+
+  <!-- Bulle DocX -->
+  <aside class="docx info">
+    <h5>DocX</h5>
+    <div class="body">Initialisation du cortex conversationnel…</div>
+    <small></small>
+  </aside>
+
+  <!-- Boot (première fois) -->
+  <div class="boot" role="dialog" aria-modal="true">
+    <div class="boot-card">
+      <div class="boot-title">
+        <img src="assets/img/logo.png" alt="L.S.E.S.">
+        <div>
+          <strong>Authentification</strong><br>
+          Utilisateur : <b>PiouPiou</b> <small>[niveau GOAT]</small>
+        </div>
+      </div>
+      <div class="progress"><i></i></div>
+      <div class="boot-rows" aria-live="polite" aria-atomic="true"></div>
+      <button class="btn go" disabled>Accéder à l’interface</button>
+      <p class="muted" style="color:#9ec2cc;margin:8px 0 0">La fenêtre d’authentification n’apparaît qu’une seule fois.</p>
     </div>
   </div>
 
-  <!-- === Barre de navigation === -->
-  <header>
-    <nav class="navbar">
-      <div class="brand">
-        <img src="assets/img/logo.svg" class="logo" alt="Logo L.S.E.S.">
-        <span><strong>L.S.E.S.</strong> — Interface Médicale</span>
-      </div>
-      <ul class="nav-links">
-        <li><a href="index.html" class="active">Accueil</a></li>
-        <li class="dropdown">
-          <a href="#">Chirurgie ▾</a>
-          <ul class="dropdown-menu">
-            <li><a href="chirurgie.html">Accueil</a></li>
-            <li><a href="#">Protocoles opératoires</a></li>
-            <li><a href="#">Checklist Bloc</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#">Gynécologie ▾</a>
-          <ul class="dropdown-menu">
-            <li><a href="gynecologie.html">Accueil</a></li>
-            <li><a href="#">Formations</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#">Kinésithérapie ▾</a>
-          <ul class="dropdown-menu">
-            <li><a href="kinesitherapie.html">Accueil</a></li>
-            <li><a href="#">Protocoles musculaires</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#">Médecine légale ▾</a>
-          <ul class="dropdown-menu">
-            <li><a href="medecinelegale.html">Accueil</a></li>
-            <li><a href="#">Autopsie</a></li>
-          </ul>
-        </li>
-        <li><a href="glossaire.html">Glossaire</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- === Contenu principal === -->
-  <main>
-    <section class="intro">
-      <h1>Bienvenue dans l’Interface Médicale du <span>L.S.E.S.</span></h1>
-      <p>« Parce que sauver une vie ne devrait pas dépendre d’une bonne connexion Wi-Fi. »</p>
-    </section>
-
-    <section class="modules">
-      <div class="card"><a href="chirurgie.html">Pôle Chirurgical</a></div>
-      <div class="card"><a href="gynecologie.html">Pôle Gynécologique</a></div>
-      <div class="card"><a href="kinesitherapie.html">Pôle Kinésithérapie</a></div>
-      <div class="card"><a href="medecinelegale.html">Médecine Légale</a></div>
-      <div class="card"><a href="glossaire.html">Glossaire Médical</a></div>
-    </section>
-  </main>
-
-  <footer>
-    <p><strong>L.S.E.S.</strong> — Interface Médicale</p>
-    <small>© 2025 PiouPiou le Magnifique — ProjectV</small><br>
-    <small>« La médecine, c’est 80 % de papier, 20 % de café. »</small>
-  </footer>
+  <footer class="footer">© 2025 PiouPiou le Magnifique — ProjectV</footer>
 
   <script src="assets/js/app.js"></script>
 </body>
