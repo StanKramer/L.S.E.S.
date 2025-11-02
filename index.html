@@ -9,8 +9,16 @@
 </head>
 
 <body>
-  <!-- === Fond Holographique === -->
   <div class="holo-bg"></div>
+
+  <!-- === Authentification === -->
+  <div id="auth-overlay">
+    <div class="auth-box">
+      <h2>Authentification de l’utilisateur :</h2>
+      <p><strong>PiouPiou</strong> [niveau GOAT]</p>
+      <button id="enter-btn">Accéder à l’interface</button>
+    </div>
+  </div>
 
   <!-- === Barre de navigation === -->
   <header>
@@ -20,87 +28,63 @@
         <span><strong>L.S.E.S.</strong> — Interface Médicale</span>
       </div>
       <ul class="nav-links">
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="chirurgie.html">Chirurgie</a></li>
-        <li><a href="gynecologie.html">Gynécologie</a></li>
-        <li><a href="kinesitherapie.html">Kinésithérapie</a></li>
-        <li><a href="medecinelegale.html">Médecine légale</a></li>
+        <li><a href="index.html" class="active">Accueil</a></li>
+        <li class="dropdown">
+          <a href="#">Chirurgie ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="chirurgie.html">Accueil</a></li>
+            <li><a href="#">Protocoles opératoires</a></li>
+            <li><a href="#">Checklist Bloc</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Gynécologie ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="gynecologie.html">Accueil</a></li>
+            <li><a href="#">Formations</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Kinésithérapie ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="kinesitherapie.html">Accueil</a></li>
+            <li><a href="#">Protocoles musculaires</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Médecine légale ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="medecinelegale.html">Accueil</a></li>
+            <li><a href="#">Autopsie</a></li>
+          </ul>
+        </li>
         <li><a href="glossaire.html">Glossaire</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- === Contenu Principal === -->
+  <!-- === Contenu principal === -->
   <main>
     <section class="intro">
       <h1>Bienvenue dans l’Interface Médicale du <span>L.S.E.S.</span></h1>
-      <p class="subtitle">« Parce que sauver une vie ne devrait pas dépendre d’une bonne connexion Wi-Fi. »</p>
-      <div class="grid">
-        <a href="chirurgie.html" class="card">Pôle Chirurgical</a>
-        <a href="gynecologie.html" class="card">Pôle Gynécologique</a>
-        <a href="kinesitherapie.html" class="card">Pôle Kinésithérapie</a>
-        <a href="medecinelegale.html" class="card">Médecine Légale</a>
-        <a href="glossaire.html" class="card">Glossaire Médical</a>
-      </div>
+      <p>« Parce que sauver une vie ne devrait pas dépendre d’une bonne connexion Wi-Fi. »</p>
+    </section>
+
+    <section class="modules">
+      <div class="card"><a href="chirurgie.html">Pôle Chirurgical</a></div>
+      <div class="card"><a href="gynecologie.html">Pôle Gynécologique</a></div>
+      <div class="card"><a href="kinesitherapie.html">Pôle Kinésithérapie</a></div>
+      <div class="card"><a href="medecinelegale.html">Médecine Légale</a></div>
+      <div class="card"><a href="glossaire.html">Glossaire Médical</a></div>
     </section>
   </main>
 
-  <!-- === Pied de page === -->
   <footer>
     <p><strong>L.S.E.S.</strong> — Interface Médicale</p>
     <small>© 2025 PiouPiou le Magnifique — ProjectV</small><br>
     <small>« La médecine, c’est 80 % de papier, 20 % de café. »</small>
   </footer>
 
-  <!-- === SCRIPTS === -->
   <script src="assets/js/app.js"></script>
-
-  <!-- === Séquence de Lancement DocX === -->
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const container = document.createElement("div");
-    container.classList.add("loading-sequence");
-    container.innerHTML = `
-      <div class="terminal">
-        <p class="title">🔷 Initialisation de l’Interface Médicale du L.S.E.S.</p>
-        <pre id="loadLog" class="log"></pre>
-        <div class="progress-bar"><span id="progressFill"></span></div>
-      </div>
-    `;
-    document.body.appendChild(container);
-
-    const messages = [
-      "Connexion au réseau interplanétaire sécurisée...",
-      "Chargement des protocoles médicaux prioritaires...",
-      "Synchronisation des pôles : Chirurgie, Gynécologie, Kinésithérapie...",
-      "Mise à jour des bases de données du personnel médical...",
-      "Activation des sous-systèmes holographiques...",
-      "Chargement des ressources cognitives DocX...",
-      "Analyse de l’état émotionnel de l’utilisateur : stable.",
-      "Calcul du facteur GOAT... résultat : 100 %.",
-      "Authentification de l’utilisateur : PiouPiou [niveau GOAT]",
-      "Interface prête. Exécution autorisée."
-    ];
-
-    const log = document.getElementById("loadLog");
-    const bar = document.getElementById("progressFill");
-    let i = 0;
-
-    function nextLine() {
-      if (i < messages.length) {
-        log.innerHTML += `> ${messages[i]}\n`;
-        bar.style.width = `${(i / (messages.length - 1)) * 100}%`;
-        i++;
-        setTimeout(nextLine, 900);
-      } else {
-        setTimeout(() => {
-          container.classList.add("fade-out");
-          setTimeout(() => container.remove(), 700);
-        }, 700);
-      }
-    }
-    nextLine();
-  });
-  </script>
 </body>
 </html>
