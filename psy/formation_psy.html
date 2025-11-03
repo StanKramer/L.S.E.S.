@@ -1,27 +1,84 @@
-<!DOCTYPE html><html lang="fr"><head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Règlement — L.S.E.S.</title>
-<link rel="stylesheet" href="assets/css/styles.css"/><link rel="icon" type="image/png" href="assets/img/favicon.png"/>
-</head><body class="theme-lses">
-<header class="site-header">
-  <a href="index.html" class="brand"><img src="assets/img/logo-lses.png" class="logo" alt="">
-    <span class="brand-title">L.S.E.S. — Interface Médicale</span></a>
-  <nav class="main-nav">
-    <ul>
-      <li class="has-sub"><a href="index.html">Accueil</a>
-        <ul class="submenu"><li><a href="reglement.html">Règlement & Procédures</a></li></ul>
-      </li>
-      <li class="has-sub"><a href="kinesitherapie/index.html">Kinésithérapie</a>
-        <ul class="submenu"><li><a href="kinesitherapie/formation_kine.html">Formation</a></li></ul>
-      </li>
-    </ul>
-  </nav>
-</header>
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>Psychologie — L.S.E.S.</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body class="starfield">
+  <header class="app-header">
+    <div class="brand">
+      <img src="../assets/img/logo.svg" class="logo" alt="">
+      <span>L.S.E.S. — Interface Médicale</span>
+    </div>
+    <nav class="main-nav">
+      <ul class="menu">
+        <li><a href="../index.html">Accueil</a></li>
+        <li class="has-sub"><a href="../chirurgie/chirurgie.html">Chirurgie</a>
+          <ul class="submenu">
+            <li><a href="../chirurgie/chirurgie.html#protocoles">Protocoles</a></li>
+            <li><a href="../chirurgie/chirurgie.html#checklists">Checklists</a></li>
+          </ul>
+        </li>
+        <li class="has-sub"><a href="../gynecologie/gynecologie.html">Gynécologie</a>
+          <ul class="submenu">
+            <li><a href="../gynecologie/gynecologie.html#prise-en-charge">Prise en charge</a></li>
+            <li><a href="../gynecologie/gynecologie.html#formations">Formations</a></li>
+          </ul>
+        </li>
+        <li class="has-sub"><a href="../kinesitherapie/kinesitherapie.html">Kinésithérapie</a>
+          <ul class="submenu">
+            <li><a href="../kinesitherapie/kinesitherapie.html#holo">Schéma Holo</a></li>
+            <li><a href="../kinesitherapie/kinesitherapie.html#exercices">Exercices</a></li>
+          </ul>
+        </li>
+        <li class="has-sub"><a href="../medecine-legale/medecinelegale.html">Médecine légale</a>
+          <ul class="submenu">
+            <li><a href="../medecine-legale/medecinelegale.html#procedures">Procédures</a></li>
+            <li><a href="../medecine-legale/medecinelegale.html#docs">Documentation</a></li>
+          </ul>
+        </li>
+        <li class="has-sub"><a class="active" href="formation_psy.html">Psychologie</a>
+          <ul class="submenu">
+            <li><a href="#formations">Formations</a></li>
+          </ul>
+        </li>
+        <li><a href="../glossaire.html">Glossaire</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<main class="content" style="padding:20px 16px 120px">
-  <h1>Règlement intérieur & procédures</h1>
-  <p>Intègre ici ton contenu (mise en page DocX avec infobulles si souhaité).</p>
-</main>
+  <main class="container">
+    <section class="hero">
+      <h1>Psychologie — Hygiène mentale & Team Care</h1>
+      <p class="subtitle">Espaces de débrief, posture pro & gestion de crise.</p>
+    </section>
 
-<footer class="site-footer">© 2025 <strong>PiouPiou le Magnifique</strong> — Propulsé par <strong>ProjectV</strong></footer>
-</body></html>
+    <section id="formations" class="grid-cards">
+      <article class="card">
+        <h3>Débriefing structuré</h3>
+        <p>Avant/pendant/après intervention critique — cercle sécurisé, parole libre, référentiel factuel.</p>
+      </article>
+      <article class="card">
+        <h3>Auto-soin rapide</h3>
+        <p>Respirations, posture, 90 secondes de reset, ancrage sensoriel, relais si besoin.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="statusbar" id="statusBar">
+    <div class="status-left"><span class="dot ok"></span> Système Holo : Opérationnel</div>
+    <div class="status-center">L.S.E.S. — Interface Médicale</div>
+    <div class="status-right" id="statusTime"></div>
+  </footer>
+
+  <aside id="docxBubble" class="docx-bubble info">
+    <button class="docx-close" title="Fermer">×</button>
+    <div class="docx-tag">PiouPiou :</div>
+    <div class="docx-text">On respire. Pas comme un poisson. Comme un humain. Bravo.</div>
+  </aside>
+
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>
