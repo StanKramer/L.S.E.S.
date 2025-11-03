@@ -1,49 +1,90 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Médecine Légale — L.S.E.S.</title>
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <meta charset="utf-8" />
+  <title>Médecine légale — L.S.E.S.</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
 </head>
-<body>
-  <header class="topbar">
-    <div class="wrapper nav">
-      <a class="brand" href="index.html">
-        <img src="assets/img/logo.png" alt="L.S.E.S.">
-        <span>Médecine Légale — L.S.E.S.</span>
-      </a>
-      <nav class="menu">
-        <a href="index.html">Accueil</a>
-        <a href="chirurgie.html">Chirurgie</a>
-        <a href="gynecologie.html">Gynécologie</a>
-        <a href="kinesitherapie.html">Kinésithérapie</a>
-        <a href="glossaire.html">Glossaire</a>
-      </nav>
+<body class="starfield">
+  <header class="app-header">
+    <div class="brand">
+      <img src="../assets/img/logo.svg" class="logo" alt="">
+      <span>L.S.E.S. — Interface Médicale</span>
     </div>
+    <nav class="main-nav">
+      <ul class="menu">
+        <li><a href="../index.html">Accueil</a></li>
+        <li class="has-sub"><a href="../chirurgie/chirurgie.html">Chirurgie</a>
+          <ul class="submenu">
+            <li><a href="../chirurgie/chirurgie.html#protocoles">Protocoles</a></li>
+            <li><a href="../chirurgie/chirurgie.html#checklists">Checklists</a></li>
+          </ul>
+        </li>
+        <li class="has-sub"><a href="../gynecologie/gynecologie.html">Gynécologie</a>
+          <ul class="submenu">
+            <li><a href="../gynecologie/gynecologie.html#prise-en-charge">Prise en charge</a></li>
+            <li><a href="../gynecologie/gynecologie.html#formations">Formations</a></li>
+          </ul>
+        </li>
+        <li class="has-sub"><a href="../kinesitherapie/kinesitherapie.html">Kinésithérapie</a>
+          <ul class="submenu">
+            <li><a href="../kinesitherapie/kinesitherapie.html#holo">Schéma Holo</a></li>
+            <li><a href="../kinesitherapie/kinesitherapie.html#exercices">Exercices</a></li>
+          </ul>
+        </li>
+        <li class="has-sub"><a class="active" href="medecinelegale.html">Médecine légale</a>
+          <ul class="submenu">
+            <li><a href="#procedures">Procédures</a></li>
+            <li><a href="#docs">Documentation</a></li>
+          </ul>
+        </li>
+        <li><a href="../glossaire.html">Glossaire</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main class="wrapper">
+  <main class="container">
     <section class="hero">
-      <h1>Médecine Légale</h1>
-      <p>Protocoles de constatation, rapports et archivage sécurisé.</p>
+      <h1>Médecine légale</h1>
+      <p class="subtitle">Procédures médico-légales et documentation.</p>
     </section>
 
-    <section>
-      <h2>Procédures principales</h2>
-      <ul>
-        <li>Constat de décès et prélèvements post-mortem.</li>
-        <li>Rédaction de rapports médico-légaux standardisés.</li>
-      </ul>
+    <section id="procedures" class="grid-cards">
+      <article class="card">
+        <h3>Certificat médical initial (CMI)</h3>
+        <p>Constat des lésions, ITT, traçabilité des dires de la victime, mention identité & signature.</p>
+      </article>
+      <article class="card">
+        <h3>Chaîne de conservation</h3>
+        <p>Scellés, étiquetage, registre, accès limité et horodaté, documentation jointe au dossier.</p>
+      </article>
+    </section>
+
+    <section id="docs" class="grid-cards">
+      <article class="card">
+        <h3>Kit d’agression</h3>
+        <p>Procédure standardisée de recueil d’indices biologiques ; consentement & respect des délais.</p>
+      </article>
+      <article class="card">
+        <h3>Réquisition judiciaire</h3>
+        <p>Vérification identité de l’agent demandeur, périmètre de la mission, compte rendu circonstancié.</p>
+      </article>
     </section>
   </main>
 
-  <aside class="docx info">
-    <h5>DocX</h5>
-    <div class="body">Analyse médico-légale prête...</div>
+  <footer class="statusbar" id="statusBar">
+    <div class="status-left"><span class="dot ok"></span> Système Holo : Opérationnel</div>
+    <div class="status-center">L.S.E.S. — Interface Médicale</div>
+    <div class="status-right" id="statusTime"></div>
+  </footer>
+
+  <aside id="docxBubble" class="docx-bubble info">
+    <button class="docx-close" title="Fermer">×</button>
+    <div class="docx-tag">PiouPiou :</div>
+    <div class="docx-text">Traçabilité activée. Les nombres sont têtus, tout comme 42.</div>
   </aside>
 
-  <footer class="footer">© 2025 PiouPiou le Magnifique — ProjectV</footer>
-  <script src="assets/js/app.js"></script>
+  <script src="../assets/js/app.js"></script>
 </body>
 </html>
