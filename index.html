@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>L.S.E.S. — Interface Médicale</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-  <div class="bg-stars"></div>
-
   <header class="topbar">
     <div class="wrapper nav">
       <a class="brand" href="index.html">
@@ -19,40 +15,11 @@
       </a>
       <nav class="menu">
         <a href="index.html">Accueil</a>
-
-        <div class="dd">
-          <a href="chirurgie.html" class="dd-btn">Chirurgie ▾</a>
-          <div class="dd-list">
-            <a href="chirurgie.html#checklists">Checklists & Pré-ops</a>
-            <a href="chirurgie.html#appendicite">Appendicectomie</a>
-            <a href="chirurgie.html#postop">Suivi post-op</a>
-          </div>
-        </div>
-
-        <div class="dd">
-          <a href="gynecologie.html" class="dd-btn">Gynécologie ▾</a>
-          <div class="dd-list">
-            <a href="gynecologie.html#priseencharge">Prise en charge</a>
-            <a href="gynecologie.html#fiche">Fiche de suivi</a>
-          </div>
-        </div>
-
-        <div class="dd">
-          <a href="kinesitherapie.html" class="dd-btn">Kinésithérapie ▾</a>
-          <div class="dd-list">
-            <a href="kinesitherapie.html#holo">Schéma interactif</a>
-            <a href="kinesitherapie.html#exos">Exercices & TENS</a>
-          </div>
-        </div>
-
-        <div class="dd">
-          <a href="medecinelegale.html" class="dd-btn">Médecine légale ▾</a>
-          <div class="dd-list">
-            <a href="medecinelegale.html#procedures">Procédures</a>
-            <a href="medecinelegale.html#docs">Documents</a>
-          </div>
-        </div>
-
+        <a href="chirurgie/chirurgie.html">Chirurgie</a>
+        <a href="gynecologie/gynecologie.html">Gynécologie</a>
+        <a href="kinesitherapie/kinesitherapie.html">Kinésithérapie</a>
+        <a href="medecine-legale/medecinelegale.html">Médecine légale</a>
+        <a href="psy/formation_psy.html">Psychologie</a>
         <a href="glossaire.html">Glossaire</a>
       </nav>
     </div>
@@ -61,43 +28,28 @@
   <main class="wrapper">
     <section class="hero">
       <h1>Bienvenue dans l’Interface Médicale du L.S.E.S.</h1>
-      <p class="sub">« Parce que sauver une vie ne devrait pas dépendre d’une bonne connexion Wi-Fi. »</p>
-      <div class="grid">
-        <article class="tile"><h3>Kinésithérapie</h3><p>Schéma holographique interactif + exercices & protocoles.</p><a href="kinesitherapie.html"></a></article>
-        <article class="tile"><h3>Gynécologie</h3><p>Formations et protocoles de prise en charge.</p><a href="gynecologie.html"></a></article>
-        <article class="tile"><h3>Chirurgie</h3><p>Guides opératoires, checklists et aide post-opératoire.</p><a href="chirurgie.html"></a></article>
-        <article class="tile"><h3>Médecine légale</h3><p>Procédures médico-légales et documentation judiciaire.</p><a href="medecinelegale.html"></a></article>
-      </div>
+      <p class="intro">Authentification de l’utilisateur : <b>PiouPiou</b> [niveau GOAT]</p>
+      <p class="slogan">« Parce que sauver une vie ne devrait pas dépendre d'une bonne connexion Wi-Fi. »</p>
     </section>
 
-    <p class="center mt-3">L.S.E.S. — Interface Médicale</p>
+    <section class="departements">
+      <a href="chirurgie/chirurgie.html" class="tile">Pôle Chirurgical</a>
+      <a href="gynecologie/gynecologie.html" class="tile">Pôle Gynécologique</a>
+      <a href="kinesitherapie/kinesitherapie.html" class="tile">Pôle Kinésithérapie</a>
+      <a href="medecine-legale/medecinelegale.html" class="tile">Médecine Légale</a>
+      <a href="psy/formation_psy.html" class="tile">Psychologie</a>
+    </section>
   </main>
 
-  <!-- Bulle DocX -->
-  <aside class="docx info">
-    <h5>DocX</h5>
-    <div class="body">Initialisation du cortex conversationnel…</div>
-    <small></small>
+  <aside id="docx-console" class="docx hidden">
+    <p><b>DocX :</b> Initialisation du réseau cognitif... Synchronisation en cours...</p>
   </aside>
 
-  <!-- Boot PiouPiou -->
-  <div class="boot" role="dialog" aria-modal="true">
-    <div class="boot-card">
-      <div class="boot-title">
-        <img src="assets/img/logo.png" alt="L.S.E.S.">
-        <div>
-          <strong>Authentification</strong><br>
-          Utilisateur : <b>PiouPiou</b> <small>[niveau GOAT]</small>
-        </div>
-      </div>
-      <div class="progress"><i></i></div>
-      <div class="boot-rows"></div>
-      <button class="btn go" disabled>Accéder à l’interface</button>
-      <p class="muted" style="color:#9ec2cc;margin:8px 0 0">La fenêtre d’authentification n’apparaît qu’une seule fois.</p>
-    </div>
-  </div>
+  <footer class="footer hidden">
+    © 2025 PiouPiou le Magnifique — ProjectV
+    <div class="status">L.S.E.S. connecté en mode holographique</div>
+  </footer>
 
-  <footer class="footer">© 2025 PiouPiou le Magnifique — ProjectV</footer>
   <script src="assets/js/app.js"></script>
 </body>
 </html>
