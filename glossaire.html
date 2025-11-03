@@ -1,55 +1,97 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
   <title>Glossaire Médical — L.S.E.S.</title>
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
-<body>
-  <header class="topbar">
-    <div class="wrapper nav">
-      <a class="brand" href="index.html">
-        <img src="assets/img/logo.png" alt="L.S.E.S.">
-        <span>Glossaire Médical — L.S.E.S.</span>
-      </a>
-      <nav class="menu">
-        <a href="index.html">Accueil</a>
-        <a href="chirurgie.html">Chirurgie</a>
-        <a href="gynecologie.html">Gynécologie</a>
-        <a href="kinesitherapie.html">Kinésithérapie</a>
-        <a href="medecinelegale.html">Médecine légale</a>
-      </nav>
+<body class="starfield">
+  <header class="app-header">
+    <div class="brand">
+      <img src="assets/img/logo.svg" class="logo" alt="">
+      <span>L.S.E.S. — Interface Médicale</span>
     </div>
+    <nav class="main-nav">
+      <ul class="menu">
+        <li><a href="index.html">Accueil</a></li>
+        <li class="has-sub"><a href="chirurgie/chirurgie.html">Chirurgie</a>
+          <ul class="submenu">
+            <li><a href="chirurgie/chirurgie.html#protocoles">Protocoles</a></li>
+            <li><a href="chirurgie/chirurgie.html#checklists">Checklists</a></li>
+          </ul>
+        </li>
+        <li class="has-sub"><a href="gynecologie/gynecologie.html">Gynécologie</a>
+          <ul class="submenu">
+            <li><a href="gynecologie/gynecologie.html#prise-en-charge">Prise en charge</a></li>
+            <li><a href="gynecologie/gynecologie.html#formations">Formations</a></li>
+          </ul>
+        </li>
+        <li class="has-sub"><a href="kinesitherapie/kinesitherapie.html">Kinésithérapie</a>
+          <ul class="submenu">
+            <li><a href="kinesitherapie/kinesitherapie.html#holo">Schéma Holo</a></li>
+            <li><a href="kinesitherapie/kinesitherapie.html#exercices">Exercices</a></li>
+            <li><a href="kinesitherapie/kinesitherapie.html#protocoles">Protocoles</a></li>
+          </ul>
+        </li>
+        <li class="has-sub"><a href="medecine-legale/medecinelegale.html">Médecine légale</a>
+          <ul class="submenu">
+            <li><a href="medecine-legale/medecinelegale.html#procedures">Procédures</a></li>
+            <li><a href="medecine-legale/medecinelegale.html#docs">Documentation</a></li>
+          </ul>
+        </li>
+        <li class="has-sub"><a href="psy/formation_psy.html">Psychologie</a>
+          <ul class="submenu">
+            <li><a href="psy/formation_psy.html#formations">Formations</a></li>
+          </ul>
+        </li>
+        <li><a class="active" href="glossaire.html">Glossaire</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main class="wrapper">
+  <main class="container">
     <section class="hero">
-      <h1>Glossaire Médical L.S.E.S.</h1>
-      <p>Termes, définitions et instruments utilisés par les équipes médicales.</p>
-      <input type="text" id="searchGloss" placeholder="Rechercher un terme..." style="width:80%;padding:8px;margin:20px auto;display:block;background:#001c2c;border:1px solid #00c8ff;color:#fff;border-radius:8px;">
+      <h1>Glossaire Médical Interactif — L.S.E.S.</h1>
+      <p class="subtitle">Illustrations et définitions ajoutées au fil des documents.</p>
     </section>
-    <section id="glossContainer"></section>
+
+    <section class="grid-cards" id="glossary">
+      <!-- Exemples ; enrichis au besoin -->
+      <article class="card">
+        <h3>Électrostimulation</h3>
+        <p>Application d’impulsions électriques de faible intensité sur les nerfs ou muscles pour analgésie ou rééducation.</p>
+      </article>
+
+      <article class="card">
+        <h3>Protocoles Holo</h3>
+        <p>Ensembles de procédures affichées directement dans le schéma holographique interactif pour guider l’action.</p>
+      </article>
+
+      <article class="card">
+        <h3>Check-list opératoire</h3>
+        <p>Liste de vérifications standardisées pour sécuriser une intervention (patient, site, matériel, issues attendues).</p>
+      </article>
+
+      <article class="card">
+        <h3>Traction cervicale douce</h3>
+        <p>Technique kiné visant la détente des trapèzes/nuque par étirement contrôlé ; souvent couplée à une respiration lente.</p>
+      </article>
+    </section>
   </main>
 
-  <footer class="footer">© 2025 PiouPiou le Magnifique — ProjectV</footer>
+  <footer class="statusbar" id="statusBar">
+    <div class="status-left"><span class="dot ok"></span> Système Holo : Opérationnel</div>
+    <div class="status-center">L.S.E.S. — Interface Médicale</div>
+    <div class="status-right" id="statusTime"></div>
+  </footer>
+
+  <aside id="docxBubble" class="docx-bubble info">
+    <button class="docx-close" title="Fermer">×</button>
+    <div class="docx-tag">PiouPiou :</div>
+    <div class="docx-text">Chargement du glossaire…</div>
+  </aside>
+
   <script src="assets/js/app.js"></script>
-  <script>
-    const terms = [
-      {t:"TENS",d:"Stimulation électrique transcutanée pour la gestion de la douleur."},
-      {t:"Électrode",d:"Dispositif de conduction utilisé pour stimuler ou enregistrer une activité nerveuse."},
-      {t:"Protocole",d:"Ensemble de règles ou procédures médicales standardisées."},
-      {t:"Anesthésie",d:"Procédure médicale visant à supprimer la douleur lors d’une intervention."}
-    ];
-    const container=document.getElementById("glossContainer");
-    const search=document.getElementById("searchGloss");
-    const render=(f="")=>{
-      container.innerHTML=terms
-        .filter(e=>e.t.toLowerCase().includes(f.toLowerCase()))
-        .map(e=>`<article class="tile"><h3>${e.t}</h3><p>${e.d}</p></article>`).join("");
-    };
-    render();
-    search.addEventListener("input",e=>render(e.target.value));
-  </script>
 </body>
 </html>
