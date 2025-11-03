@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>L.S.E.S. — Interface Médicale</title>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700&display=swap" rel="stylesheet">
@@ -63,26 +63,10 @@
       <h1>Bienvenue dans l’Interface Médicale du L.S.E.S.</h1>
       <p class="sub">« Parce que sauver une vie ne devrait pas dépendre d’une bonne connexion Wi-Fi. »</p>
       <div class="grid">
-        <article class="tile">
-          <h3>Kinésithérapie</h3>
-          <p>Schéma holographique interactif + exercices & protocoles.</p>
-          <a href="kinesitherapie.html" aria-label="Kinésithérapie"></a>
-        </article>
-        <article class="tile">
-          <h3>Gynécologie</h3>
-          <p>Formations et protocoles de prise en charge.</p>
-          <a href="gynecologie.html" aria-label="Gynécologie"></a>
-        </article>
-        <article class="tile">
-          <h3>Chirurgie</h3>
-          <p>Guides opératoires, checklists et aide post-opératoire.</p>
-          <a href="chirurgie.html" aria-label="Chirurgie"></a>
-        </article>
-        <article class="tile">
-          <h3>Médecine légale</h3>
-          <p>Procédures médico-légales et documentation judiciaire.</p>
-          <a href="medecinelegale.html" aria-label="Médecine légale"></a>
-        </article>
+        <article class="tile"><h3>Kinésithérapie</h3><p>Schéma holographique interactif + exercices & protocoles.</p><a href="kinesitherapie.html"></a></article>
+        <article class="tile"><h3>Gynécologie</h3><p>Formations et protocoles de prise en charge.</p><a href="gynecologie.html"></a></article>
+        <article class="tile"><h3>Chirurgie</h3><p>Guides opératoires, checklists et aide post-opératoire.</p><a href="chirurgie.html"></a></article>
+        <article class="tile"><h3>Médecine légale</h3><p>Procédures médico-légales et documentation judiciaire.</p><a href="medecinelegale.html"></a></article>
       </div>
     </section>
 
@@ -96,7 +80,7 @@
     <small></small>
   </aside>
 
-  <!-- Boot (première fois) -->
+  <!-- Boot PiouPiou -->
   <div class="boot" role="dialog" aria-modal="true">
     <div class="boot-card">
       <div class="boot-title">
@@ -107,14 +91,13 @@
         </div>
       </div>
       <div class="progress"><i></i></div>
-      <div class="boot-rows" aria-live="polite" aria-atomic="true"></div>
+      <div class="boot-rows"></div>
       <button class="btn go" disabled>Accéder à l’interface</button>
       <p class="muted" style="color:#9ec2cc;margin:8px 0 0">La fenêtre d’authentification n’apparaît qu’une seule fois.</p>
     </div>
   </div>
 
   <footer class="footer">© 2025 PiouPiou le Magnifique — ProjectV</footer>
-
   <script src="assets/js/app.js"></script>
 </body>
 </html>
