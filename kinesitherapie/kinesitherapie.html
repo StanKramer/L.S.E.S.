@@ -1,57 +1,109 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
   <title>Kinésithérapie — L.S.E.S.</title>
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
 </head>
-<body>
-  <header class="topbar">
-    <div class="wrapper nav">
-      <a class="brand" href="index.html">
-        <img src="assets/img/logo.png" alt="L.S.E.S.">
-        <span>Kinésithérapie — L.S.E.S.</span>
-      </a>
-      <nav class="menu">
-        <a href="index.html">Accueil</a>
-        <a href="chirurgie.html">Chirurgie</a>
-        <a href="gynecologie.html">Gynécologie</a>
-        <a href="medecinelegale.html">Médecine légale</a>
-        <a href="glossaire.html">Glossaire</a>
-      </nav>
+<body class="starfield">
+  <header class="app-header">
+    <div class="brand">
+      <img src="../assets/img/logo.svg" class="logo" alt="">
+      <span>L.S.E.S. — Interface Médicale</span>
     </div>
+    <nav class="main-nav">
+      <ul class="menu">
+        <li><a href="../index.html">Accueil</a></li>
+        <li class="has-sub"><a href="../chirurgie/chirurgie.html">Chirurgie</a>
+          <ul class="submenu">
+            <li><a href="../chirurgie/chirurgie.html#protocoles">Protocoles</a></li>
+            <li><a href="../chirurgie/chirurgie.html#checklists">Checklists</a></li>
+          </ul>
+        </li>
+        <li class="has-sub"><a href="../gynecologie/gynecologie.html">Gynécologie</a>
+          <ul class="submenu">
+            <li><a href="../gynecologie/gynecologie.html#prise-en-charge">Prise en charge</a></li>
+            <li><a href="../gynecologie/gynecologie.html#formations">Formations</a></li>
+          </ul>
+        </li>
+        <li class="has-sub"><a class="active" href="kinesitherapie.html">Kinésithérapie</a>
+          <ul class="submenu">
+            <li><a href="#holo">Schéma Holo</a></li>
+            <li><a href="#exercices">Exercices</a></li>
+            <li><a href="#protocoles">Protocoles</a></li>
+          </ul>
+        </li>
+        <li class="has-sub"><a href="../medecine-legale/medecinelegale.html">Médecine légale</a>
+          <ul class="submenu">
+            <li><a href="../medecine-legale/medecinelegale.html#procedures">Procédures</a></li>
+            <li><a href="../medecine-legale/medecinelegale.html#docs">Documentation</a></li>
+          </ul>
+        </li>
+        <li><a href="../glossaire.html">Glossaire</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main class="wrapper">
+  <main class="container">
     <section class="hero">
-      <h1>Département de Kinésithérapie</h1>
-      <p>Rééducation et stimulation musculaire assistée holographiquement.</p>
+      <h1>Pôle Kinésithérapie</h1>
+      <p class="subtitle">Schéma holographique interactif + Electro-stimulation + Exercices</p>
     </section>
 
-    <section id="holo">
-      <h2>Schéma holographique interactif</h2>
-      <img src="assets/img/hologram_body.png" alt="Schéma holographique" style="width:100%;border:1px solid #00c8ff;border-radius:10px;">
-      <p>Cliquer sur les zones (bras, jambe, nuque) pour afficher les exercices ciblés.</p>
+    <!-- Schéma avec points (tu as déjà placé hologram_body.png) -->
+    <section id="holo" class="grid-cards">
+      <article class="card">
+        <h3>Schéma holographique (unisex)</h3>
+        <p>Les points interactifs renvoient vers les protocoles d’électrodes et les exercices associés.</p>
+        <img src="../assets/img/hologram_body.png" alt="Silhouette holo" style="width:100%;opacity:.92;border-radius:10px;border:1px solid rgba(94,226,255,.2)">
+        <p class="muted">Points actifs : cervical, lombaire, sciatique, quadriceps/mollets, bras.</p>
+      </article>
     </section>
 
-    <section id="exos">
-      <h2>Exercices avec électrodes</h2>
-      <ul>
-        <li><b>Cou cervical :</b> rotation lente, électrostimulation niveau 2, durée 2 min.</li>
-        <li><b>Épaule :</b> élévation légère bras tendu, électrodes sur deltoïde postérieur.</li>
-        <li><b>Jambe :</b> extension lente du genou, électrodes quadriceps, 3 répétitions.</li>
-      </ul>
-      <video src="assets/video/kine_holo_demo.webm" autoplay loop muted playsinline style="width:100%;border-radius:10px;margin-top:10px;"></video>
+    <section id="exercices" class="grid-cards">
+      <article class="card">
+        <h3>Relaxation cervicale</h3>
+        <p>Trapèzes supérieurs — respiration lente, 10 minutes, intensité confortable.</p>
+      </article>
+      <article class="card">
+        <h3>Stimulation sciatique</h3>
+        <p>Nerf sciatique, alternance droite/gauche — intensité modérée, 20 minutes.</p>
+      </article>
+      <article class="card">
+        <h3>Récupération post-effort</h3>
+        <p>Quadriceps/mollets — basse fréquence, 12 minutes.</p>
+      </article>
+      <article class="card">
+        <h3>Stimulation lombaire</h3>
+        <p>Deux électrodes de part et d’autre de la colonne, montée progressive jusqu’au picotement sans douleur.</p>
+      </article>
+      <article class="card">
+        <h3>Renforcement bras</h3>
+        <p>Électrodes sur chef biceps + triceps, intensité basse, 12 minutes, travail mobilité + respiration.</p>
+      </article>
+    </section>
+
+    <section id="protocoles" class="grid-cards">
+      <article class="card">
+        <h3>Protocoles experts</h3>
+        <p>Paramétrages validés (fréquences, largeur d’impulsion, rampes). Lien vers Glossaire & sécurité patient.</p>
+      </article>
     </section>
   </main>
 
-  <aside class="docx info">
-    <h5>DocX</h5>
-    <div class="body">Initialisation du module Kiné...</div>
+  <footer class="statusbar" id="statusBar">
+    <div class="status-left"><span class="dot ok"></span> Système Holo : Opérationnel</div>
+    <div class="status-center">L.S.E.S. — Interface Médicale</div>
+    <div class="status-right" id="statusTime"></div>
+  </footer>
+
+  <aside id="docxBubble" class="docx-bubble info">
+    <button class="docx-close" title="Fermer">×</button>
+    <div class="docx-tag">PiouPiou :</div>
+    <div class="docx-text">Module kiné actif. Les électrodes ne sont pas des décorations.</div>
   </aside>
 
-  <footer class="footer">© 2025 PiouPiou le Magnifique — ProjectV</footer>
-  <script src="assets/js/app.js"></script>
+  <script src="../assets/js/app.js"></script>
 </body>
 </html>
