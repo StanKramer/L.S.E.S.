@@ -3,63 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pôle Gynécologique — L.S.E.S.</title>
+  <title>Chirurgie — L.S.E.S.</title>
   <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="icon" href="assets/img/logo.png" type="image/png">
 </head>
-
 <body>
-  <div class="holo-bg"></div>
-
-  <!-- Barre de navigation -->
-  <header>
-    <nav class="navbar">
-      <div class="brand">
-        <img src="assets/img/logo.svg" class="logo" alt="Logo L.S.E.S.">
-        <span><strong>L.S.E.S.</strong> — Interface Médicale</span>
-      </div>
-      <ul class="nav-links">
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="chirurgie.html">Chirurgie</a></li>
-        <li><a href="gynecologie.html" class="active">Gynécologie</a></li>
-        <li><a href="kinesitherapie.html">Kinésithérapie</a></li>
-        <li><a href="medecinelegale.html">Médecine légale</a></li>
-        <li><a href="glossaire.html">Glossaire</a></li>
-      </ul>
-    </nav>
+  <header class="topbar">
+    <div class="wrapper nav">
+      <a class="brand" href="index.html">
+        <img src="assets/img/logo.png" alt="L.S.E.S.">
+        <span>Chirurgie — L.S.E.S.</span>
+      </a>
+      <nav class="menu">
+        <a href="index.html">Accueil</a>
+        <a href="gynecologie.html">Gynécologie</a>
+        <a href="kinesitherapie.html">Kinésithérapie</a>
+        <a href="medecinelegale.html">Médecine légale</a>
+        <a href="glossaire.html">Glossaire</a>
+      </nav>
+    </div>
   </header>
 
-  <!-- Contenu principal -->
-  <main>
-    <section class="intro">
-      <h1>Pôle Gynécologique — <span>L.S.E.S.</span></h1>
-      <p class="subtitle">Protocoles, formations et procédures de suivi gynécologique interhospitalier.</p>
+  <main class="wrapper">
+    <section class="hero">
+      <h1>Département de Chirurgie</h1>
+      <p>Protocoles, fiches opératoires et formation.</p>
+    </section>
 
-      <div class="grid">
-        <div class="card">
-          <h3>Examens de routine</h3>
-          <p>Procédures standardisées pour bilans gynécologiques, dépistage et suivi de patientes.</p>
-        </div>
+    <section id="appendicite" class="content">
+      <h2>Appendicectomie</h2>
+      <p>Procédure standardisée de retrait de l’appendice selon protocole L.S.E.S.</p>
+      <ul>
+        <li>Préparation : anesthésie générale, asepsie stricte.</li>
+        <li>Incision sous-ombilicale, exploration, ligature, extraction.</li>
+        <li>Surveillance post-op : douleur, infection, reprise du transit.</li>
+      </ul>
+    </section>
 
-        <div class="card">
-          <h3>Prise en charge chirurgicale</h3>
-          <p>Protocoles opératoires, checklists pré et post-opératoires.</p>
-        </div>
-
-        <div class="card">
-          <h3>Formation du personnel</h3>
-          <p>Modules de perfectionnement et coordination inter-hospitalière.</p>
-        </div>
-      </div>
+    <section id="postop">
+      <h2>Suivi post-opératoire</h2>
+      <p>Évaluer la température, les signes infectieux et la douleur.</p>
     </section>
   </main>
 
-  <footer>
-    <p><strong>L.S.E.S.</strong> — Interface Médicale</p>
-    <small>© 2025 PiouPiou le Magnifique — ProjectV</small><br>
-    <small>« La médecine, c’est 80 % de papier, 20 % de café. »</small>
-  </footer>
+  <aside class="docx info">
+    <h5>DocX</h5>
+    <div class="body">Chargement du module Chirurgie...</div>
+  </aside>
 
+  <footer class="footer">© 2025 PiouPiou le Magnifique — ProjectV</footer>
   <script src="assets/js/app.js"></script>
 </body>
 </html>
