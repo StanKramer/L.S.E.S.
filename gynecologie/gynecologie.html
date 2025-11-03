@@ -1,47 +1,94 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
   <title>Gynécologie — L.S.E.S.</title>
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
 </head>
-<body>
-  <header class="topbar">
-    <div class="wrapper nav">
-      <a class="brand" href="index.html">
-        <img src="assets/img/logo.png" alt="L.S.E.S.">
-        <span>Gynécologie — L.S.E.S.</span>
-      </a>
-      <nav class="menu">
-        <a href="index.html">Accueil</a>
-        <a href="chirurgie.html">Chirurgie</a>
-        <a href="kinesitherapie.html">Kinésithérapie</a>
-        <a href="medecinelegale.html">Médecine légale</a>
-        <a href="glossaire.html">Glossaire</a>
-      </nav>
+<body class="starfield">
+  <header class="app-header">
+    <div class="brand">
+      <img src="../assets/img/logo.svg" class="logo" alt="">
+      <span>L.S.E.S. — Interface Médicale</span>
     </div>
+    <nav class="main-nav">
+      <ul class="menu">
+        <li><a href="../index.html">Accueil</a></li>
+        <li class="has-sub"><a href="../chirurgie/chirurgie.html">Chirurgie</a>
+          <ul class="submenu">
+            <li><a href="../chirurgie/chirurgie.html#protocoles">Protocoles</a></li>
+            <li><a href="../chirurgie/chirurgie.html#checklists">Checklists</a></li>
+          </ul>
+        </li>
+
+        <li class="has-sub"><a class="active" href="gynecologie.html">Gynécologie</a>
+          <ul class="submenu">
+            <li><a href="#prise-en-charge">Prise en charge</a></li>
+            <li><a href="#formations">Formations</a></li>
+          </ul>
+        </li>
+
+        <li class="has-sub"><a href="../kinesitherapie/kinesitherapie.html">Kinésithérapie</a>
+          <ul class="submenu">
+            <li><a href="../kinesitherapie/kinesitherapie.html#holo">Schéma Holo</a></li>
+            <li><a href="../kinesitherapie/kinesitherapie.html#exercices">Exercices</a></li>
+          </ul>
+        </li>
+
+        <li class="has-sub"><a href="../medecine-legale/medecinelegale.html">Médecine légale</a>
+          <ul class="submenu">
+            <li><a href="../medecine-legale/medecinelegale.html#procedures">Procédures</a></li>
+            <li><a href="../medecine-legale/medecinelegale.html#docs">Documentation</a></li>
+          </ul>
+        </li>
+
+        <li><a href="../glossaire.html">Glossaire</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main class="wrapper">
+  <main class="container">
     <section class="hero">
-      <h1>Département de Gynécologie</h1>
-      <p>Prise en charge complète et protocole L.S.E.S.</p>
+      <h1>Pôle Gynécologique</h1>
+      <p class="subtitle">Prise en charge et formations.</p>
     </section>
 
-    <section id="fiche">
-      <h2>Fiche de suivi</h2>
-      <p>Surveillance des constantes, cycles et antécédents médicaux.</p>
-      <p>Intégration des procédures standardisées du service gynécologique.</p>
+    <section id="prise-en-charge" class="grid-cards">
+      <article class="card">
+        <h3>Hémorragie du post-partum</h3>
+        <p>Massage utérin, ocytociques, ballonnet intra-utérin, transfusion protocolisée, escalade chirurgicale si échec.</p>
+      </article>
+      <article class="card">
+        <h3>GEU</h3>
+        <p>Orientation médicale (méthotrexate) vs. chirurgicale selon critères ; suivi β-hCG et clinique rapproché.</p>
+      </article>
+    </section>
+
+    <section id="formations" class="grid-cards">
+      <article class="card">
+        <h3>Dépistage</h3>
+        <p>Frottis, HPV, calendrier recommandé, traçabilité & rappel des patientes.</p>
+      </article>
+      <article class="card">
+        <h3>Contraception</h3>
+        <p>Conseils personnalisés, contre-indications, montage DIU, suivi tolérance.</p>
+      </article>
     </section>
   </main>
 
-  <aside class="docx info">
-    <h5>DocX</h5>
-    <div class="body">Chargement du module Gynécologie...</div>
+  <footer class="statusbar" id="statusBar">
+    <div class="status-left"><span class="dot ok"></span> Système Holo : Opérationnel</div>
+    <div class="status-center">L.S.E.S. — Interface Médicale</div>
+    <div class="status-right" id="statusTime"></div>
+  </footer>
+
+  <aside id="docxBubble" class="docx-bubble info">
+    <button class="docx-close" title="Fermer">×</button>
+    <div class="docx-tag">PiouPiou :</div>
+    <div class="docx-text">Prise en charge gynéco initialisée.</div>
   </aside>
 
-  <footer class="footer">© 2025 PiouPiou le Magnifique — ProjectV</footer>
-  <script src="assets/js/app.js"></script>
+  <script src="../assets/js/app.js"></script>
 </body>
 </html>
