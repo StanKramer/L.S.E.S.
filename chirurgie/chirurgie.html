@@ -1,56 +1,90 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
   <title>Chirurgie — L.S.E.S.</title>
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
 </head>
-<body>
-  <header class="topbar">
-    <div class="wrapper nav">
-      <a class="brand" href="index.html">
-        <img src="assets/img/logo.png" alt="L.S.E.S.">
-        <span>Chirurgie — L.S.E.S.</span>
-      </a>
-      <nav class="menu">
-        <a href="index.html">Accueil</a>
-        <a href="gynecologie.html">Gynécologie</a>
-        <a href="kinesitherapie.html">Kinésithérapie</a>
-        <a href="medecinelegale.html">Médecine légale</a>
-        <a href="glossaire.html">Glossaire</a>
-      </nav>
+<body class="starfield">
+  <header class="app-header">
+    <div class="brand">
+      <img src="../assets/img/logo.svg" class="logo" alt="">
+      <span>L.S.E.S. — Interface Médicale</span>
     </div>
+    <nav class="main-nav">
+      <ul class="menu">
+        <li><a href="../index.html">Accueil</a></li>
+        <li class="has-sub"><a class="active" href="chirurgie.html">Chirurgie</a>
+          <ul class="submenu">
+            <li><a href="#protocoles">Protocoles</a></li>
+            <li><a href="#checklists">Checklists</a></li>
+          </ul>
+        </li>
+        <li class="has-sub"><a href="../gynecologie/gynecologie.html">Gynécologie</a>
+          <ul class="submenu">
+            <li><a href="../gynecologie/gynecologie.html#prise-en-charge">Prise en charge</a></li>
+            <li><a href="../gynecologie/gynecologie.html#formations">Formations</a></li>
+          </ul>
+        </li>
+        <li class="has-sub"><a href="../kinesitherapie/kinesitherapie.html">Kinésithérapie</a>
+          <ul class="submenu">
+            <li><a href="../kinesitherapie/kinesitherapie.html#holo">Schéma Holo</a></li>
+            <li><a href="../kinesitherapie/kinesitherapie.html#exercices">Exercices</a></li>
+          </ul>
+        </li>
+        <li class="has-sub"><a href="../medecine-legale/medecinelegale.html">Médecine légale</a>
+          <ul class="submenu">
+            <li><a href="../medecine-legale/medecinelegale.html#procedures">Procédures</a></li>
+            <li><a href="../medecine-legale/medecinelegale.html#docs">Documentation</a></li>
+          </ul>
+        </li>
+        <li><a href="../glossaire.html">Glossaire</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main class="wrapper">
+  <main class="container">
     <section class="hero">
-      <h1>Département de Chirurgie</h1>
-      <p>Protocoles, fiches opératoires et formation.</p>
+      <h1>Pôle Chirurgical</h1>
+      <p class="subtitle">Guides opératoires et check-lists.</p>
     </section>
 
-    <section id="appendicite" class="content">
-      <h2>Appendicectomie</h2>
-      <p>Procédure standardisée de retrait de l’appendice selon protocole L.S.E.S.</p>
-      <ul>
-        <li>Préparation : anesthésie générale, asepsie stricte.</li>
-        <li>Incision sous-ombilicale, exploration, ligature, extraction.</li>
-        <li>Surveillance post-op : douleur, infection, reprise du transit.</li>
-      </ul>
+    <section id="protocoles" class="grid-cards">
+      <article class="card">
+        <h3>Appendicectomie</h3>
+        <p>Voies d’abord, repères, contrôle vasculaire, check stériles & antibioprophylaxie. Sortie du patient en surveillance adaptée.</p>
+      </article>
+      <article class="card">
+        <h3>Cholécystectomie</h3>
+        <p>Triangle de Calot, cholangiographie per-op, critères de conversion, prévention lésion biliaire.</p>
+      </article>
     </section>
 
-    <section id="postop">
-      <h2>Suivi post-opératoire</h2>
-      <p>Évaluer la température, les signes infectieux et la douleur.</p>
+    <section id="checklists" class="grid-cards">
+      <article class="card">
+        <h3>WHO Check-list</h3>
+        <p>Identité, site, procédure, consentement, allergies, matériel, saignement, prophylaxie thromboembolique.</p>
+      </article>
+      <article class="card">
+        <h3>Matériel stérile</h3>
+        <p>Comptage compresses/aiguilles, intégrité emballages, traçabilité dispositifs implantables, stérilisation.</p>
+      </article>
     </section>
   </main>
 
-  <aside class="docx info">
-    <h5>DocX</h5>
-    <div class="body">Chargement du module Chirurgie...</div>
+  <footer class="statusbar" id="statusBar">
+    <div class="status-left"><span class="dot ok"></span> Système Holo : Opérationnel</div>
+    <div class="status-center">L.S.E.S. — Interface Médicale</div>
+    <div class="status-right" id="statusTime"></div>
+  </footer>
+
+  <aside id="docxBubble" class="docx-bubble info">
+    <button class="docx-close" title="Fermer">×</button>
+    <div class="docx-tag">PiouPiou :</div>
+    <div class="docx-text">Section chirurgie : charge cognitive surveillée.</div>
   </aside>
 
-  <footer class="footer">© 2025 PiouPiou le Magnifique — ProjectV</footer>
-  <script src="assets/js/app.js"></script>
+  <script src="../assets/js/app.js"></script>
 </body>
 </html>
