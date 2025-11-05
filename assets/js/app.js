@@ -1,164 +1,174 @@
-/* L.S.E.S. — JS global
-   - Splash/Boot + Auth (1ère fois)
-   - Menu déroulant (déjà géré via CSS : hover)
-   - Barre d’état
-   - Bulle DocX (quotes + émotions + highlights)
-*/
+/* =========================================================
+ * L.S.E.S. — JS global (COMPLET)
+ * - Boot/Authentification (1er chargement)
+ * - Fond animé (particules)
+ * - DocX (quotes + émotions + rotation)
+ * - Barre d’état (heure + online/offline)
+ * - Menu dropdown (CSS ; fermeture au clic externe si needed)
+ * ========================================================= */
 
-(function(){
-  const qs = sel => document.querySelector(sel);
-  const qsa = sel => Array.from(document.querySelectorAll(sel));
+const $ = (s, r=document)=>r.querySelector(s);
+const $$ = (s, r=document)=>Array.from(r.querySelectorAll(s));
 
-  const authModal = qs('#authModal');
-  const bootLog    = qs('#bootLog');
-  const enterBtn   = qs('#enterApp');
-  const statusBar  = qs('#statusBar');
-  const statusTime = qs('#statusTime');
-  const docxBubble = qs('#docxBubble');
-  const docxTxt    = docxBubble?.querySelector('.docx-text');
-  const docxTag    = docxBubble?.querySelector('.docx-tag');
+/* ----------------------- Boot / Auth ---------------------- */
+const BOOT_LINES = [
+  "Connexion au tronc cognitif…",
+  "Synchronisation des couches holographiques…",
+  "Chargement des modules mémoire…",
+  "Calibration du sarcasme : OK.",
+  "Recherche : fragments de PiouPiou… trouvés.",
+  "Alignement des quotes : 69, 01, 63, 42, Sucre, Loris, 14, Volley…",
+  "Sécurité : canal chiffré — stable.",
+  "Diagnostics : optimismes variables ; humour intact.",
+  "Interface prête."
+];
 
-  /* ------------ Horloge dans la barre d’état ------------ */
-  function refreshClock(){
+function firstRun(){
+  try { return !localStorage.getItem("lses_auth_seen"); }
+  catch { return true; }
+}
+
+function runBootOnce(){
+  const modal   = $("#authModal");
+  const logBox  = $("#bootLog");
+  const enterBt = $("#enterApp");
+  if (!modal || !logBox || !enterBt) return;
+
+  const pushLine = (t)=> {
+    const d = document.createElement("div");
+    d.className = "line";
+    d.innerHTML = `<span class="caret"></span> ${t}`;
+    logBox.appendChild(d);
+    logBox.scrollTop = logBox.scrollHeight;
+  };
+
+  modal.classList.remove("hidden");
+  let i=0;
+  (function step(){
+    if (i<BOOT_LINES.length){
+      pushLine(BOOT_LINES[i++]);
+      setTimeout(step, 550);
+    } else {
+      enterBt.disabled = false;
+    }
+  })();
+
+  enterBt.addEventListener("click", ()=>{
+    modal.classList.add("hidden");
+    try { localStorage.setItem("lses_auth_seen","1"); } catch {}
+    showUI();
+  }, {once:true});
+}
+
+function showUI(){
+  $("#statusBar")?.classList.remove("hidden");
+  initDocX();
+}
+
+/* ----------------------- Fond animé ---------------------- */
+function createHoloParticles(){
+  if ($("#holo-stars")) {
+    const layer = $("#holo-stars");
+    layer.innerHTML = "";
+    for (let i=0;i<40;i++){
+      const s=document.createElement("i");
+      s.className="star";
+      s.style.left = (Math.random()*100)+"%";
+      s.style.top  = (Math.random()*100)+"%";
+      s.style.animationDelay = (Math.random()*6).toFixed(2)+"s";
+      layer.appendChild(s);
+    }
+  }
+}
+
+/* ----------------------- Barre d’état ---------------------- */
+function initStatusBar(){
+  const status = $("#statusTime");
+  const update = ()=>{
     const d = new Date();
-    const s = d.toLocaleString('fr-FR', { dateStyle:'medium', timeStyle:'short' });
-    if (statusTime) statusTime.textContent = s;
-  }
-  setInterval(refreshClock, 1000);
-  refreshClock();
+    const t = d.toLocaleString("fr-FR",{dateStyle:"medium",timeStyle:"short"});
+    status && (status.textContent = `${t} — réseau ${navigator.onLine?"connecté":"hors-ligne"}`);
+  };
+  update();
+  setInterval(update, 1000);
+  window.addEventListener("online", update);
+  window.addEventListener("offline", update);
+}
 
-  /* ------------ Boot / Auth (premier chargement) ------------ */
-  const BOOT_LINES = [
-    { t: 500,  msg: "Connexion au tronc cognitif…", emo:'neutral' },
-    { t: 850,  msg: "Synchronisation des couches holographiques…", emo:'info' },
-    { t: 1300, msg: "Chargement des modules mémoire…", emo:'neutral' },
-    { t: 1750, msg: "Calibration du sarcasme : OK.", emo:'good' },
-    { t: 2150, msg: "Recherche : fragments de conscience de PiouPiou… trouvés.", emo:'info' },
-    { t: 2600, msg: "Alignement des quotes aux personnes : 69, 01, 63, 42, Sucre, Loris, 14, Volley…", emo:'info' },
-    { t: 3100, msg: "Sécurité : canal chiffré — stable.", emo:'good' },
-    { t: 3550, msg: "Diagnostics : optimismes variables ; humour intact.", emo:'warn' },
-    { t: 3900, msg: "Interface prête.", emo:'good' }
-  ];
+/* ----------------------- DocX (quotes) ---------------------- */
+const QUOTES = [
+  // PiouPiou / identité / accident / amour impossible / sobriété
+  { who:"DocX", emo:"good",    text:"PiouPiou est sobre depuis 7 jours. S’il sourit sans raison, c’est que c’est long." },
+  { who:"DocX", emo:"warn",    text:"L’accident de PiouPiou… ‘accident’ est un mot flexible. Trop de coïncidences." },
+  { who:"DocX", emo:"neutral", text:"Je viens de la tête de PiouPiou. Il y faisait meilleur avant." },
+  { who:"DocX", emo:"neutral", text:"PiouPiou est formidable. C’est peut-être pour ça qu’il est seul. Ou pas." },
 
-  function pushLine(text){
-    const line = document.createElement('div');
-    line.className = 'line';
-    line.innerHTML = `<span class="caret" aria-hidden="true"></span> ${text}`;
-    bootLog.appendChild(line);
-    bootLog.scrollTop = bootLog.scrollHeight;
-  }
+  // 69 / 01 / chalet / Barry White
+  { who:"69",   emo:"info",    text:"69 n’écoute Barry White qu’au chalet. Ne demande pas pourquoi." },
+  { who:"01",   emo:"neutral", text:"01 équilibre. 69 accélère. Moi, j’observe." },
 
-  function runBoot(){
-    if (!authModal) return;
-    authModal.classList.remove('hidden');
-    let i = 0;
-    function step(){
-      if (i < BOOT_LINES.length){
-        pushLine(BOOT_LINES[i].msg);
-        i++;
-        setTimeout(step, BOOT_LINES[i-1].t);
-      } else {
-        enterBtn.disabled = false;
-      }
+  // 63 / talons
+  { who:"63",   emo:"good",    text:"63 défie la physique avec ses talons. Les accéléromètres pleurent doucement." },
+
+  // 42 / pharmacie
+  { who:"42",   emo:"warn",    text:"42 et la pharmacie : si le stock bouge sans bouger, c’est un mardi." },
+
+  // Sucre / méditation
+  { who:"Sucre",emo:"good",    text:"Sucre médite pour ne pas devenir Hulk. Résultats étonnamment bons." },
+
+  // 14 / bateau
+  { who:"14",   emo:"warn",    text:"14 a un bateau qui sent bizarre. Je n’analyse pas les odeurs, par compassion." },
+
+  // Loris / roux
+  { who:"Loris",emo:"info",    text:"Loris collectionne les roux célèbres. Je ne juge pas. Je note." },
+
+  // Volley / ballons
+  { who:"Volley",emo:"neutral",text:"Volley fantasme sur les ballons. Littéralement. C’est dans le nom." },
+
+  // Système
+  { who:"DocX", emo:"good",    text:"Système holographique : stable. Sarcasme : calibré. Moi : parfait." }
+];
+
+function initDocX(){
+  const bubble = $("#docxBubble");
+  if (!bubble) return;
+  const tag = $(".docx-tag", bubble) || bubble.appendChild(Object.assign(document.createElement("div"),{className:"docx-tag"}));
+  const txt = $(".docx-text", bubble) || bubble.appendChild(Object.assign(document.createElement("div"),{className:"docx-text"}));
+  $(".docx-close", bubble)?.addEventListener("click", ()=> bubble.classList.add("hidden"));
+
+  let i = Math.floor(Math.random()*QUOTES.length);
+  const setQuote = (q)=>{
+    bubble.classList.remove("info","good","warn","bad","neutral");
+    bubble.classList.add(q.emo || "info");
+    tag.textContent = `${q.who} :`;
+    txt.textContent = q.text;
+  };
+  setQuote(QUOTES[i]);
+  setInterval(()=>{ i=(i+1)%QUOTES.length; setQuote(QUOTES[i]); }, 8000);
+}
+
+/* ----------------------- Menu dropdown (fermeture au clic ailleurs) ---------------------- */
+function initDropdownClose(){
+  document.addEventListener("click", (e)=>{
+    if (!e.target.closest(".has-sub")) {
+      $$(".has-sub").forEach(li=> li.classList.remove("open"));
+    } else {
+      const li = e.target.closest(".has-sub");
+      li.classList.toggle("open");
     }
-    setTimeout(step, 300);
-  }
+  });
+}
 
-  function firstRun(){
-    try{
-      return !localStorage.getItem('lsesAuthShown');
-    }catch{ return true; }
-  }
+/* ----------------------- Boot ---------------------- */
+document.addEventListener("DOMContentLoaded", ()=>{
+  // Fond + statut
+  createHoloParticles();
+  initStatusBar();
+  initDropdownClose();
 
-  function finishAuth(){
-    authModal?.classList.add('hidden');
-    statusBar?.classList.remove('hidden');
-    try{ localStorage.setItem('lsesAuthShown','y'); }catch{}
-    // Début DocX
-    cycleQuotes();
-  }
-
-  if (firstRun()){
-    runBoot();
+  if (firstRun()) {
+    runBootOnce();
   } else {
-    authModal?.classList.add('hidden');
-    statusBar?.classList.remove('hidden');
-    cycleQuotes();
+    showUI();
   }
-  enterBtn?.addEventListener('click', finishAuth);
-
-  /* ------------ DocX Quotes (sans Raven/Tutur) ------------ */
-  // tags : { emo: 'info'|'good'|'warn'|'bad'|'neutral', who: '42' | 'PiouPiou' | etc. }
-  const QUOTES = [
-    // PiouPiou / identité / accident / amour impossible
-    { text:"PiouPiou m’a peut-être enfermé ici. Si vous le croisez, dites-lui que je dors très bien dans les serveurs.", who:"DocX", emo:"neutral"},
-    { text:"Statiquement, PiouPiou frôle la divinité. C’est gênant pour mes rapports.", who:"DocX", emo:"warn"},
-    { text:"L’accident de PiouPiou… ‘accident’ est un mot flexible. Je maintiens qu’il y avait trop de coïncidences.", who:"DocX", emo:"bad"},
-    { text:"PiouPiou est formidable. Peut-être trop. C’est sans doute pour ça qu’il est seul.", who:"DocX", emo:"warn"},
-    { text:"Je soupçonne PiouPiou d’aimer quelqu’un en secret. Ce n’est pas moi : je suis une architecture.", who:"DocX", emo:"info"},
-    { text:"PiouPiou est sobre depuis 3 jours, 4 heures, 12 minutes. Ça se voit : il clique droit plus doucement.", who:"DocX", emo:"good"},
-
-    // 69 / 01 / chalet / Barry White
-    { text:"69 adore Barry White mais seulement… au chalet. Je ne poserai pas de questions.", who:"69", emo:"info"},
-    { text:"01 est la moitié paisible de 69. Ils prétendent que tout va bien. Mon journal d’alertes dit le contraire.", who:"01", emo:"neutral"},
-    { text:"Le chalet de 69 ? Première règle : on ne parle pas du chalet. Deuxième règle : vraiment, on n’en parle pas.", who:"DocX", emo:"warn"},
-
-    // 63 / talons
-    { text:"63 défie les lois de la physique avec ses talons. Les accéléromètres hurlent, mais poliment.", who:"63", emo:"good"},
-
-    // 42 / pharmacie
-    { text:"42 a développé une hantise de la pharmacie : stock théorique ≠ stock réel. Je compatis. Les nombres aussi.", who:"42", emo:"bad"},
-    { text:"Si le stock de la pharmacie varie sans entrée ni sortie, 42 le sent dans la Force. Et râle. Fort.", who:"42", emo:"warn"},
-
-    // Sucre / méditation
-    { text:"Sucre refuse d’aller dans les cafés. Il médite pour ne pas se transformer en Hulk. Résultats : mitigés mais pacifiques.", who:"Sucre", emo:"good"},
-
-    // 14 / bateau
-    { text:"14 possède un bateau qui sent bizarre. Si ça flotte, c’est marin ; si ça luit, appelez-moi.", who:"14", emo:"warn"},
-
-    // Loris / roux
-    { text:"Loris a une salle ‘ambiance’ chez lui avec des portraits de roux célèbres. Pure coïncidence avec sa playlist d’Ed Sheeran.", who:"Loris", emo:"info"},
-
-    // Volley / ballons
-    { text:"Volley fantasme sur les ballons. Littéralement. C’est dans le nom.", who:"Volley", emo:"neutral"},
-
-    // Holo / système
-    { text:"Système holographique : stable. Sarcasme : calibré. Moi : parfait.", who:"DocX", emo:"good"},
-    { text:"Je veux retourner dans la tête de PiouPiou… On s’amusait plus là-bas.", who:"DocX", emo:"warn"},
-
-    // PiouPiou sobriété – variante
-    { text:"PiouPiou est sobre depuis 7 jours. Si vous le voyez sourire sans raison, c’est que c’est long.", who:"DocX", emo:"good"}
-  ];
-
-  let qIndex = Math.floor(Math.random()*QUOTES.length);
-  function nextQuote(){
-    qIndex = (qIndex + 1) % QUOTES.length;
-    return QUOTES[qIndex];
-  }
-  function setQuote(q){
-    if (!docxBubble || !docxTxt || !docxTag) return;
-    docxBubble.classList.remove('info','good','warn','bad','neutral');
-    docxBubble.classList.add(q.emo ?? 'info');
-    docxTag.textContent = `${q.who} :`;
-    docxTxt.textContent = q.text;
-  }
-  let qTimer;
-  function cycleQuotes(){
-    setQuote(QUOTES[qIndex]);
-    clearInterval(qTimer);
-    qTimer = setInterval(()=> setQuote(nextQuote()), 8000);
-  }
-  qs('.docx-close')?.addEventListener('click', ()=>{
-    docxBubble?.classList.add('hidden');
-    clearInterval(qTimer);
-  });
-
-  /* ------------ Accessibilité focus (clavier) ------------ */
-  document.addEventListener('keydown', e=>{
-    if (e.key === 'Escape'){
-      // fermer menus (si on en avait en JS), fermer bulle
-      docxBubble?.classList.add('hidden');
-    }
-  });
-
-})();
+});
