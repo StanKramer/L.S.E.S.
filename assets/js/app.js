@@ -1,16 +1,15 @@
-// === L.S.E.S. APP CORE ===
-// Chargement principal et interface DocX / PiouPiou
+// === L.S.E.S. BOOT & INTERFACE JS ===
 
 document.addEventListener("DOMContentLoaded", () => {
-  const authModal = document.getElementById("authModal");
   const bootLog = document.getElementById("bootLog");
   const enterApp = document.getElementById("enterApp");
+  const authModal = document.getElementById("authModal");
+  const body = document.body;
   const docxBubble = document.getElementById("docxBubble");
-  const docxText = docxBubble?.querySelector(".docx-text");
-  const statusBar = document.getElementById("statusBar");
+  const statusTime = document.getElementById("statusTime");
 
-  // === Boot Sequence ===
-  const bootLines = [
+  // === BOOT LOG ===
+  const logs = [
     "Connexion au tronc cognitif…",
     "Synchronisation des couches holographiques…",
     "Chargement des modules mémoire…",
@@ -22,96 +21,62 @@ document.addEventListener("DOMContentLoaded", () => {
     "Interface prête."
   ];
 
-  let lineIndex = 0;
-  const bootTimer = setInterval(() => {
-    if (lineIndex < bootLines.length) {
-      const line = document.createElement("p");
-      line.textContent = bootLines[lineIndex++];
-      bootLog.appendChild(line);
-      bootLog.scrollTop = bootLog.scrollHeight;
+  let i = 0;
+  const printNext = () => {
+    if (i < logs.length) {
+      bootLog.innerHTML += logs[i] + "<br>";
+      i++;
+      setTimeout(printNext, 400);
     } else {
-      clearInterval(bootTimer);
       enterApp.disabled = false;
     }
-  }, 600);
+  };
+  printNext();
 
-  enterApp?.addEventListener("click", () => {
+  // === ENTRÉE DANS L’INTERFACE ===
+  enterApp.addEventListener("click", () => {
     authModal.classList.add("hidden");
-    document.body.classList.add("boot-complete");
-    if (statusBar) statusBar.classList.remove("hidden");
-    startDocXQuotes();
+    body.classList.add("boot-complete");
+    initQuotes();
+    updateClock();
+    setInterval(updateClock, 60000);
   });
 
-  // === Quotes ===
-  const quotes = [
-    // Sérénité
-    { speaker: "DocX", text: "Respirez. Pas comme un poisson. Comme un humain. Bravo.", color: "blue" },
-    { speaker: "DocX", text: "Les protocoles sont stables. Votre calme aussi, espérons-le.", color: "blue" },
-    { speaker: "DocX", text: "N’oubliez pas : un esprit apaisé est un scalpel précis.", color: "blue" },
-
-    // Sarcasme / humour
-    { speaker: "DocX", text: "Note système : PiouPiou a encore demandé de calculer l’impossible. Résultat : sarcasme généré.", color: "green" },
-    { speaker: "DocX", text: "Statistiquement, PiouPiou frôle la divinité. Mais chut, c’est confidentiel.", color: "green" },
-    { speaker: "DocX", text: "Je veux retourner dans la tête de PiouPiou… on s’amusait plus là-bas.", color: "green" },
-
-    // Fatigue / tension
-    { speaker: "DocX", text: "Vos pupilles indiquent une fatigue cognitive. Café recommandé.", color: "violet" },
-    { speaker: "DocX", text: "Charge mentale élevée. Activation du mode autopilote ? (non disponible)", color: "violet" },
-
-    // Concentration
-    { speaker: "DocX", text: "Focus. Votre patient respire. Pour l’instant.", color: "yellow" },
-    { speaker: "DocX", text: "Synchronisation : main droite / main gauche — 97%.", color: "yellow" },
-
-    // Stress / urgence
-    { speaker: "DocX", text: "Anxiété détectée. Respirez profondément. Ou simulez.", color: "red" },
-    { speaker: "DocX", text: "Rappel : vous n’êtes pas seul. Sauf dans vos gardes de nuit.", color: "red" },
-
-    // Citations du personnel (bonus)
-    { speaker: "DocX", text: "42 : sa hantise, la gestion de la pharmacie. Les stocks bougent plus que les patients.", color: "yellow" },
-    { speaker: "DocX", text: "Sucre : refuse de se mettre dans les cafés. Préfère méditer pour ne pas devenir Hulk.", color: "green" },
-    { speaker: "DocX", text: "14 : a un bateau. Il sent bizarre, mais il flotte toujours.", color: "blue" }
-  ];
-
-  let quoteIndex = 0;
-  let quoteTimer;
-
-  function startDocXQuotes() {
-    showNextQuote();
-    quoteTimer = setInterval(showNextQuote, 90000); // 1m30 entre chaque
-  }
-
-  function showNextQuote() {
-    const q = quotes[quoteIndex];
-    quoteIndex = (quoteIndex + 1) % quotes.length;
-
-    if (docxBubble && docxText) {
-      docxText.textContent = `${q.speaker} : ${q.text}`;
-      docxBubble.className = `docx-bubble ${q.color}`;
-      docxBubble.classList.add("visible");
-      setTimeout(() => docxBubble.classList.remove("visible"), 10000);
-    }
-  }
-
-  // === Barre d’état (horloge) ===
+  // === HORLOGE BARRE D’ÉTAT ===
   function updateClock() {
     const now = new Date();
     const h = String(now.getHours()).padStart(2, "0");
     const m = String(now.getMinutes()).padStart(2, "0");
-    document.getElementById("statusTime").textContent = `${h}:${m}`;
+    statusTime.textContent = `${h}:${m}`;
   }
-  setInterval(updateClock, 60000);
-  updateClock();
 
-  // === Effets décoratifs (étoiles / fond animé) ===
-  const starfield = document.createElement("div");
-  starfield.className = "starfield-bg";
-  for (let i = 0; i < 80; i++) {
-    const star = document.createElement("span");
-    star.className = "star";
-    star.style.top = Math.random() * 100 + "%";
+  // === QUOTES DOCX ===
+  const quotes = [
+    { text: "Je veux retourner dans la tête de PiouPiou… on s’amusait plus là-bas.", color: "blue" },
+    { text: "Statistiquement, PiouPiou frôle la divinité. Mais chut, c’est confidentiel.", color: "violet" },
+    { text: "Les protocoles médicaux sont stables. L’état émotionnel de PiouPiou, moins.", color: "green" },
+    { text: "Note système : PiouPiou m’a encore demandé de calculer l’impossible. Résultat : sarcasme généré.", color: "yellow" },
+    { text: "Respirez. Pas comme un poisson. Comme un humain. Bravo.", color: "red" }
+  ];
+
+  function initQuotes() {
+    let idx = 0;
+    setInterval(() => {
+      const q = quotes[idx];
+      docxBubble.className = `docx-bubble ${q.color} visible`;
+      docxBubble.querySelector(".docx-text").textContent = q.text;
+      idx = (idx + 1) % quotes.length;
+    }, 8000);
+  }
+
+  // === EFFETS DE STARS ===
+  const starfield = document.getElementById("holo-stars");
+  for (let s = 0; s < 90; s++) {
+    const star = document.createElement("div");
+    star.classList.add("star");
     star.style.left = Math.random() * 100 + "%";
-    star.style.animationDelay = Math.random() * 10 + "s";
+    star.style.top = Math.random() * 100 + "%";
+    star.style.animationDelay = Math.random() * 8 + "s";
     starfield.appendChild(star);
   }
-  document.body.appendChild(starfield);
 });
