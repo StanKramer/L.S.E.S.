@@ -5,15 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>L.S.E.S. — Interface Médicale</title>
   <link rel="stylesheet" href="assets/css/style.css" />
-  <script defer src="assets/js/app.js"></script>
+
+  <!-- Styles de secours pour boot instantané -->
+  <style>
+    body { background:#02121C; color:#6EEBFF; font-family: monospace; margin:0; }
+    #authModal { display:flex; align-items:center; justify-content:center; height:100vh; }
+    .modal-card {
+      background:rgba(5,15,25,.9);
+      border:1px solid rgba(110,235,255,.3);
+      border-radius:10px;
+      padding:1rem 1.5rem;
+      max-width:600px;
+    }
+    #bootLog {
+      font-size:.9rem;
+      color:#9ef;
+      background:rgba(0,20,30,.6);
+      border:1px dashed rgba(94,226,255,.4);
+      padding:.5rem;
+      height:200px;
+      overflow:auto;
+    }
+    .btn-primary {
+      background:#29c0df;
+      border:none;
+      padding:.5rem 1rem;
+      color:#01202b;
+      border-radius:6px;
+      font-weight:bold;
+      cursor:pointer;
+    }
+    .hidden { display:none; }
+  </style>
+
+  <script src="assets/js/app.js" defer></script>
 </head>
+
 <body class="starfield">
 
-  <!-- Boot + Auth : ne s’affiche qu’au 1er chargement (géré via localStorage) -->
+  <!-- Boot / Auth -->
   <div id="authModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="authTitle">
     <div class="modal-card">
       <h2 id="authTitle">Initialisation — L.S.E.S.</h2>
-      <p class="muted">Authentification de l’utilisateur : <strong>PiouPiou</strong> <span class="badge">niveau GOAT</span></p>
+      <p class="muted">
+        Authentification de l’utilisateur :
+        <strong>PiouPiou</strong> <span class="badge">niveau GOAT</span>
+      </p>
       <div class="terminal" id="bootLog" aria-live="polite"></div>
       <div class="modal-actions">
         <button id="enterApp" class="btn btn-primary" disabled>Accéder à l’interface</button>
@@ -27,6 +64,7 @@
       <img src="assets/img/logo.svg" alt="L.S.E.S." class="logo">
       <span>L.S.E.S. — Interface Médicale</span>
     </div>
+
     <nav class="main-nav" aria-label="Navigation principale">
       <ul class="menu">
         <li><a class="active" href="index.html">Accueil</a></li>
@@ -78,7 +116,7 @@
     </nav>
   </header>
 
-  <!-- Fond animé (particules JS + gradients CSS) -->
+  <!-- Fond animé -->
   <div id="holo-stars"></div>
 
   <main class="container">
@@ -110,5 +148,13 @@
     <div class="status-center">L.S.E.S. — Interface Médicale</div>
     <div class="status-right" id="statusTime"></div>
   </footer>
+
+  <!-- Script sécurité (supprime styles boot une fois chargé) -->
+  <script>
+    window.addEventListener("load",()=>{
+      setTimeout(()=>document.querySelectorAll('style')[0]?.remove(), 3000);
+    });
+  </script>
+
 </body>
 </html>
