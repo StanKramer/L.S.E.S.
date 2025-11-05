@@ -1,174 +1,117 @@
-/* =========================================================
- * L.S.E.S. — JS global (COMPLET)
- * - Boot/Authentification (1er chargement)
- * - Fond animé (particules)
- * - DocX (quotes + émotions + rotation)
- * - Barre d’état (heure + online/offline)
- * - Menu dropdown (CSS ; fermeture au clic externe si needed)
- * ========================================================= */
+// === L.S.E.S. APP CORE ===
+// Chargement principal et interface DocX / PiouPiou
 
-const $ = (s, r=document)=>r.querySelector(s);
-const $$ = (s, r=document)=>Array.from(r.querySelectorAll(s));
+document.addEventListener("DOMContentLoaded", () => {
+  const authModal = document.getElementById("authModal");
+  const bootLog = document.getElementById("bootLog");
+  const enterApp = document.getElementById("enterApp");
+  const docxBubble = document.getElementById("docxBubble");
+  const docxText = docxBubble?.querySelector(".docx-text");
+  const statusBar = document.getElementById("statusBar");
 
-/* ----------------------- Boot / Auth ---------------------- */
-const BOOT_LINES = [
-  "Connexion au tronc cognitif…",
-  "Synchronisation des couches holographiques…",
-  "Chargement des modules mémoire…",
-  "Calibration du sarcasme : OK.",
-  "Recherche : fragments de PiouPiou… trouvés.",
-  "Alignement des quotes : 69, 01, 63, 42, Sucre, Loris, 14, Volley…",
-  "Sécurité : canal chiffré — stable.",
-  "Diagnostics : optimismes variables ; humour intact.",
-  "Interface prête."
-];
+  // === Boot Sequence ===
+  const bootLines = [
+    "Connexion au tronc cognitif…",
+    "Synchronisation des couches holographiques…",
+    "Chargement des modules mémoire…",
+    "Calibration du sarcasme : OK.",
+    "Recherche : fragments de PiouPiou… trouvés.",
+    "Alignement des quotes : 69, 01, 63, 42, Sucre, Loris, 14, Volley…",
+    "Sécurité : canal chiffré — stable.",
+    "Diagnostics : optimismes variables ; humour intact.",
+    "Interface prête."
+  ];
 
-function firstRun(){
-  try { return !localStorage.getItem("lses_auth_seen"); }
-  catch { return true; }
-}
-
-function runBootOnce(){
-  const modal   = $("#authModal");
-  const logBox  = $("#bootLog");
-  const enterBt = $("#enterApp");
-  if (!modal || !logBox || !enterBt) return;
-
-  const pushLine = (t)=> {
-    const d = document.createElement("div");
-    d.className = "line";
-    d.innerHTML = `<span class="caret"></span> ${t}`;
-    logBox.appendChild(d);
-    logBox.scrollTop = logBox.scrollHeight;
-  };
-
-  modal.classList.remove("hidden");
-  let i=0;
-  (function step(){
-    if (i<BOOT_LINES.length){
-      pushLine(BOOT_LINES[i++]);
-      setTimeout(step, 550);
+  let lineIndex = 0;
+  const bootTimer = setInterval(() => {
+    if (lineIndex < bootLines.length) {
+      const line = document.createElement("p");
+      line.textContent = bootLines[lineIndex++];
+      bootLog.appendChild(line);
+      bootLog.scrollTop = bootLog.scrollHeight;
     } else {
-      enterBt.disabled = false;
+      clearInterval(bootTimer);
+      enterApp.disabled = false;
     }
-  })();
+  }, 600);
 
-  enterBt.addEventListener("click", ()=>{
-    modal.classList.add("hidden");
-    try { localStorage.setItem("lses_auth_seen","1"); } catch {}
-    showUI();
-  }, {once:true});
-}
-
-function showUI(){
-  $("#statusBar")?.classList.remove("hidden");
-  initDocX();
-}
-
-/* ----------------------- Fond animé ---------------------- */
-function createHoloParticles(){
-  if ($("#holo-stars")) {
-    const layer = $("#holo-stars");
-    layer.innerHTML = "";
-    for (let i=0;i<40;i++){
-      const s=document.createElement("i");
-      s.className="star";
-      s.style.left = (Math.random()*100)+"%";
-      s.style.top  = (Math.random()*100)+"%";
-      s.style.animationDelay = (Math.random()*6).toFixed(2)+"s";
-      layer.appendChild(s);
-    }
-  }
-}
-
-/* ----------------------- Barre d’état ---------------------- */
-function initStatusBar(){
-  const status = $("#statusTime");
-  const update = ()=>{
-    const d = new Date();
-    const t = d.toLocaleString("fr-FR",{dateStyle:"medium",timeStyle:"short"});
-    status && (status.textContent = `${t} — réseau ${navigator.onLine?"connecté":"hors-ligne"}`);
-  };
-  update();
-  setInterval(update, 1000);
-  window.addEventListener("online", update);
-  window.addEventListener("offline", update);
-}
-
-/* ----------------------- DocX (quotes) ---------------------- */
-const QUOTES = [
-  // PiouPiou / identité / accident / amour impossible / sobriété
-  { who:"DocX", emo:"good",    text:"PiouPiou est sobre depuis 7 jours. S’il sourit sans raison, c’est que c’est long." },
-  { who:"DocX", emo:"warn",    text:"L’accident de PiouPiou… ‘accident’ est un mot flexible. Trop de coïncidences." },
-  { who:"DocX", emo:"neutral", text:"Je viens de la tête de PiouPiou. Il y faisait meilleur avant." },
-  { who:"DocX", emo:"neutral", text:"PiouPiou est formidable. C’est peut-être pour ça qu’il est seul. Ou pas." },
-
-  // 69 / 01 / chalet / Barry White
-  { who:"69",   emo:"info",    text:"69 n’écoute Barry White qu’au chalet. Ne demande pas pourquoi." },
-  { who:"01",   emo:"neutral", text:"01 équilibre. 69 accélère. Moi, j’observe." },
-
-  // 63 / talons
-  { who:"63",   emo:"good",    text:"63 défie la physique avec ses talons. Les accéléromètres pleurent doucement." },
-
-  // 42 / pharmacie
-  { who:"42",   emo:"warn",    text:"42 et la pharmacie : si le stock bouge sans bouger, c’est un mardi." },
-
-  // Sucre / méditation
-  { who:"Sucre",emo:"good",    text:"Sucre médite pour ne pas devenir Hulk. Résultats étonnamment bons." },
-
-  // 14 / bateau
-  { who:"14",   emo:"warn",    text:"14 a un bateau qui sent bizarre. Je n’analyse pas les odeurs, par compassion." },
-
-  // Loris / roux
-  { who:"Loris",emo:"info",    text:"Loris collectionne les roux célèbres. Je ne juge pas. Je note." },
-
-  // Volley / ballons
-  { who:"Volley",emo:"neutral",text:"Volley fantasme sur les ballons. Littéralement. C’est dans le nom." },
-
-  // Système
-  { who:"DocX", emo:"good",    text:"Système holographique : stable. Sarcasme : calibré. Moi : parfait." }
-];
-
-function initDocX(){
-  const bubble = $("#docxBubble");
-  if (!bubble) return;
-  const tag = $(".docx-tag", bubble) || bubble.appendChild(Object.assign(document.createElement("div"),{className:"docx-tag"}));
-  const txt = $(".docx-text", bubble) || bubble.appendChild(Object.assign(document.createElement("div"),{className:"docx-text"}));
-  $(".docx-close", bubble)?.addEventListener("click", ()=> bubble.classList.add("hidden"));
-
-  let i = Math.floor(Math.random()*QUOTES.length);
-  const setQuote = (q)=>{
-    bubble.classList.remove("info","good","warn","bad","neutral");
-    bubble.classList.add(q.emo || "info");
-    tag.textContent = `${q.who} :`;
-    txt.textContent = q.text;
-  };
-  setQuote(QUOTES[i]);
-  setInterval(()=>{ i=(i+1)%QUOTES.length; setQuote(QUOTES[i]); }, 8000);
-}
-
-/* ----------------------- Menu dropdown (fermeture au clic ailleurs) ---------------------- */
-function initDropdownClose(){
-  document.addEventListener("click", (e)=>{
-    if (!e.target.closest(".has-sub")) {
-      $$(".has-sub").forEach(li=> li.classList.remove("open"));
-    } else {
-      const li = e.target.closest(".has-sub");
-      li.classList.toggle("open");
-    }
+  enterApp?.addEventListener("click", () => {
+    authModal.classList.add("hidden");
+    document.body.classList.add("boot-complete");
+    if (statusBar) statusBar.classList.remove("hidden");
+    startDocXQuotes();
   });
-}
 
-/* ----------------------- Boot ---------------------- */
-document.addEventListener("DOMContentLoaded", ()=>{
-  // Fond + statut
-  createHoloParticles();
-  initStatusBar();
-  initDropdownClose();
+  // === Quotes ===
+  const quotes = [
+    // Sérénité
+    { speaker: "DocX", text: "Respirez. Pas comme un poisson. Comme un humain. Bravo.", color: "blue" },
+    { speaker: "DocX", text: "Les protocoles sont stables. Votre calme aussi, espérons-le.", color: "blue" },
+    { speaker: "DocX", text: "N’oubliez pas : un esprit apaisé est un scalpel précis.", color: "blue" },
 
-  if (firstRun()) {
-    runBootOnce();
-  } else {
-    showUI();
+    // Sarcasme / humour
+    { speaker: "DocX", text: "Note système : PiouPiou a encore demandé de calculer l’impossible. Résultat : sarcasme généré.", color: "green" },
+    { speaker: "DocX", text: "Statistiquement, PiouPiou frôle la divinité. Mais chut, c’est confidentiel.", color: "green" },
+    { speaker: "DocX", text: "Je veux retourner dans la tête de PiouPiou… on s’amusait plus là-bas.", color: "green" },
+
+    // Fatigue / tension
+    { speaker: "DocX", text: "Vos pupilles indiquent une fatigue cognitive. Café recommandé.", color: "violet" },
+    { speaker: "DocX", text: "Charge mentale élevée. Activation du mode autopilote ? (non disponible)", color: "violet" },
+
+    // Concentration
+    { speaker: "DocX", text: "Focus. Votre patient respire. Pour l’instant.", color: "yellow" },
+    { speaker: "DocX", text: "Synchronisation : main droite / main gauche — 97%.", color: "yellow" },
+
+    // Stress / urgence
+    { speaker: "DocX", text: "Anxiété détectée. Respirez profondément. Ou simulez.", color: "red" },
+    { speaker: "DocX", text: "Rappel : vous n’êtes pas seul. Sauf dans vos gardes de nuit.", color: "red" },
+
+    // Citations du personnel (bonus)
+    { speaker: "DocX", text: "42 : sa hantise, la gestion de la pharmacie. Les stocks bougent plus que les patients.", color: "yellow" },
+    { speaker: "DocX", text: "Sucre : refuse de se mettre dans les cafés. Préfère méditer pour ne pas devenir Hulk.", color: "green" },
+    { speaker: "DocX", text: "14 : a un bateau. Il sent bizarre, mais il flotte toujours.", color: "blue" }
+  ];
+
+  let quoteIndex = 0;
+  let quoteTimer;
+
+  function startDocXQuotes() {
+    showNextQuote();
+    quoteTimer = setInterval(showNextQuote, 90000); // 1m30 entre chaque
   }
+
+  function showNextQuote() {
+    const q = quotes[quoteIndex];
+    quoteIndex = (quoteIndex + 1) % quotes.length;
+
+    if (docxBubble && docxText) {
+      docxText.textContent = `${q.speaker} : ${q.text}`;
+      docxBubble.className = `docx-bubble ${q.color}`;
+      docxBubble.classList.add("visible");
+      setTimeout(() => docxBubble.classList.remove("visible"), 10000);
+    }
+  }
+
+  // === Barre d’état (horloge) ===
+  function updateClock() {
+    const now = new Date();
+    const h = String(now.getHours()).padStart(2, "0");
+    const m = String(now.getMinutes()).padStart(2, "0");
+    document.getElementById("statusTime").textContent = `${h}:${m}`;
+  }
+  setInterval(updateClock, 60000);
+  updateClock();
+
+  // === Effets décoratifs (étoiles / fond animé) ===
+  const starfield = document.createElement("div");
+  starfield.className = "starfield-bg";
+  for (let i = 0; i < 80; i++) {
+    const star = document.createElement("span");
+    star.className = "star";
+    star.style.top = Math.random() * 100 + "%";
+    star.style.left = Math.random() * 100 + "%";
+    star.style.animationDelay = Math.random() * 10 + "s";
+    starfield.appendChild(star);
+  }
+  document.body.appendChild(starfield);
 });
