@@ -1,24 +1,35 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>L.S.E.S. — Interface Médicale</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="preload" href="assets/img/logo.svg" as="image">
-  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <script defer src="assets/js/app.js"></script>
 </head>
 <body class="starfield">
+
+  <!-- Boot + Auth : ne s’affiche qu’au 1er chargement (géré via localStorage) -->
+  <div id="authModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+    <div class="modal-card">
+      <h2 id="authTitle">Initialisation — L.S.E.S.</h2>
+      <p class="muted">Authentification de l’utilisateur : <strong>PiouPiou</strong> <span class="badge">niveau GOAT</span></p>
+      <div class="terminal" id="bootLog" aria-live="polite"></div>
+      <div class="modal-actions">
+        <button id="enterApp" class="btn btn-primary" disabled>Accéder à l’interface</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Bandeau -->
   <header class="app-header">
     <div class="brand">
-      <img src="assets/img/logo.svg" alt="Logo L.S.E.S." class="logo">
+      <img src="assets/img/logo.svg" alt="L.S.E.S." class="logo">
       <span>L.S.E.S. — Interface Médicale</span>
     </div>
-
     <nav class="main-nav" aria-label="Navigation principale">
       <ul class="menu">
-        <li><a href="index.html">Accueil</a></li>
+        <li><a class="active" href="index.html">Accueil</a></li>
 
         <li class="has-sub">
           <a href="chirurgie/chirurgie.html">Chirurgie</a>
@@ -40,7 +51,9 @@
           <a href="kinesitherapie/kinesitherapie.html">Kinésithérapie</a>
           <ul class="submenu">
             <li><a href="kinesitherapie/kinesitherapie.html#holo">Schéma Holo</a></li>
-            <li><a href="kinesitherapie/kinesitherapie.html#exercices">Exercices</a></li>
+            <li><a href="kinesitherapie/kinesitherapie.html#exercices-basiques">Exercices basiques</a></li>
+            <li><a href="kinesitherapie/kinesitherapie.html#exercices-avances">Exercices avancés</a></li>
+            <li><a href="kinesitherapie/kinesitherapie.html#preparation-physique">Préparation physique</a></li>
             <li><a href="kinesitherapie/kinesitherapie.html#protocoles">Protocoles</a></li>
           </ul>
         </li>
@@ -65,23 +78,9 @@
     </nav>
   </header>
 
-  <!-- Fenêtre d’authentification (une seule fois) -->
-  <div id="authModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="authTitle">
-    <div class="modal-card">
-      <h2 id="authTitle">Initialisation — L.S.E.S.</h2>
-      <p class="muted">Authentification de l’utilisateur : <strong>PiouPiou</strong> <span class="badge">niveau GOAT</span></p>
+  <!-- Fond animé (particules JS + gradients CSS) -->
+  <div id="holo-stars"></div>
 
-      <div class="terminal" id="bootLog" aria-live="polite">
-        <!-- lignes alimentées par JS -->
-      </div>
-
-      <div class="modal-actions">
-        <button id="enterApp" class="btn btn-primary" disabled>Accéder à l’interface</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Contenu principal -->
   <main class="container">
     <section class="hero">
       <h1>Bienvenue dans l’Interface Médicale du L.S.E.S.</h1>
@@ -89,54 +88,27 @@
     </section>
 
     <section class="grid-cards">
-      <a class="card" href="chirurgie/chirurgie.html">
-        <h3>Pôle Chirurgical</h3>
-        <p>Guides opératoires et checklists — version en ligne.</p>
-      </a>
-
-      <a class="card" href="gynecologie/gynecologie.html">
-        <h3>Pôle Gynécologique</h3>
-        <p>Formations et protocoles — prise en charge & suivi.</p>
-      </a>
-
-      <a class="card" href="kinesitherapie/kinesitherapie.html">
-        <h3>Pôle Kinésithérapie</h3>
-        <p>Schéma holographique interactif, exercices & protocoles.</p>
-      </a>
-
-      <a class="card" href="medecine-legale/medecinelegale.html">
-        <h3>Médecine Légale</h3>
-        <p>Procédures médico-légales et documentation judiciaire.</p>
-      </a>
-
-      <a class="card" href="psy/formation_psy.html">
-        <h3>Psychologie</h3>
-        <p>Formations, hygiène mentale & suivi d’équipe.</p>
-      </a>
-
-      <a class="card" href="glossaire.html">
-        <h3>Glossaire Médical</h3>
-        <p>Termes, instruments, schémas — enrichi au fil des contenus.</p>
-      </a>
+      <a class="card" href="chirurgie/chirurgie.html"><h3>Pôle Chirurgical</h3><p>Guides opératoires & checklists.</p></a>
+      <a class="card" href="gynecologie/gynecologie.html"><h3>Pôle Gynécologique</h3><p>Prise en charge & formations.</p></a>
+      <a class="card" href="kinesitherapie/kinesitherapie.html"><h3>Pôle Kinésithérapie</h3><p>Schéma holographique & exercices.</p></a>
+      <a class="card" href="medecine-legale/medecinelegale.html"><h3>Médecine Légale</h3><p>Procédures & documentation.</p></a>
+      <a class="card" href="psy/formation_psy.html"><h3>Psychologie</h3><p>Hygiène mentale & team care.</p></a>
+      <a class="card" href="glossaire.html"><h3>Glossaire</h3><p>Termes, instruments & schémas.</p></a>
     </section>
   </main>
 
-  <!-- Barre d’état (après lancement) -->
-  <footer class="statusbar hidden" id="statusBar" aria-live="polite">
-    <div class="status-left">
-      <span class="dot ok"></span> Système Holo : Opérationnel
-    </div>
-    <div class="status-center">L.S.E.S. — Interface Médicale</div>
-    <div class="status-right" id="statusTime"></div>
-  </footer>
-
-  <!-- DocX : bulle -->
+  <!-- Bulle DocX -->
   <aside id="docxBubble" class="docx-bubble info">
-    <button class="docx-close" title="Fermer" aria-label="Fermer la bulle">×</button>
-    <div class="docx-tag">PiouPiou :</div>
+    <button class="docx-close" title="Fermer">×</button>
+    <div class="docx-tag">DocX :</div>
     <div class="docx-text">Initialisation… ajustement du sarcasme…</div>
   </aside>
 
-  <script src="assets/js/app.js"></script>
+  <!-- Barre d’état -->
+  <footer class="statusbar hidden" id="statusBar" aria-live="polite">
+    <div class="status-left"><span class="dot ok"></span> Système Holo : Opérationnel</div>
+    <div class="status-center">L.S.E.S. — Interface Médicale</div>
+    <div class="status-right" id="statusTime"></div>
+  </footer>
 </body>
 </html>
