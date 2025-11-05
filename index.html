@@ -1,160 +1,101 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>L.S.E.S. — Interface Médicale</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
-
-  <!-- Styles de secours pour boot instantané -->
-  <style>
-    body { background:#02121C; color:#6EEBFF; font-family: monospace; margin:0; }
-    #authModal { display:flex; align-items:center; justify-content:center; height:100vh; }
-    .modal-card {
-      background:rgba(5,15,25,.9);
-      border:1px solid rgba(110,235,255,.3);
-      border-radius:10px;
-      padding:1rem 1.5rem;
-      max-width:600px;
-    }
-    #bootLog {
-      font-size:.9rem;
-      color:#9ef;
-      background:rgba(0,20,30,.6);
-      border:1px dashed rgba(94,226,255,.4);
-      padding:.5rem;
-      height:200px;
-      overflow:auto;
-    }
-    .btn-primary {
-      background:#29c0df;
-      border:none;
-      padding:.5rem 1rem;
-      color:#01202b;
-      border-radius:6px;
-      font-weight:bold;
-      cursor:pointer;
-    }
-    .hidden { display:none; }
-  </style>
-
-  <script src="assets/js/app.js" defer></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
 </head>
 
-<body class="starfield">
-
-  <!-- Boot / Auth -->
-  <div id="authModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+<body>
+  <!-- === FENÊTRE DE DÉMARRAGE === -->
+  <div id="authModal">
     <div class="modal-card">
-      <h2 id="authTitle">Initialisation — L.S.E.S.</h2>
-      <p class="muted">
-        Authentification de l’utilisateur :
-        <strong>PiouPiou</strong> <span class="badge">niveau GOAT</span>
-      </p>
-      <div class="terminal" id="bootLog" aria-live="polite"></div>
-      <div class="modal-actions">
-        <button id="enterApp" class="btn btn-primary" disabled>Accéder à l’interface</button>
-      </div>
+      <h2>Initialisation — <span style="color:#24d0ff;">L.S.E.S.</span></h2>
+      <p>Authentification de l’utilisateur : <b>PiouPiou</b> [niveau GOAT]</p>
+
+      <div id="bootLog"></div>
+      <button id="enterApp" class="btn-primary" disabled>Accéder à l’interface</button>
     </div>
   </div>
 
-  <!-- Bandeau -->
+  <!-- === FOND ANIMÉ === -->
+  <div class="starfield-bg" id="holo-stars"></div>
+
+  <!-- === ENTÊTE === -->
   <header class="app-header">
     <div class="brand">
-      <img src="assets/img/logo.svg" alt="L.S.E.S." class="logo">
+      <img src="assets/img/logo.png" class="logo" alt="Logo LSES">
       <span>L.S.E.S. — Interface Médicale</span>
     </div>
 
-    <nav class="main-nav" aria-label="Navigation principale">
+    <nav class="main-nav">
       <ul class="menu">
-        <li><a class="active" href="index.html">Accueil</a></li>
-
+        <li><a href="index.html" class="active">Accueil</a></li>
         <li class="has-sub">
-          <a href="chirurgie/chirurgie.html">Chirurgie</a>
+          <a href="#">Pôles</a>
           <ul class="submenu">
-            <li><a href="chirurgie/chirurgie.html#protocoles">Protocoles</a></li>
-            <li><a href="chirurgie/chirurgie.html#checklists">Checklists</a></li>
+            <li><a href="chirurgie/chirurgie.html">Chirurgie</a></li>
+            <li><a href="gynecologie/gynecologie.html">Gynécologie</a></li>
+            <li><a href="kinesitherapie/kinesitherapie.html">Kinésithérapie</a></li>
+            <li><a href="medecine-legale/medecinelegale.html">Médecine Légale</a></li>
+            <li><a href="psy/formation_psy.html">Psychologie</a></li>
           </ul>
         </li>
-
-        <li class="has-sub">
-          <a href="gynecologie/gynecologie.html">Gynécologie</a>
-          <ul class="submenu">
-            <li><a href="gynecologie/gynecologie.html#prise-en-charge">Prise en charge</a></li>
-            <li><a href="gynecologie/gynecologie.html#formations">Formations</a></li>
-          </ul>
-        </li>
-
-        <li class="has-sub">
-          <a href="kinesitherapie/kinesitherapie.html">Kinésithérapie</a>
-          <ul class="submenu">
-            <li><a href="kinesitherapie/kinesitherapie.html#holo">Schéma Holo</a></li>
-            <li><a href="kinesitherapie/kinesitherapie.html#exercices-basiques">Exercices basiques</a></li>
-            <li><a href="kinesitherapie/kinesitherapie.html#exercices-avances">Exercices avancés</a></li>
-            <li><a href="kinesitherapie/kinesitherapie.html#preparation-physique">Préparation physique</a></li>
-            <li><a href="kinesitherapie/kinesitherapie.html#protocoles">Protocoles</a></li>
-          </ul>
-        </li>
-
-        <li class="has-sub">
-          <a href="medecine-legale/medecinelegale.html">Médecine légale</a>
-          <ul class="submenu">
-            <li><a href="medecine-legale/medecinelegale.html#procedures">Procédures</a></li>
-            <li><a href="medecine-legale/medecinelegale.html#docs">Documentation</a></li>
-          </ul>
-        </li>
-
-        <li class="has-sub">
-          <a href="psy/formation_psy.html">Psychologie</a>
-          <ul class="submenu">
-            <li><a href="psy/formation_psy.html#formations">Formations</a></li>
-          </ul>
-        </li>
-
         <li><a href="glossaire.html">Glossaire</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Fond animé -->
-  <div id="holo-stars"></div>
-
+  <!-- === CONTENU PRINCIPAL === -->
   <main class="container">
     <section class="hero">
       <h1>Bienvenue dans l’Interface Médicale du L.S.E.S.</h1>
       <p class="subtitle">« Parce que sauver une vie ne devrait pas dépendre d’une bonne connexion Wi-Fi. »</p>
     </section>
 
-    <section class="grid-cards">
-      <a class="card" href="chirurgie/chirurgie.html"><h3>Pôle Chirurgical</h3><p>Guides opératoires & checklists.</p></a>
-      <a class="card" href="gynecologie/gynecologie.html"><h3>Pôle Gynécologique</h3><p>Prise en charge & formations.</p></a>
-      <a class="card" href="kinesitherapie/kinesitherapie.html"><h3>Pôle Kinésithérapie</h3><p>Schéma holographique & exercices.</p></a>
-      <a class="card" href="medecine-legale/medecinelegale.html"><h3>Médecine Légale</h3><p>Procédures & documentation.</p></a>
-      <a class="card" href="psy/formation_psy.html"><h3>Psychologie</h3><p>Hygiène mentale & team care.</p></a>
-      <a class="card" href="glossaire.html"><h3>Glossaire</h3><p>Termes, instruments & schémas.</p></a>
-    </section>
+    <div class="grid-cards">
+      <div class="card">
+        <h3>Pôle Chirurgical</h3>
+        <p>Protocoles opératoires et assistance en salle de chirurgie.</p>
+      </div>
+      <div class="card">
+        <h3>Pôle Gynécologique</h3>
+        <p>Suivi obstétrical, traitements et urgences associées.</p>
+      </div>
+      <div class="card">
+        <h3>Pôle Kinésithérapie</h3>
+        <p>Schéma holographique interactif, électrostimulation et exercices physiques.</p>
+      </div>
+      <div class="card">
+        <h3>Médecine Légale</h3>
+        <p>Autopsies, relevés, diagnostics post-mortem et procédures judiciaires.</p>
+      </div>
+      <div class="card">
+        <h3>Glossaire Médical</h3>
+        <p>Terminologie, pharmacologie et références croisées inter-départementales.</p>
+      </div>
+    </div>
   </main>
 
-  <!-- Bulle DocX -->
-  <aside id="docxBubble" class="docx-bubble info">
-    <button class="docx-close" title="Fermer">×</button>
-    <div class="docx-tag">DocX :</div>
-    <div class="docx-text">Initialisation… ajustement du sarcasme…</div>
-  </aside>
+  <!-- === DOCX QUOTES === -->
+  <div id="docxBubble" class="docx-bubble blue">
+    <span class="docx-tag">🧠 DocX :</span>
+    <span class="docx-text">Initialisation des modules de diagnostic…</span>
+  </div>
 
-  <!-- Barre d’état -->
-  <footer class="statusbar hidden" id="statusBar" aria-live="polite">
-    <div class="status-left"><span class="dot ok"></span> Système Holo : Opérationnel</div>
-    <div class="status-center">L.S.E.S. — Interface Médicale</div>
-    <div class="status-right" id="statusTime"></div>
+  <!-- === BARRE D’ÉTAT === -->
+  <div id="statusBar" class="statusbar">
+    <div class="status-left"><span class="dot"></span> Connecté au réseau médical interplanétaire</div>
+    <div id="statusTime" class="status-right"></div>
+  </div>
+
+  <footer>
+    © 2025 PiouPiou le Magnifique — ProjectV  
+    <br>« Parce qu’il fallait bien quelqu’un pour écrire ce bazar. »
   </footer>
 
-  <!-- Script sécurité (supprime styles boot une fois chargé) -->
-  <script>
-    window.addEventListener("load",()=>{
-      setTimeout(()=>document.querySelectorAll('style')[0]?.remove(), 3000);
-    });
-  </script>
-
+  <script src="assets/js/app.js"></script>
 </body>
 </html>
